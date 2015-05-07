@@ -1,0 +1,112 @@
+07/05/2015 19:01:00: System init
+07/05/2015 19:01:00: In GasStationMain::GasStationMain()
+07/05/2015 19:01:00: In GasStationMain::run()
+07/05/2015 19:01:00: In GasStationMain::run() - init the BlProxy
+07/05/2015 19:01:00: BLProxy init
+07/05/2015 19:01:00: In BLProxy()::blProxy()
+07/05/2015 19:01:00: Created BLProxy object
+07/05/2015 19:01:00: In BLProxy::getBlProxy()
+07/05/2015 19:01:00: In BLProxy::runThread()
+07/05/2015 19:01:00: In BLProxy:: Running the BL as a seperate thread
+07/05/2015 19:01:00: GasStationsBL init
+07/05/2015 19:01:00: In GasStationsBL()::GasStationsBL()
+07/05/2015 19:01:00: In GasStationsBL()::init()
+07/05/2015 19:01:00: GasStationBL created DAL proxy object
+07/05/2015 19:01:00: DALProxy init
+07/05/2015 19:01:00: In DalProxy()::DalProxy()
+07/05/2015 19:01:00: Created DALProxy object
+07/05/2015 19:01:00: In DalProxy::getDalProxy()
+07/05/2015 19:01:00: In DalProxy::init()
+07/05/2015 19:01:00: GasStationDAL init
+07/05/2015 19:01:00: In GasStationDAL::GasStationDAL()
+07/05/2015 19:01:00: In GasStationDAL::init()
+07/05/2015 19:01:00: GasStationBL getting GasStation object from configuration file
+07/05/2015 19:01:00: In DalProxy::getGasStationFromConfiguration()
+07/05/2015 19:01:00: In GasStationDAL::loadConfiguration()
+07/05/2015 19:01:00: GasStation init
+07/05/2015 19:01:00: In GasStation()::GasStation()
+07/05/2015 19:01:01: MainFuelPool init
+07/05/2015 19:01:01: In MainFuelPool()::MainFuelPool()
+07/05/2015 19:01:01: In MainFuelPool()::MainFuelPool() - current capacity: 220
+07/05/2015 19:01:01: In MainFuelPool()::MainFuelPool() - max capacity: 500
+07/05/2015 19:01:01: In MainFuelPool::attach() - attched new fueling observer
+07/05/2015 19:01:01: In MainFuelPool::attach() - attched new fueling observer
+07/05/2015 19:01:01: In MainFuelPool::attach() - attched new fueling observer
+07/05/2015 19:01:01: In MainFuelPool::attach() - attched new fueling observer
+07/05/2015 19:01:01: In GasStation()::setCleaningService()
+07/05/2015 19:01:01: GasStation::addCar()
+07/05/2015 19:01:01: Car id :111 Want Cleaning :true
+07/05/2015 19:01:01: Num of Liters :47 Pump :2
+07/05/2015 19:01:01: GasStation::addCar()
+07/05/2015 19:01:01: Car id :333 Want Cleaning :false
+07/05/2015 19:01:01: Num of Liters :42 Pump :1
+07/05/2015 19:01:01: GasStation::addCar()
+07/05/2015 19:01:01: Car id :222 Want Cleaning :true
+07/05/2015 19:01:01: GasStation::addCar()
+07/05/2015 19:01:01: Car id :444 Want Cleaning :true
+07/05/2015 19:01:01: Num of Liters :35 Pump :1
+07/05/2015 19:01:01: GasStationBL the GasStation object was created
+07/05/2015 19:01:01: GasStationBL: there are 4 cars in the station
+07/05/2015 19:01:01: GasStationBL: there are 4 pumps in the station
+07/05/2015 19:01:01: In GasStationMain::run() - init the UI
+07/05/2015 19:01:01: In GasStationsBL::run()
+07/05/2015 19:01:01: GasStationBL began execution as seprate thread (id = 11)
+07/05/2015 19:01:01: In GasStationBL::run() - executing the GasStation object in a seperate thread 
+07/05/2015 19:01:01: In GasStation()::run()
+07/05/2015 19:01:01: BLProxy object already exists
+07/05/2015 19:01:01: In BLProxy::getBlProxy()
+07/05/2015 19:01:01: In BLProxy()::getMainFuelPool()
+07/05/2015 19:01:01: In BLProxy():: Got main fuel pool request
+07/05/2015 19:01:01: In GasStationsBL()::getMainFuelPool()
+07/05/2015 19:01:01: In GasStationsBL():: Got main fuel pool request
+07/05/2015 19:01:01: ConsoleUI init
+07/05/2015 19:01:01: In ConsoleUI()::ConsoleUI()
+07/05/2015 19:01:01: In ConsoleUI()::init()
+07/05/2015 19:01:01: In ConsoleUI()::init() -  running  the UI as a separate thread
+07/05/2015 19:01:01: In GasStation()::run() -  Started running as a separate thread
+07/05/2015 19:01:01: In GasStation()::activatePumps()
+07/05/2015 19:01:01: In GasStation()::activatePumps() - creating thread pool for 4 pumps
+07/05/2015 19:01:01: In GasStation()::activatePumps() - creating thread for pump: 1
+07/05/2015 19:01:01: In GasStation()::activatePumps() - created thread for pump: 1
+07/05/2015 19:01:01: In GasStation()::activatePumps() - creating thread for pump: 2
+07/05/2015 19:01:01: In GasStation()::activatePumps() - created thread for pump: 2
+07/05/2015 19:01:01: In GasStation()::activatePumps() - creating thread for pump: 3
+07/05/2015 19:01:01: In GasStation()::activatePumps() - created thread for pump: 3
+07/05/2015 19:01:01: In GasStation()::activatePumps() - creating thread for pump: 4
+07/05/2015 19:01:01: In GasStation()::activatePumps() - created thread for pump: 4
+07/05/2015 19:01:01: In GasStation()::activateCleaningService()
+07/05/2015 19:01:01: In GasStation()::run() - sendind car 111 to fueling
+07/05/2015 19:01:01: In GasStation()::run() - car 111 was added to handling queue
+07/05/2015 19:01:01: In GasStation()::run() - sendind car 333 to fueling
+07/05/2015 19:01:01: In GasStation()::run() - sendind car 222 to cleaning
+07/05/2015 19:01:01: In ConsoleUI()::run()
+07/05/2015 19:01:01: In GasStation()::run() - sendind car 444 to fueling
+07/05/2015 19:01:01: In GasStation()::run() - car 444 was added to handling queue
+07/05/2015 19:01:01: In ConsoleUI()::run() -  Started running as a separate thread
+07/05/2015 19:01:01: BLProxy object already exists
+07/05/2015 19:01:01: In BLProxy::getBlProxy()
+07/05/2015 19:01:01: In GasStation()::run() - car 111 was removed from handling queue
+07/05/2015 19:01:01: In GasStation()::run() - sending car 111 to cleaning
+07/05/2015 19:01:01: In MainFuelPool::getGas() - send exception
+07/05/2015 19:01:01: In MainFuelPool::getGas() - current: 96 max: 500
+07/05/2015 19:01:01: In GasStation()::run() - car 444 was removed from handling queue
+07/05/2015 19:01:01: In GasStation()::run() - sending car 444 to cleaning
+07/05/2015 19:01:04: In BLProxy()::closeGasStation()
+07/05/2015 19:01:04: In BLProxy():: Got gas station closing request
+07/05/2015 19:01:04: In GasStationsBL()::closeGasStation()
+07/05/2015 19:01:04: In GasStationsBL():: Got gas station closing request
+07/05/2015 19:01:04: In BLProxy()::getGasStationStatistics()
+07/05/2015 19:01:04: In BLProxy():: Got statistics request
+07/05/2015 19:01:04: In GasStationsBL()::getGasStationStatistics()
+07/05/2015 19:01:04: In GasStationsBL():: Got statistics request
+07/05/2015 19:01:04: In BLProxy()::closeGasStation()
+07/05/2015 19:01:04: In BLProxy():: Got gas station closing request
+07/05/2015 19:01:04: In GasStationsBL()::closeGasStation()
+07/05/2015 19:01:04: In GasStationsBL():: Got gas station closing request
+07/05/2015 19:01:04: In GasStation()::run() -  Thread is closing
+07/05/2015 19:01:04: In GasStation()::deactivatePumps()
+07/05/2015 19:01:04: In GasStation()::deactivatePumps() - sending close command to the pumps
+07/05/2015 19:01:04: In GasStation()::deactivateCleaningService()
+07/05/2015 19:01:11: In GasStation()::run() -  Thread is closing
+07/05/2015 19:01:11: In GasStationBL::run() -  Gas station thread finished executing
+07/05/2015 19:01:11: In GasStationMain::run() - all threads finished
