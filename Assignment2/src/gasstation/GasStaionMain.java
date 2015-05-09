@@ -7,7 +7,6 @@ package gasstation;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import ui.ClientGUI;
 import ui.ConsoleUI;
 import bl.BlProxy;
 
@@ -23,8 +22,8 @@ public class GasStaionMain {
 	 */
 	public static void main(String[] args) {
 		
-		//GasStaionMain.getObject().run();
-		ClientGUI c = new ClientGUI();
+		GasStaionMain.getObject().run();
+		
 	}
 	
 	
