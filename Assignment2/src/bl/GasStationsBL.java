@@ -1,7 +1,4 @@
-/**
-* @authors: Amir Krayden
-* @date: 21/03/15 
-*/
+
 package bl;
 
 import gasstation.GasStationUtility;

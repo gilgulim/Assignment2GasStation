@@ -2,6 +2,8 @@ package ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import gasstation.GasStationUtility;
 
@@ -27,7 +29,7 @@ public class ClientGUI extends JFrame{
 	ButtonGroup groupReqWash;
 	
 	public ClientGUI(){
-		BlProxy.getBlProxy();
+		bl = BlProxy.getBlProxy();
 		
 		layout = new SpringLayout();
 		jplMain = new JPanel();
@@ -50,14 +52,7 @@ public class ClientGUI extends JFrame{
 		jtfReqFuel.setText("0");
 		
 		jbnAddCar = new JButton("Add Car");
-		jbnAddCar.addActionListener(new ActionListener() {
 			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				addCarActionListener();				
-			}
-		});
-		
 		jplMain.add(jlbCarId);
 		jplMain.add(jtfCarId);
 		jplMain.add(jlbReqWash);
@@ -89,6 +84,63 @@ public class ClientGUI extends JFrame{
 		this.setSize(400, 200);
 		this.setVisible(true);
 		
+		jbnAddCar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				addCarActionListener();	
+				clearAddCarForm();
+			}
+		});
+		this.addWindowListener(new WindowListener() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				bl.closeGasStation();
+				
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				bl.closeGasStation();
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+	}
+	private void clearAddCarForm() {
+		jtfCarId.setText("");
+		jtfReqFuel.setText("0");
+		jrbYesReqWash.setSelected(true);
 	}
 	
 	private void addCarActionListener() {
@@ -105,6 +157,8 @@ public class ClientGUI extends JFrame{
 			fuelAmount = Integer.parseInt(jtfReqFuel.getText());
 			
 			bl.addCar(carId, requiredFuel, pumpNum, fuelAmount, requiredWash); 
+			
+			
 		}catch (Exception e){
 			//TODO:invalid input;
 			System.out.println(e);

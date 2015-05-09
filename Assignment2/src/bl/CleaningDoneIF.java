@@ -1,6 +1,4 @@
-/*
- * Amir Krayden 11/04/15
- */
+
 package bl;
 
 /*
