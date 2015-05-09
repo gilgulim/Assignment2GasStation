@@ -5,6 +5,7 @@
 package gasstation;
 
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
@@ -12,11 +13,11 @@ public class GasStationUtility {
 
 	public static final String SystemLog = "SystemLog";
 	public static final String SystemLogFileName = "SystemLog.log";
+	private static final String logPath = System.getProperty("user.dir") + "/log/";
 	
 	private static Logger theLogger = null;
 	private static FileHandler theSystemHandler = null;
 	private static ObjectArrayFilter theSystemFilter = null;
-	
 	private static ObjectArrayFilter theCleaningFilter = null;
 	
 	public static void loggerInit() {
@@ -25,7 +26,7 @@ public class GasStationUtility {
 			theLogger = Logger.getLogger(GasStationUtility.SystemLog);
 			
 			try {
-				theSystemHandler = new FileHandler(GasStationUtility.SystemLogFileName);
+				theSystemHandler = new FileHandler(logPath + GasStationUtility.SystemLogFileName);
 				theSystemHandler.setFormatter(new LogFormatter());
 				theSystemFilter = new ObjectArrayFilter();
 				theSystemHandler.setFilter(theSystemFilter);
@@ -71,7 +72,7 @@ public class GasStationUtility {
 		loggerInit();
 		
 		try {
-			theHandler = new FileHandler(logName);
+			theHandler = new FileHandler(logPath + logName);
 			theHandler.setFilter(new ObjectFilter(object));
 			theHandler.setFormatter(new LogFormatter());
 			theLogger.addHandler(theHandler);
@@ -119,7 +120,7 @@ public class GasStationUtility {
 		
 		if (theCleaningFilter == null) {
 			try {
-				theHandler = new FileHandler("CleaningService.log");
+				theHandler = new FileHandler(logPath + "CleaningService.log");
 				theCleaningFilter = new ObjectArrayFilter();
 				theHandler.setFilter(theCleaningFilter);
 				theHandler.setFormatter(new LogFormatter());

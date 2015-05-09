@@ -3,6 +3,8 @@ package ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import gasstation.GasStationUtility;
+
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,7 +14,10 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import bl.BlProxy;
+
 public class ClientGUI extends JFrame{
+	BlProxy bl;
 	JPanel jplMain;
 	JLabel jlbCarId, jlbReqWash, jlbReqFuel;
 	JRadioButton jrbYesReqWash, jrbNoReqWash;
@@ -22,6 +27,8 @@ public class ClientGUI extends JFrame{
 	ButtonGroup groupReqWash;
 	
 	public ClientGUI(){
+		BlProxy.getBlProxy();
+		
 		layout = new SpringLayout();
 		jplMain = new JPanel();
 		jplMain.setLayout(layout);
@@ -85,17 +92,19 @@ public class ClientGUI extends JFrame{
 	}
 	
 	private void addCarActionListener() {
-		int carId;
+		int carId, pumpNum;
 		boolean requiredWash;
 		boolean requiredFuel;
 		int fuelAmount=0;
+		
+		pumpNum = (int)(Math.random()*bl.getNumOfPumps()) + 1;
 		try{
 			carId = Integer.parseInt(jtfCarId.getText());
 			requiredWash = jrbYesReqWash.isSelected();
 			requiredFuel = Integer.parseInt(jtfReqFuel.getText()) == 0 ? false : true ;
 			fuelAmount = Integer.parseInt(jtfReqFuel.getText());
 			
-			//TODO:add car to gas station 
+			bl.addCar(carId, requiredFuel, pumpNum, fuelAmount, requiredWash); 
 		}catch (Exception e){
 			//TODO:invalid input;
 			System.out.println(e);

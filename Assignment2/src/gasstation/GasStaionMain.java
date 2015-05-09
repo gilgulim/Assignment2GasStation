@@ -4,6 +4,7 @@ package gasstation;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import ui.ClientGUI;
 import ui.ConsoleUI;
 import bl.BlProxy;
 
@@ -69,6 +70,7 @@ public class GasStaionMain {
 		System.out.println("UI threads started");
 		
 		ConsoleUI ui = new ConsoleUI();
+		ClientGUI clientGUI = new ClientGUI();
 		Thread uiThread = ui.init();
 		
 		try {
