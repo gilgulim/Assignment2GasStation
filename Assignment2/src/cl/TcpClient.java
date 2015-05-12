@@ -1,49 +1,82 @@
 package cl;
+
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
-
-public class ClientEntity implements Runnable{
-
-
+public class TcpClient implements Runnable{
 	private Socket socket;
+	private DataOutputStream outputStream;
 	private DataInputStream inputStream;
 	
-	private Thread clientThread;
+	private Thread receiveThread;
 	private boolean isActive;
 	
+	private String remoteIp;
+	private int remotePort;
 	
-	public ClientEntity(Socket socket) throws IOException
-	{
-		this.socket = socket;
-		inputStream = new DataInputStream(socket.getInputStream());
+	
+	public TcpClient(String ipAddress, int portNumber){
+		socket = null;
+		remoteIp = ipAddress;
+		remotePort = portNumber;
 		
-		isActive = true;
-		clientThread = new Thread(this);
-		clientThread.start();
+		receiveThread = new Thread(this);
+		isActive = false;
 	}
 	
-	public boolean close(){
-		if(socket!=null){
-			isActive = false;
+	public boolean connect() {
+		
+		if(socket != null && socket.isConnected()){
+			
+			return true;
+			
+		}else
+		{
 			try {
 				
+				socket = new Socket(remoteIp, remotePort);
+				outputStream = new DataOutputStream(socket.getOutputStream());
+				inputStream = new DataInputStream(socket.getInputStream());
+				isActive = true;
+				receiveThread.start();
+				return true;
+				
+			} catch (IOException e) {
+				return false;
+			}
+		}
+		
+	}
+	
+	public boolean disconnect() {
+		if(socket!= null){
+			isActive = false;
+			try {
 				socket.close();
 				return true;
 				
 			} catch (IOException e) {
-				
 				return false;
-				
 			}
 		}else{
 			return true;
 		}
+		
 	}
-
+	
+	public boolean sendData(byte[] data){
+		try {
+			outputStream.write(data);
+			return true;
+		} catch (IOException e) {
+			return false;
+		}
+	}
+	
 	@Override
 	public void run() {
 		
@@ -102,9 +135,7 @@ public class ClientEntity implements Runnable{
 		
 		System.out.println("Client entity closed.");
 		
-	} 
-	
-	
-	
-	
+		
+	}
+
 }

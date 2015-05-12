@@ -43,7 +43,7 @@ public class TcpServer implements Runnable {
 				
 				//Closing all registered tcp clients
 				for(ClientEntity clientEntity : clientsList){
-					clientEntity.stop();
+					clientEntity.close();
 				}
 				
 			} catch (IOException e) {
@@ -64,7 +64,7 @@ public class TcpServer implements Runnable {
 			
 				ClientEntity clientEntity = new ClientEntity(socket);
 				clientsList.add(clientEntity);
-				clientEntity.start();
+				System.out.println("Client connected: " + socket.getRemoteSocketAddress().toString());
 			}
 			
 			

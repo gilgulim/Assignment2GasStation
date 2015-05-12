@@ -4,15 +4,23 @@ import gasstation.GasStationUtility;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import com.google.gson.annotations.*;
 
 public class Car {
 	
+	@Expose
 	private int id;
+	@Expose
 	private Boolean finishCleaning;
+	@Expose
 	private Boolean finishFuel;
+	@Expose
 	private Boolean wantCleaning;
+	@Expose
 	private Boolean wantFuel;
+	@Expose
 	private int numOfLiters;
+	@Expose
 	private int pumpNum;
 	
 	private Logger theLogger;
