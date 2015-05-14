@@ -15,7 +15,6 @@ public class ClientEntity implements Runnable{
 	private Thread clientThread;
 	private boolean isActive;
 	
-	
 	public ClientEntity(Socket socket) throws IOException
 	{
 		this.socket = socket;
@@ -46,7 +45,7 @@ public class ClientEntity implements Runnable{
 
 	@Override
 	public void run() {
-		
+
 		byte[] buffer = new byte[GlobalSettings.MAX_BUFFER_SIZE];
 		byte[] packetData = null;
 		int packetLen = 0;

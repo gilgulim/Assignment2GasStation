@@ -1,7 +1,4 @@
-/**
- * @authors: Amir Krayden
- * @date: 21/03/15 
- */
+
 package gasstation;
 
 import java.util.logging.Filter;
