@@ -272,7 +272,7 @@ public class GasStation implements Runnable {
 					theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to fueling", this);
 					notifyAllCarChangeStateObservers(carStateType.FUEL.ordinal());
 					pumps.get(theCar.getPumpNum()-1).refuel(theCar);
-				}ccv
+				}
 				else {
 					// The car wants only cleaning
 					if (theCar.wantsCleaning()) {
