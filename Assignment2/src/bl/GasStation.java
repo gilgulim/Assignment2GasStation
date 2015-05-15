@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GasStation implements Runnable {
-	
+	private CarStateTypes carStateType;
 	private MainFuelPool fuelPool;
 	private List<Pump> pumps = new ArrayList<Pump>();
 	
@@ -30,6 +30,7 @@ public class GasStation implements Runnable {
 	private final int WATING_QUEUE_TIMEOUT = 10; //ms
 	
 	private ArrayList<Car> handledCars;
+	private List<CarChangeState_Observer> carChangeStateObservers = new ArrayList<CarChangeState_Observer>();
 	
 	public GasStation() {
 		
@@ -220,6 +221,7 @@ public class GasStation implements Runnable {
 			
 			if (theCar != null) {				
 				
+				notifyAllCarChangeStateObservers(carStateType.DISPACHER.ordinal());
 				if (theCar.wantsFuel() == true && theCar.wantsCleaning() == true) {
 
 					if (handledCars.contains(theCar)) {
@@ -231,12 +233,13 @@ public class GasStation implements Runnable {
 							theLogger.log(Level.INFO, "In GasStation()::run() - car " + theCar.getId() + " was removed from handling queue", this);
 							
 							theLogger.log(Level.INFO, "In GasStation()::run() - sending car " + theCar.getId() + " to cleaning", this);
-							
+							notifyAllCarChangeStateObservers(carStateType.AUTOWASH.ordinal());
 							cleanService.cleaning(theCar);
 						}
 						else {
 							// Back to the queue
 							try {
+								notifyAllCarChangeStateObservers(carStateType.DISPACHER.ordinal());
 								cars.put(theCar);
 							}
 							catch( InterruptedException e) {
@@ -251,10 +254,12 @@ public class GasStation implements Runnable {
 						handledCars.add(theCar);
 						
 						// send it to fueling 
+						notifyAllCarChangeStateObservers(carStateType.FUEL.ordinal());
 						pumps.get(theCar.getPumpNum()-1).refuel(theCar);
 						
 						// Place it back on the queue for later being cleaned
 						try {
+							notifyAllCarChangeStateObservers(carStateType.DISPACHER.ordinal());
 							cars.put(theCar);
 						}
 						catch( InterruptedException e) {
@@ -265,15 +270,19 @@ public class GasStation implements Runnable {
 				else if(theCar.wantsFuel() == true && theCar.wantsCleaning() == false) {
 					// Fuel the car
 					theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to fueling", this);
+					notifyAllCarChangeStateObservers(carStateType.FUEL.ordinal());
 					pumps.get(theCar.getPumpNum()-1).refuel(theCar);
-				}
+				}ccv
 				else {
 					// The car wants only cleaning
 					if (theCar.wantsCleaning()) {
 						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to cleaning", this);
+						notifyAllCarChangeStateObservers(carStateType.AUTOWASH.ordinal());
 						cleanService.cleaning(theCar);
 					}
 				}
+
+					notifyAllCarChangeStateObservers(carStateType.LEFTSTATION.ordinal());
 			}
 			
 		}
@@ -308,4 +317,14 @@ public class GasStation implements Runnable {
 		
 		return stats;
 	}
+	
+	public void attached (CarChangeState_Observer observer){
+		carChangeStateObservers.add(observer);
+	}
+	
+	private void notifyAllCarChangeStateObservers(int state){
+	    for (CarChangeState_Observer observer : carChangeStateObservers) {
+	         observer.updateCarState(state);
+	    }
+	} 
 }
