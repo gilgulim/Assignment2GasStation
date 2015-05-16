@@ -17,12 +17,9 @@ public class AddCarPacket extends BasePacket {
 		this.opcode = PacketsOpcodes.AddCarOpcode;
 		this.car = car;
 	}
-
-	@Override
-	public Class getClassType() {
-		
-		return AddCarPacket.class;
-		
+	
+	public Car getCar(){
+		return car;
 	}
 	
 }

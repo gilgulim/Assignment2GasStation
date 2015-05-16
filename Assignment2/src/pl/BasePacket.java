@@ -2,34 +2,38 @@ package pl;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
+import cl.GlobalSettings;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
-public abstract class BasePacket {
+public class BasePacket {
 	
 	public enum PacketsOpcodes{
-		AddCarOpcode
+		AddCarOpcode,
+		CarStatusOpcode,
+		WashActionOpcode
 	}
 	
-	private final int PACKET_LEN_SIZE = 4;
 	@Expose
 	protected PacketsOpcodes opcode;
-	protected Gson gsonParser;
 	
 	
 	public BasePacket(){
-		 gsonParser = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		
 	}
 	
 	public byte[] serialize()
 	{
+		Gson gsonParser = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		
 		String jsonStr = gsonParser.toJson(this);
 		if(jsonStr != null){
 			
 			byte[] data = jsonStr.getBytes();
-			byte[] len = ByteBuffer.allocate(PACKET_LEN_SIZE).putInt(data.length).array();
+			byte[] len = ByteBuffer.allocate(GlobalSettings.PACKET_LEN_SIZE).putInt(data.length).array();
 			
 			int len1 = data.length;
 			
@@ -45,19 +49,22 @@ public abstract class BasePacket {
 		return null;
 	}
 	
-	public BasePacket deserialize(byte[] data) {
+	public static BasePacket deserialize(byte[] data, Class type) {
+		
+		Gson gsonParser = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		
 		int len = data.length;
-		data = Arrays.copyOfRange(data, PACKET_LEN_SIZE, data.length);
+		data = Arrays.copyOfRange(data, GlobalSettings.PACKET_LEN_SIZE, data.length);
 		
 		len = data.length;
 		
 		String jsonString = new String(data);
-		BasePacket basePacket = (BasePacket) gsonParser.fromJson(jsonString, getClassType());
+		BasePacket basePacket = (BasePacket) gsonParser.fromJson(jsonString, type);
 		return basePacket;
 		
 	}
 	
-	public abstract Class getClassType();
-	
+	public PacketsOpcodes getOpcode(){
+		return opcode;
+	}
 }

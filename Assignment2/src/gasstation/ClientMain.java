@@ -14,12 +14,12 @@ public class ClientMain {
 
 	public static void main(String[] args) {
 		
-		TcpClient tcpClient = new TcpClient("192.168.2.102", 8000);
+		TcpClient tcpClient = new TcpClient("192.168.2.101", 8000);
 		tcpClient.connect();
 		
 		AddCarPacket addCarPacket = new AddCarPacket(new Car(2, 200 ,3,true));
 		byte[] data = addCarPacket.serialize();
-		BasePacket basePacket =  addCarPacket.deserialize(data);
+		BasePacket basePacket =  BasePacket.deserialize(data, AddCarPacket.class);
 	
 		tcpClient.sendData(addCarPacket.serialize());
 		
