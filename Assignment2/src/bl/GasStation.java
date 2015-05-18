@@ -3,6 +3,7 @@ package bl;
 import gasstation.GasStationUtility;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -11,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GasStation implements Runnable {
+	private int id;
 	private CarStateTypes carStateType;
 	private MainFuelPool fuelPool;
 	private List<Pump> pumps = new ArrayList<Pump>();
@@ -32,8 +34,13 @@ public class GasStation implements Runnable {
 	private ArrayList<Car> handledCars;
 	private List<CarChangeState_Observer> carChangeStateObservers = new ArrayList<CarChangeState_Observer>();
 	
-	public GasStation() {
+	public GasStation(){
+		this(0);
+	}
+	
+	public GasStation(int id) {
 		
+		this.id = id;
 		fClosed = false;
 		
 		// Get the system log object
@@ -45,6 +52,7 @@ public class GasStation implements Runnable {
 		
 		theLogger.log(Level.INFO, "GasStation init", this);
 		theLogger.log(Level.INFO, "In GasStation()::GasStation()", this);
+
 		
 	}
 
@@ -88,8 +96,16 @@ public class GasStation implements Runnable {
 		return null;
 	}
 	
+	public Iterator<Car> getCarsIterator(){
+		return cars.iterator();
+	}
+	
 	public int getNumOfPumps() {
 		return pumps.size();
+	}
+	
+	public CleaningService getCleaningServices(){
+		return cleanService;
 	}
 	
 	public void addCar(Car car) {

@@ -106,6 +106,14 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 		fClosed = true;
 	}
 	
+	public int getNumOfInsideTeams() {
+		return numOfInsideTeams;
+	}
+	
+	public int getPrice() {
+		return price;
+	}
+	
 	/*
 	 * start threads
 	 */
