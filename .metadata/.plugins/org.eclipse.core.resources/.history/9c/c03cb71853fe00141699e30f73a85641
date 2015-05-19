@@ -6,8 +6,6 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
-import dal.GasStationMySqlConnection;
-import bl.BlProxy;
 import pl.AddCarPacket;
 import pl.BasePacket;
 import pl.BasePacket.PacketsOpcodes;
@@ -117,24 +115,12 @@ public class ClientEntity implements Runnable{
 	
 	
 	public void packetHandler(PacketsOpcodes opcode, byte[] msgData){
-		BlProxy blProxy = BlProxy.getBlProxy();
-		
-		
 		
 		  switch(opcode){
           
 		  	case AddCarOpcode:
-		  		int pumpNum;
-		  		pumpNum = (int)(Math.random()*blProxy.getNumOfPumps())+1;
-		  		
-		  		AddCarPacket addCarPacket = (AddCarPacket) BasePacket.deserialize(msgData, AddCarPacket.class);
+	         	 AddCarPacket addCarPacket = (AddCarPacket) BasePacket.deserialize(msgData, AddCarPacket.class);
 	         	 
-		  		addCarPacket.getCar().setPumpNum(pumpNum);
-	         	 blProxy.addCar(addCarPacket.getCar().getId(), addCarPacket.getCar().wantsFuel(), 
-	         			 addCarPacket.getCar().getPumpNum(), addCarPacket.getCar().getNumOfLiters(),addCarPacket.getCar().wantsCleaning());
-	         	 
-	         	 GasStationMySqlConnection connection = connection.getInstance();
-	         	 connection.insertCar(addCarPacket.getCar());
 	         	 break;
 	         	 
 		  	default:
