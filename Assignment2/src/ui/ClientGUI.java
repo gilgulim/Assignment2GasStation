@@ -17,23 +17,26 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import bl.BlProxy;
+import bl.ClientController;
 
 public class ClientGUI extends JFrame{
-	BlProxy bl;
+	final int PORT_NUMBER = 3456;
 	JPanel jplMain;
-	JLabel jlbCarId, jlbReqWash, jlbReqFuel;
+	JLabel jlbCarId, jlbReqWash, jlbReqFuel, jlbServerIp;
 	JRadioButton jrbYesReqWash, jrbNoReqWash;
-	JTextField jtfCarId, jtfReqFuel;
-	JButton jbnAddCar;
+	JTextField jtfCarId, jtfReqFuel, jtfServerIp;
+	JButton jbnAddCar, jbnConnect;
 	SpringLayout layout;
 	ButtonGroup groupReqWash;
 	
-	public ClientGUI(){
-		bl = BlProxy.getBlProxy();
-		
+	public ClientGUI(){		
 		layout = new SpringLayout();
 		jplMain = new JPanel();
 		jplMain.setLayout(layout);
+
+		jlbServerIp = new JLabel("Server IP");
+		jtfServerIp = new JTextField(10);
+		jbnConnect = new JButton("Connect");
 		
 		jlbCarId = new JLabel("Car ID");
 		jtfCarId = new JTextField(20);
@@ -52,7 +55,12 @@ public class ClientGUI extends JFrame{
 		jtfReqFuel.setText("0");
 		
 		jbnAddCar = new JButton("Add Car");
-			
+		
+
+		
+		jplMain.add(jlbServerIp);
+		jplMain.add(jtfServerIp);
+		jplMain.add(jbnConnect);
 		jplMain.add(jlbCarId);
 		jplMain.add(jtfCarId);
 		jplMain.add(jlbReqWash);
@@ -79,11 +87,24 @@ public class ClientGUI extends JFrame{
 		layout.putConstraint(SpringLayout.NORTH, jtfReqFuel, 65, SpringLayout.NORTH, jplMain);
 		layout.putConstraint(SpringLayout.EAST, jbnAddCar, -5, SpringLayout.EAST, jplMain);
 		layout.putConstraint(SpringLayout.SOUTH, jbnAddCar, -5, SpringLayout.SOUTH, jplMain);
+
+		layout.putConstraint(SpringLayout.SOUTH, jlbServerIp, -5, SpringLayout.SOUTH, jplMain);
+		layout.putConstraint(SpringLayout.SOUTH, jtfServerIp, -5, SpringLayout.SOUTH, jplMain);
+		layout.putConstraint(SpringLayout.SOUTH, jbnConnect, -5, SpringLayout.SOUTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jtfServerIp, 0, SpringLayout.EAST, jlbServerIp);
+		layout.putConstraint(SpringLayout.WEST, jbnConnect, 0, SpringLayout.EAST, jtfServerIp);
 		
 		this.add(jplMain);
 		this.setSize(400, 200);
 		this.setVisible(true);
-		
+		jbnConnect.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				connectToServer();
+				
+			}
+		});
 		jbnAddCar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -94,26 +115,40 @@ public class ClientGUI extends JFrame{
 		});
 		
 	}
+	
 	private void clearAddCarForm() {
 		jtfCarId.setText("");
 		jtfReqFuel.setText("0");
 		jrbYesReqWash.setSelected(true);
 	}
 	
+	private void connectToServer() {
+		ClientController clientController;
+		String serverIp;
+		try{
+			serverIp = jtfServerIp.getText();
+			clientController= new ClientController(serverIp, PORT_NUMBER);
+		}catch(Exception e){
+			//TODO: invalid input;
+			System.out.println(e);
+		}
+		
+	}	
+	
 	private void addCarActionListener() {
-		int carId, pumpNum;
+		int carId;
 		boolean requiredWash;
 		boolean requiredFuel;
 		int fuelAmount=0;
 		
-		pumpNum = (int)(Math.random()*bl.getNumOfPumps()) + 1;
 		try{
 			carId = Integer.parseInt(jtfCarId.getText());
 			requiredWash = jrbYesReqWash.isSelected();
 			requiredFuel = Integer.parseInt(jtfReqFuel.getText()) == 0 ? false : true ;
 			fuelAmount = Integer.parseInt(jtfReqFuel.getText());
 			
-			bl.addCar(carId, requiredFuel, pumpNum, fuelAmount, requiredWash); 
+			
+			
 			
 			
 		}catch (Exception e){
