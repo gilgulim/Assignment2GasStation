@@ -133,7 +133,7 @@ public class ClientEntity implements Runnable{
 	         	 blProxy.addCar(addCarPacket.getCar().getId(), addCarPacket.getCar().wantsFuel(), 
 	         			 addCarPacket.getCar().getPumpNum(), addCarPacket.getCar().getNumOfLiters(),addCarPacket.getCar().wantsCleaning());
 	         	 
-	         	 GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
+	         	 GasStationMySqlConnection connection = connection.getInstance();
 	         	 connection.insertCar(addCarPacket.getCar());
 	         	 break;
 	         	 
