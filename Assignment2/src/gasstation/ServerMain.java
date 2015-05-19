@@ -8,7 +8,7 @@ public class ServerMain {
 
 	public static void main(String[] args) {
 		
-		TcpServer tcpServer = new TcpServer("192.168.2.101", 8000);
+		TcpServer tcpServer = new TcpServer("192.168.2.106", 3456);
 		tcpServer.start();
 		
 		System.out.println("Server started...");

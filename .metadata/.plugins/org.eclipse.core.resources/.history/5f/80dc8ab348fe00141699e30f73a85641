@@ -1,0 +1,12 @@
+package bl;
+
+import cl.TcpClient;
+
+public class ClientController {
+	private TcpClient tcpClient;
+	
+	public ClientController(String serverIp, int port){
+		tcpClient = new TcpClient(serverIp, port);
+	}
+	
+}

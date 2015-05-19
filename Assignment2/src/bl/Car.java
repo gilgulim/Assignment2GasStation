@@ -25,6 +25,19 @@ public class Car {
 	
 	private Logger theLogger;
 	
+	public Car(int id, boolean wantFuel, int numOfLiters, boolean wantCleaning){
+		this.id = id;
+		this.numOfLiters = numOfLiters;
+		this.wantFuel = wantFuel;
+		this.wantCleaning = wantCleaning;
+		this.finishCleaning = false;
+		this.finishFuel = false;
+		
+		initLog();
+		theLogger.log(Level.INFO, "In Car::Car()",this);
+		theLogger.log(Level.INFO, "In Car::Car() - created Car id = " + id,this);
+	}
+	
 	public Car(int id,Boolean wantCleaning) {
 		this.id = id;
 		this.wantCleaning = wantCleaning;
