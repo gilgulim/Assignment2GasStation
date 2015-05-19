@@ -11,7 +11,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import dal.GasStationHistoryRecord;
+import dal.GasStationHistoryRecord.ActionType;
+import dal.GasStationHistoryRecord.ServiceEntityType;
+import dal.GasStationMySqlConnection;
+
 public class GasStation implements Runnable {
+	GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
 	private int id;
 	private CarStateTypes carStateType;
 	private MainFuelPool fuelPool;
@@ -115,6 +121,13 @@ public class GasStation implements Runnable {
 		// Add the car to the list
 		cars.add(car);
 		
+		connection.insertCar(car);
+		GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
+				car.getId(),
+				ActionType.Enter,
+				null,
+				null);
+		connection.insertGasStationHistoryRecord(historyRecord);
 		theLogger.log(Level.INFO, "Car id :" + car.getId() + " Want Cleaning :" + car.wantsCleaning(), this);
 	
 		if(car.wantsFuel()) {
@@ -238,6 +251,7 @@ public class GasStation implements Runnable {
 			if (theCar != null) {				
 				
 				notifyAllCarChangeStateObservers(carStateType.DISPACHER.ordinal());
+
 				if (theCar.wantsFuel() == true && theCar.wantsCleaning() == true) {
 
 					if (handledCars.contains(theCar)) {
@@ -251,6 +265,7 @@ public class GasStation implements Runnable {
 							theLogger.log(Level.INFO, "In GasStation()::run() - sending car " + theCar.getId() + " to cleaning", this);
 							notifyAllCarChangeStateObservers(carStateType.AUTOWASH.ordinal());
 							cleanService.cleaning(theCar);
+							
 						}
 						else {
 							// Back to the queue
@@ -272,7 +287,7 @@ public class GasStation implements Runnable {
 						// send it to fueling 
 						notifyAllCarChangeStateObservers(carStateType.FUEL.ordinal());
 						pumps.get(theCar.getPumpNum()-1).refuel(theCar);
-						
+											
 						// Place it back on the queue for later being cleaned
 						try {
 							notifyAllCarChangeStateObservers(carStateType.DISPACHER.ordinal());
@@ -288,19 +303,32 @@ public class GasStation implements Runnable {
 					theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to fueling", this);
 					notifyAllCarChangeStateObservers(carStateType.FUEL.ordinal());
 					pumps.get(theCar.getPumpNum()-1).refuel(theCar);
-				}
-				else {
-					// The car wants only cleaning
-					if (theCar.wantsCleaning()) {
-						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to cleaning", this);
-						notifyAllCarChangeStateObservers(carStateType.AUTOWASH.ordinal());
-						cleanService.cleaning(theCar);
+					
+					try {
+						cars.put(theCar);
+					} catch (InterruptedException e) {
 					}
 				}
-
+				else if (theCar.wantsCleaning()){
+					// The car wants only cleaning					  
+					theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to cleaning", this);
+					notifyAllCarChangeStateObservers(carStateType.AUTOWASH.ordinal());
+					cleanService.cleaning(theCar);
+					
+					try {
+						cars.put(theCar);
+					} catch (InterruptedException e) {}
+					
+				}else{
 					notifyAllCarChangeStateObservers(carStateType.LEFTSTATION.ordinal());
+					GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
+							theCar.getId(),
+							ActionType.Exit,
+							null,
+							null);
+					connection.insertGasStationHistoryRecord(historyRecord);
+				}
 			}
-			
 		}
 		
 		

@@ -19,12 +19,12 @@ public class GasStationHistoryRecord {
 	private int carID;
 	private ActionType actionType;
 	private ServiceEntityType serviceEntityType;
-	private int serviceEntityId;
+	private Integer serviceEntityId;
 	
 	public GasStationHistoryRecord(	int carId, 
 									ActionType actionType, 
 									ServiceEntityType serviceEntityType, 
-									int serviceEntityId ) {
+									Integer serviceEntityId ) {
 		
 		this.carID = carId;
 		this.actionType = actionType;
@@ -44,7 +44,7 @@ public class GasStationHistoryRecord {
 		return serviceEntityType;
 	}
 	
-	public int getServiceEntityId(){
+	public Integer getServiceEntityId(){
 		return serviceEntityId;
 	}
 

@@ -11,8 +11,14 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CleaningService implements Runnable, CleaningDoneIF {
+import dal.GasStationHistoryRecord;
+import dal.GasStationHistoryRecord.ServiceEntityType;
+import dal.GasStationMySqlConnection;
+import dal.GasStationHistoryRecord.ActionType;
 
+public class CleaningService implements Runnable, CleaningDoneIF {
+	
+	GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
 	private AutoClean autoClean;
 	private ArrayList<InsideClean> insideCleanArr;
 	private ArrayList<Thread> insideCleanThreads = null;
@@ -248,6 +254,13 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 								  car.getId() + " to team " + team.getId(), this);
 					
 					team.cleaning(car, this);
+					
+					GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
+							car.getId(),
+							ActionType.Wash,
+							ServiceEntityType.WashTeam,
+							team.getId());
+					connection.insertGasStationHistoryRecord(historyRecord);
 				}
 				else {
 					fTeamsFull = true;

@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.Iterator;
 
+import dal.GasStationHistoryRecord.ActionType;
 import bl.Car;
 import bl.GasStation;
 import bl.Pump;
@@ -24,13 +25,14 @@ public class GasStationMySqlConnection {
 		
 		if(instance == null){
 			instance = new GasStationMySqlConnection();
+			
 		}
 		
 		return instance;
 	}
 	
 	private GasStationMySqlConnection(){
-		
+		connect();
 	}
 	
 	public void connect() {
@@ -82,13 +84,23 @@ public class GasStationMySqlConnection {
 			
 			String insertQuery;
 			Statement statement = connection.createStatement();
-			insertQuery = String.format("INSERT INTO `gasstationhistorylog` "
-					+ "(CreationTime, CarID, ActionTypeID, ServiceEntityTypeID, ServiceEntityID) "
-					+ "VALUE ('%s', %s, %s, %s, %s)", 	dateTime, 
-													historyRecord.getCarId(), 
-													historyRecord.getActionType().ordinal(), 
-													historyRecord.getServiceEntityType().ordinal(), 
-													historyRecord.getServiceEntityId());
+			
+			if (historyRecord.getActionType() == ActionType.Enter || historyRecord.getActionType() == ActionType.Exit){
+				insertQuery = String.format("INSERT INTO `gasstationhistorylog` "
+						+ "(CreationTime, CarID, ActionTypeID) "
+						+ "VALUE ('%s', %s, %s)", 	dateTime, 
+														historyRecord.getCarId(), 
+														historyRecord.getActionType().ordinal());
+			}else{
+				insertQuery = String.format("INSERT INTO `gasstationhistorylog` "
+						+ "(CreationTime, CarID, ActionTypeID, ServiceEntityTypeID, ServiceEntityID) "
+						+ "VALUE ('%s', %s, %s, %s, %s)", 	dateTime, 
+														historyRecord.getCarId(), 
+														historyRecord.getActionType().ordinal(), 
+														historyRecord.getServiceEntityType().ordinal(), 
+														historyRecord.getServiceEntityId());	
+			}
+			
 			statement.executeUpdate(insertQuery);
 			
 			
@@ -155,13 +167,14 @@ public class GasStationMySqlConnection {
 			}
 			
 			//Insert All Cars
+			/*
 			Iterator<Car> carIt = gasStation.getCarsIterator();
 			while(carIt.hasNext()) {
 		         Car car = carIt.next();
 		         
 		         insertCar(car);
 		    }
-		
+			 */
 		}catch(Exception ex) {
 			return false;
 		}

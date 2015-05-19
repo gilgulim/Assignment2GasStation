@@ -20,14 +20,15 @@ import bl.BlProxy;
 import bl.ClientController;
 
 public class ClientGUI extends JFrame{
-	final int PORT_NUMBER = 3456;
-	JPanel jplMain;
-	JLabel jlbCarId, jlbReqWash, jlbReqFuel, jlbServerIp;
-	JRadioButton jrbYesReqWash, jrbNoReqWash;
-	JTextField jtfCarId, jtfReqFuel, jtfServerIp;
-	JButton jbnAddCar, jbnConnect;
-	SpringLayout layout;
-	ButtonGroup groupReqWash;
+	private final int PORT_NUMBER = 3456;
+	private JPanel jplMain;
+	private JLabel jlbCarId, jlbReqWash, jlbReqFuel, jlbServerIp;
+	private JRadioButton jrbYesReqWash, jrbNoReqWash;
+	private JTextField jtfCarId, jtfReqFuel, jtfServerIp;
+	private JButton jbnAddCar, jbnConnect;
+	private SpringLayout layout;
+	private ButtonGroup groupReqWash;
+	private ClientController clientController;
 	
 	public ClientGUI(){		
 		layout = new SpringLayout();
@@ -123,7 +124,7 @@ public class ClientGUI extends JFrame{
 	}
 	
 	private void connectToServer() {
-		ClientController clientController;
+		
 		String serverIp;
 		try{
 			serverIp = jtfServerIp.getText();
@@ -147,7 +148,7 @@ public class ClientGUI extends JFrame{
 			requiredFuel = Integer.parseInt(jtfReqFuel.getText()) == 0 ? false : true ;
 			fuelAmount = Integer.parseInt(jtfReqFuel.getText());
 			
-			
+			clientController.addCar(carId, requiredFuel, fuelAmount, requiredWash);
 			
 			
 			

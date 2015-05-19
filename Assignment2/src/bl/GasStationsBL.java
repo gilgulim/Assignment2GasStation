@@ -7,12 +7,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import dal.DalProxy;
+import dal.GasStationMySqlConnection;
 
 public class GasStationsBL extends GasStationBlBase implements Runnable {
 
 	private DalProxy theDalProxy;
 	private Logger theLogger;
-	
 	// The actual gas station object
 	private GasStation theGasStation;
 	
@@ -40,6 +40,9 @@ public class GasStationsBL extends GasStationBlBase implements Runnable {
 		// Get the GasStation from configuration
 		theLogger.log(Level.INFO, "GasStationBL getting GasStation object from configuration file", this);
 		theGasStation = theDalProxy.getGasStationFromConfiguration();
+		
+		GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
+		connection.insertGasStation(theGasStation);
 		theLogger.log(Level.INFO, "GasStationBL the GasStation object was created", this);
 		
 		theLogger.log(Level.INFO, "GasStationBL: there are " + theGasStation.getCarsListSize() + " cars in the station", this);

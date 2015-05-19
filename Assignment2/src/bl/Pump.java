@@ -8,8 +8,14 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import dal.GasStationHistoryRecord;
+import dal.GasStationHistoryRecord.ActionType;
+import dal.GasStationHistoryRecord.ServiceEntityType;
+import dal.GasStationMySqlConnection;
+
 
 public class Pump extends FillingMainFuelPool_Observer implements Runnable {
+	GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
 	private static int counter = 0;
 	private int id;
 	private double pricePerLiter;
@@ -68,6 +74,13 @@ public class Pump extends FillingMainFuelPool_Observer implements Runnable {
 		
 		try {
 			cars.put(car);
+			
+			GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
+					car.getId(),
+					ActionType.Fuel,
+					ServiceEntityType.FuelPump,
+					this.id);
+			connection.insertGasStationHistoryRecord(historyRecord);
 		}
 		catch (InterruptedException e) {
 			
