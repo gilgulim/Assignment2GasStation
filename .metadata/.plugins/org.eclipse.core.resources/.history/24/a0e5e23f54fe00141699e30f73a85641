@@ -50,10 +50,6 @@ public class Car {
 		theLogger.log(Level.INFO, "In Car::Car() - created Car id = " + id,this);
 	}
 	
-	public void setPumpNum(int pumpNum) {
-		this.pumpNum = pumpNum;
-	}
-
 	public Car(int id,int numOfLiters,int pumpNum) {
 		this.id = id;
 		this.numOfLiters = numOfLiters;
@@ -131,20 +127,4 @@ public class Car {
 	public int getId() {
 		return id;
 	}
-	
-
-	public void readAction(){
-		
-	}
-	
-	
-	public void playAction(){
-		
-	}
-	
-	
-	public void talkAction(){
-		
-	}
-	
 }
