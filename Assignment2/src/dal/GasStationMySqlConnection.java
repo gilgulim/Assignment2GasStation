@@ -18,31 +18,40 @@ public class GasStationMySqlConnection {
 	private final String DB_URL = "jdbc:mysql://cloudscan.noip.me/gasstation";
 	
 	private Connection connection = null;
+	private static boolean isConnected = false;
 	private static GasStationMySqlConnection instance = null;
 	
 	public static GasStationMySqlConnection getInstance(){
 		
 		if(instance == null){
 			instance = new GasStationMySqlConnection();
+			if(!isConnected){
+				instance = null;
+			}
 		}
 		
 		return instance;
 	}
 	
 	private GasStationMySqlConnection(){
-		
+		connect();
 	}
 	
 	public void connect() {
 		
-		try {
-			Class.forName("com.mysql.jdbc.Driver").newInstance();
+		if(!isConnected){
 			
-			connection = DriverManager.getConnection(DB_URL, "root", "1234");
-			System.out.println("Database connection established");
-			
-		} catch (Exception ex) {
-			System.out.println("Error!");
+			try {
+				Class.forName("com.mysql.jdbc.Driver").newInstance();
+				
+				connection = DriverManager.getConnection(DB_URL, "root", "1234");
+				System.out.println("Database connection established");
+				isConnected = true;
+				
+			} catch (Exception ex) {
+				
+				isConnected = false;
+			}
 		}
 		
 	}

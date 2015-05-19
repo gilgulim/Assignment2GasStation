@@ -127,4 +127,20 @@ public class Car {
 	public int getId() {
 		return id;
 	}
+	
+
+	public void readAction(){
+		
+	}
+	
+	
+	public void playAction(){
+		
+	}
+	
+	
+	public void talkAction(){
+		
+	}
+	
 }
