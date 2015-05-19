@@ -11,21 +11,25 @@ public class GasStationHistoryRecord {
 	}
 	
 	public enum ServiceEntityType{
-		
+		WashTeam,
+		FuelPump
 	}
 	
-	public enum ServiceEntity{
-		
-	}
 	
 	private int carID;
 	private ActionType actionType;
 	private ServiceEntityType serviceEntityType;
-	private ServiceEntity serviceEntity;
+	private int serviceEntityId;
 	
-	public GasStationHistoryRecord(int carId, ActionType actionType, ServiceEntityType serviceEntityType, ServiceEntity serviceEntity){
+	public GasStationHistoryRecord(	int carId, 
+									ActionType actionType, 
+									ServiceEntityType serviceEntityType, 
+									int serviceEntityId ) {
 		
-		
+		this.carID = carId;
+		this.actionType = actionType;
+		this.serviceEntityType = serviceEntityType;
+		this.serviceEntityId = serviceEntityId;
 	}
 	
 	public int getCarId(){
@@ -40,8 +44,8 @@ public class GasStationHistoryRecord {
 		return serviceEntityType;
 	}
 	
-	public ServiceEntity getServiceEntity(){
-		return serviceEntity;
+	public int getServiceEntityId(){
+		return serviceEntityId;
 	}
 
 }

@@ -1,5 +1,7 @@
 package dal;
 
+import dal.GasStationHistoryRecord.ActionType;
+import dal.GasStationHistoryRecord.ServiceEntityType;
 import bl.GasStation;
 
 public class DalMain {
@@ -17,12 +19,14 @@ public class DalMain {
 		catch(Exception exp) {
 			exp.printStackTrace();
 		}
-		
-		
-		MySqlConnection mysqlConn = new MySqlConnection("jdbc:mysql://cloudscan.noip.me/gasstation");
+
+		GasStationMySqlConnection mysqlConn = GasStationMySqlConnection.getInstance();
 		mysqlConn.connect();
-		mysqlConn. clearDatabase();
+		mysqlConn.clearDatabase();
 		mysqlConn.insertGasStation(gasStation);
+		
+		GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(111, ActionType.Enter, ServiceEntityType.FuelPump, 1);
+		mysqlConn.insertGasStationHistoryRecord(historyRecord);
 		
 	}
 	

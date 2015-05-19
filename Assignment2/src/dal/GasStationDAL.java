@@ -28,8 +28,7 @@ public class GasStationDAL {
 	public void init() {
 		
 		theLogger.log(Level.INFO, "In GasStationDAL::init()", this);
-		
-		
+
 	}
 	
 	public GasStation loadGasStationFromConfiguration() {

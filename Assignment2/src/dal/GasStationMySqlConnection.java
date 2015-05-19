@@ -6,19 +6,31 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.Iterator;
 
 import bl.Car;
 import bl.GasStation;
 import bl.Pump;
 
-public class MySqlConnection {
+public class GasStationMySqlConnection {
+	
+	private final String DB_URL = "jdbc:mysql://cloudscan.noip.me/gasstation";
 	
 	private Connection connection = null;
-	private String dbUrl;
+	private static GasStationMySqlConnection instance = null;
 	
-	public MySqlConnection(String dbUrl){
-		this.dbUrl = dbUrl;
+	public static GasStationMySqlConnection getInstance(){
+		
+		if(instance == null){
+			instance = new GasStationMySqlConnection();
+		}
+		
+		return instance;
+	}
+	
+	private GasStationMySqlConnection(){
+		
 	}
 	
 	public void connect() {
@@ -26,7 +38,7 @@ public class MySqlConnection {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			
-			connection = DriverManager.getConnection(dbUrl, "root", "1234");
+			connection = DriverManager.getConnection(DB_URL, "root", "1234");
 			System.out.println("Database connection established");
 			
 		} catch (Exception ex) {
@@ -52,10 +64,9 @@ public class MySqlConnection {
 			statement.executeUpdate("DELETE FROM gasstations");
 			statement.executeUpdate("DELETE FROM mainfuelpool");
 			statement.executeUpdate("DELETE FROM cleanservices");
+			statement.executeUpdate("DELETE FROM gasstationhistorylog");
 			statement.executeUpdate("DELETE FROM cars");
 			statement.executeUpdate("DELETE FROM pumps");
-			statement.executeUpdate("DELETE FROM gasstationhistorylog");
-			
 			
 		}catch(Exception ex) {
 			return false;
@@ -65,7 +76,25 @@ public class MySqlConnection {
 	
 	public boolean insertGasStationHistoryRecord(GasStationHistoryRecord historyRecord) {
 		
-		
+		try{
+			
+			String dateTime = LocalDateTime.now().toString();
+			
+			String insertQuery;
+			Statement statement = connection.createStatement();
+			insertQuery = String.format("INSERT INTO `gasstationhistorylog` "
+					+ "(CreationTime, CarID, ActionTypeID, ServiceEntityTypeID, ServiceEntityID) "
+					+ "VALUE ('%s', %s, %s, %s, %s)", 	dateTime, 
+													historyRecord.getCarId(), 
+													historyRecord.getActionType().ordinal(), 
+													historyRecord.getServiceEntityType().ordinal(), 
+													historyRecord.getServiceEntityId());
+			statement.executeUpdate(insertQuery);
+			
+			
+		}catch(Exception ex){
+			return false;
+		}
 		
 		return true;
 	}
