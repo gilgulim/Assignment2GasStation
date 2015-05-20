@@ -8,12 +8,14 @@ public class ClientController {
 	private boolean status = false;
 
 	
+	public boolean isStatus() {
+		return status;
+	}
+
 	public ClientController(String serverIp, int port){
 		tcpClient = new TcpClient(serverIp, port);
 		status = tcpClient.connect();
-		System.out.println("server status is: " + status);
 	}
-	
 	
 	public void addCar(int carId,boolean requiredFuel,int fuelAmount,boolean requiredWash){
 		Car car = new Car(carId, requiredFuel,fuelAmount,requiredWash);

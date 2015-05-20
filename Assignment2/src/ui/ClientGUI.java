@@ -17,17 +17,19 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import bl.BlProxy;
+import bl.CarChangeState_Observer;
 import bl.ClientController;
+import bl.FillingMainFuelPool_Observer;
 
 public class ClientGUI extends JFrame{
-	private final int PORT_NUMBER = 3456;
+	
 	private JPanel jplMain;
-	private JLabel jlbCarId, jlbReqWash, jlbReqFuel, jlbServerIp;
-	private JRadioButton jrbYesReqWash, jrbNoReqWash;
-	private JTextField jtfCarId, jtfReqFuel, jtfServerIp;
+	private JLabel jlbCarId, jlbReqWash, jlbReqFuel, jlbServerIp, jlbServerPort, jlbServerStatus;
+	private JRadioButton jrbYesReqWash, jrbNoReqWash, jrbServerOn, jrbServerOff,jrbCarEnter, jrbCarWash, jrbCarFuel, jrbCarleft;
+	private JTextField jtfCarId, jtfReqFuel, jtfServerIp, jtfServerPort, jtfWashAction;
 	private JButton jbnAddCar, jbnConnect;
 	private SpringLayout layout;
-	private ButtonGroup groupReqWash;
+	private ButtonGroup groupReqWash, groupServerStatus, groupCarStatus;
 	private ClientController clientController;
 	
 	public ClientGUI(){		
@@ -37,31 +39,61 @@ public class ClientGUI extends JFrame{
 
 		jlbServerIp = new JLabel("Server IP");
 		jtfServerIp = new JTextField(10);
+		jtfServerPort = new JTextField(10);
+		jtfServerPort.setText("3456");
 		jbnConnect = new JButton("Connect");
+		jlbServerPort = new JLabel("Port");
+		jlbServerStatus = new JLabel("Server Status");
+		jrbServerOn = new JRadioButton("On");
+		jrbServerOn.setEnabled(false);
+		jrbServerOff = new JRadioButton("Off");
+		jrbServerOff.setSelected(true);
+		jrbServerOff.setEnabled(false);
+		groupServerStatus = new ButtonGroup();
+		groupServerStatus.add(jrbServerOff);
+		groupServerStatus.add(jrbServerOn);
 		
 		jlbCarId = new JLabel("Car ID");
-		jtfCarId = new JTextField(20);
-		
+		jtfCarId = new JTextField(10);
 		jlbReqWash = new JLabel("Required Wash");
 		jrbYesReqWash = new JRadioButton("Yes");
 		jrbYesReqWash.setSelected(true);
 		jrbNoReqWash = new JRadioButton("No");
-		
 		groupReqWash = new ButtonGroup();
 		groupReqWash.add(jrbNoReqWash);
 		groupReqWash.add(jrbYesReqWash);
-		
 		jlbReqFuel = new JLabel("Required Fuel");
-		jtfReqFuel = new JTextField(20);
+		jtfReqFuel = new JTextField(10);
 		jtfReqFuel.setText("0");
-		
 		jbnAddCar = new JButton("Add Car");
+		jbnAddCar.setEnabled(false);
+		jrbCarEnter = new JRadioButton("Entering");
+		jrbCarEnter.setEnabled(false);
+		jrbCarWash = new JRadioButton("Washing");
+		jrbCarWash.setEnabled(false);
+		jrbCarFuel = new JRadioButton("Fueling");
+		jrbCarFuel.setEnabled(false);
+		jrbCarleft = new JRadioButton("Left");
+		jrbCarleft.setEnabled(false);
+		groupCarStatus = new ButtonGroup();
+		groupCarStatus.add(jrbCarEnter);
+		groupCarStatus.add(jrbCarWash);
+		groupCarStatus.add(jrbCarFuel);
+		groupCarStatus.add(jrbCarleft);
+		jtfWashAction = new JTextField(10);
+		jtfWashAction.setEditable(false);
 		
-
-		
+		//server section
+		jplMain.add(jlbServerPort);
+		jplMain.add(jtfServerPort);
 		jplMain.add(jlbServerIp);
 		jplMain.add(jtfServerIp);
 		jplMain.add(jbnConnect);
+		jplMain.add(jlbServerStatus);
+		jplMain.add(jrbServerOff);
+		jplMain.add(jrbServerOn);
+		
+		//add car section
 		jplMain.add(jlbCarId);
 		jplMain.add(jtfCarId);
 		jplMain.add(jlbReqWash);
@@ -71,32 +103,81 @@ public class ClientGUI extends JFrame{
 		jplMain.add(jtfReqFuel);
 		jplMain.add(jbnAddCar);
 		
-		//spring layout adjustments
+		//car status section
+		jplMain.add(jrbCarEnter);
+		jplMain.add(jrbCarWash);
+		jplMain.add(jrbCarFuel);
+		jplMain.add(jrbCarleft);
+		jplMain.add(jtfWashAction);
+		//server section
+		layout.putConstraint(SpringLayout.NORTH, jlbServerIp, 5, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jlbServerIp, 5, SpringLayout.WEST, jplMain);
+		
+		layout.putConstraint(SpringLayout.NORTH, jtfServerIp, 5, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jtfServerIp, 5, SpringLayout.EAST, jlbServerIp);
+		
+		layout.putConstraint(SpringLayout.NORTH, jlbServerPort, 5, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jlbServerPort, 30, SpringLayout.EAST, jtfServerIp);
+		
+		layout.putConstraint(SpringLayout.NORTH, jtfServerPort, 5, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jtfServerPort, 5, SpringLayout.EAST, jlbServerPort);
+		
+		layout.putConstraint(SpringLayout.NORTH, jbnConnect, 5, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jbnConnect, 30, SpringLayout.EAST, jtfServerPort);
+		
+		layout.putConstraint(SpringLayout.NORTH, jlbServerStatus, 30, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jlbServerStatus, 5, SpringLayout.WEST, jplMain);
+		
+		layout.putConstraint(SpringLayout.NORTH, jrbServerOff, 30, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jrbServerOff, 5, SpringLayout.EAST, jlbServerStatus);
+		
+		layout.putConstraint(SpringLayout.NORTH, jrbServerOn, 30, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jrbServerOn, 5, SpringLayout.EAST, jrbServerOff);
+		
+		//add car section
+		layout.putConstraint(SpringLayout.NORTH, jlbCarId, 100, SpringLayout.NORTH, jplMain);
 		layout.putConstraint(SpringLayout.WEST, jlbCarId, 5, SpringLayout.WEST, jplMain);
-		layout.putConstraint(SpringLayout.NORTH, jlbCarId, 5, SpringLayout.NORTH, jplMain);		
-		layout.putConstraint(SpringLayout.EAST, jtfCarId, -5, SpringLayout.EAST, jplMain);
-		layout.putConstraint(SpringLayout.NORTH, jtfCarId, 5, SpringLayout.NORTH, jplMain);
+		
+		layout.putConstraint(SpringLayout.NORTH, jtfCarId, 100, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jtfCarId, 100, SpringLayout.WEST, jplMain);
+		
+		layout.putConstraint(SpringLayout.NORTH, jlbReqWash, 130, SpringLayout.NORTH, jplMain);
 		layout.putConstraint(SpringLayout.WEST, jlbReqWash, 5, SpringLayout.WEST, jplMain);
-		layout.putConstraint(SpringLayout.NORTH, jlbReqWash, 35, SpringLayout.NORTH, jplMain);
-		layout.putConstraint(SpringLayout.EAST, jrbYesReqWash, -75, SpringLayout.EAST, jplMain);
-		layout.putConstraint(SpringLayout.NORTH, jrbYesReqWash, 33, SpringLayout.NORTH, jplMain);
-		layout.putConstraint(SpringLayout.NORTH, jrbNoReqWash, 33, SpringLayout.NORTH, jplMain);
-		layout.putConstraint(SpringLayout.EAST, jrbNoReqWash, -5, SpringLayout.EAST, jplMain);
-		layout.putConstraint(SpringLayout.WEST, jlbReqFuel, 5, SpringLayout.WEST, jplMain);
-		layout.putConstraint(SpringLayout.NORTH, jlbReqFuel, 65, SpringLayout.NORTH, jplMain);		
-		layout.putConstraint(SpringLayout.EAST, jtfReqFuel, -5, SpringLayout.EAST, jplMain);
-		layout.putConstraint(SpringLayout.NORTH, jtfReqFuel, 65, SpringLayout.NORTH, jplMain);
-		layout.putConstraint(SpringLayout.EAST, jbnAddCar, -5, SpringLayout.EAST, jplMain);
-		layout.putConstraint(SpringLayout.SOUTH, jbnAddCar, -5, SpringLayout.SOUTH, jplMain);
+		
+		layout.putConstraint(SpringLayout.NORTH, jrbYesReqWash, 130, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jrbYesReqWash, 100, SpringLayout.WEST, jplMain);
 
-		layout.putConstraint(SpringLayout.SOUTH, jlbServerIp, -5, SpringLayout.SOUTH, jplMain);
-		layout.putConstraint(SpringLayout.SOUTH, jtfServerIp, -5, SpringLayout.SOUTH, jplMain);
-		layout.putConstraint(SpringLayout.SOUTH, jbnConnect, -5, SpringLayout.SOUTH, jplMain);
-		layout.putConstraint(SpringLayout.WEST, jtfServerIp, 0, SpringLayout.EAST, jlbServerIp);
-		layout.putConstraint(SpringLayout.WEST, jbnConnect, 0, SpringLayout.EAST, jtfServerIp);
+		layout.putConstraint(SpringLayout.NORTH, jrbNoReqWash, 130, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jrbNoReqWash, 5, SpringLayout.EAST, jrbYesReqWash);
+		
+		layout.putConstraint(SpringLayout.NORTH, jlbReqFuel, 160, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jlbReqFuel, 5, SpringLayout.WEST, jplMain);
+		
+		layout.putConstraint(SpringLayout.NORTH, jtfReqFuel, 160, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jtfReqFuel, 100, SpringLayout.WEST, jplMain);
+
+		layout.putConstraint(SpringLayout.NORTH, jbnAddCar, 200, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jbnAddCar, 135, SpringLayout.WEST, jplMain);
+		
+		//car status section
+		layout.putConstraint(SpringLayout.NORTH, jrbCarEnter, 100, SpringLayout.NORTH, jplMain);
+		layout.putConstraint(SpringLayout.WEST, jrbCarEnter, 270, SpringLayout.WEST, jplMain);
+		
+		layout.putConstraint(SpringLayout.NORTH, jrbCarWash, 30, SpringLayout.NORTH, jrbCarEnter);
+		layout.putConstraint(SpringLayout.WEST, jrbCarWash, 270, SpringLayout.WEST, jplMain);
+		
+		layout.putConstraint(SpringLayout.NORTH, jtfWashAction, 32, SpringLayout.NORTH, jrbCarEnter);
+		layout.putConstraint(SpringLayout.WEST, jtfWashAction, 350, SpringLayout.WEST, jplMain);
+
+		layout.putConstraint(SpringLayout.NORTH, jrbCarFuel, 30, SpringLayout.NORTH, jrbCarWash);
+		layout.putConstraint(SpringLayout.WEST, jrbCarFuel, 270, SpringLayout.WEST, jplMain);
+		
+		layout.putConstraint(SpringLayout.NORTH, jrbCarleft, 30, SpringLayout.NORTH, jrbCarFuel);
+		layout.putConstraint(SpringLayout.WEST, jrbCarleft, 270, SpringLayout.WEST, jplMain);
+		
 		
 		this.add(jplMain);
-		this.setSize(400, 200);
+		this.setSize(500, 300);
 		this.setVisible(true);
 		jbnConnect.addActionListener(new ActionListener() {
 			
@@ -110,7 +191,7 @@ public class ClientGUI extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				addCarActionListener();	
+				addCar();	
 				clearAddCarForm();
 			}
 		});
@@ -128,7 +209,13 @@ public class ClientGUI extends JFrame{
 		String serverIp;
 		try{
 			serverIp = jtfServerIp.getText();
-			clientController= new ClientController(serverIp, PORT_NUMBER);
+			clientController = new ClientController(serverIp, Integer.parseInt(jtfServerPort.getText()));
+			if(clientController.isStatus()){
+				jrbServerOn.setSelected(true);
+				jbnAddCar.setEnabled(true);
+			}else{
+				jrbServerOff.setSelected(false);
+			}
 		}catch(Exception e){
 			//TODO: invalid input;
 			System.out.println(e);
@@ -136,7 +223,7 @@ public class ClientGUI extends JFrame{
 		
 	}	
 	
-	private void addCarActionListener() {
+	private void addCar() {
 		int carId;
 		boolean requiredWash;
 		boolean requiredFuel;
@@ -157,4 +244,22 @@ public class ClientGUI extends JFrame{
 			System.out.println(e);
 		}		
 	}
+
+	public void setCarState(int state){
+		switch(state){
+		case 0: jrbCarEnter.setSelected(true);
+			break;
+		
+		case 1: jrbCarWash.setSelected(true);
+			break;
+		
+		case 2: jrbCarFuel.setSelected(true);
+			break;
+		
+		case 3: jrbCarleft.setSelected(true);
+			break;
+		}
+	}
+	
+	
 }

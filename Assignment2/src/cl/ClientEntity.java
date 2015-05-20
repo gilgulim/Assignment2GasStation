@@ -122,7 +122,6 @@ public class ClientEntity implements Runnable{
 		
 		
 		  switch(opcode){
-          
 		  	case AddCarOpcode:
 		  		int pumpNum;
 		  		pumpNum = (int)(Math.random()*blProxy.getNumOfPumps())+1;
@@ -139,11 +138,6 @@ public class ClientEntity implements Runnable{
 	         	 
 		  	default:
 				break;
-		  }
-		  
+		  }	  
 	}
-	
-	
-	
-	
 }

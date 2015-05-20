@@ -17,7 +17,7 @@ public class ServerMain {
 		
 		Thread blThread = BlProxy.getBlProxy().runThread();
 		
-		TcpServer tcpServer = new TcpServer("192.168.2.106", 3456);
+		TcpServer tcpServer = new TcpServer("10.0.0.5", 3456);
 		tcpServer.start();
 		
 		System.out.println("Server started...");

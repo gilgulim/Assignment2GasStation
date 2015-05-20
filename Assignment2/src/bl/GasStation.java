@@ -34,8 +34,8 @@ public class GasStation implements Runnable {
 	private Logger theLogger;
 	
 	private BlockingQueue<Car> cars;
-	private final int WATING_QUEUE_LEN = 10;
-	private final int WATING_QUEUE_TIMEOUT = 10; //ms
+	private final int WATING_QUEUE_LEN = 500;
+	private final int WATING_QUEUE_TIMEOUT = 500; //ms
 	
 	private ArrayList<Car> handledCars;
 	private List<CarChangeState_Observer> carChangeStateObservers = new ArrayList<CarChangeState_Observer>();

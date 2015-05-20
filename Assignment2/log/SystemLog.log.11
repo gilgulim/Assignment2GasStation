@@ -1,0 +1,105 @@
+20/05/2015 11:35:03: BLProxy init
+20/05/2015 11:35:03: In BLProxy()::blProxy()
+20/05/2015 11:35:03: Created BLProxy object
+20/05/2015 11:35:03: In BLProxy::getBlProxy()
+20/05/2015 11:35:03: In BLProxy::runThread()
+20/05/2015 11:35:03: In BLProxy:: Running the BL as a seperate thread
+20/05/2015 11:35:03: GasStationsBL init
+20/05/2015 11:35:03: In GasStationsBL()::GasStationsBL()
+20/05/2015 11:35:03: In GasStationsBL()::init()
+20/05/2015 11:35:03: GasStationBL created DAL proxy object
+20/05/2015 11:35:03: DALProxy init
+20/05/2015 11:35:03: In DalProxy()::DalProxy()
+20/05/2015 11:35:03: Created DALProxy object
+20/05/2015 11:35:03: In DalProxy::getDalProxy()
+20/05/2015 11:35:03: In DalProxy::init()
+20/05/2015 11:35:03: GasStationDAL init
+20/05/2015 11:35:03: In GasStationDAL::GasStationDAL()
+20/05/2015 11:35:03: In GasStationDAL::init()
+20/05/2015 11:35:03: GasStationBL getting GasStation object from configuration file
+20/05/2015 11:35:03: In DalProxy::getGasStationFromConfiguration()
+20/05/2015 11:35:03: In GasStationDAL::loadConfiguration()
+20/05/2015 11:35:03: GasStation init
+20/05/2015 11:35:03: In GasStation()::GasStation()
+20/05/2015 11:35:03: MainFuelPool init
+20/05/2015 11:35:03: In MainFuelPool()::MainFuelPool()
+20/05/2015 11:35:03: In MainFuelPool()::MainFuelPool() - current capacity: 220
+20/05/2015 11:35:03: In MainFuelPool()::MainFuelPool() - max capacity: 500
+20/05/2015 11:35:03: In MainFuelPool::attach() - attched new fueling observer
+20/05/2015 11:35:03: In MainFuelPool::attach() - attched new fueling observer
+20/05/2015 11:35:03: In MainFuelPool::attach() - attched new fueling observer
+20/05/2015 11:35:03: In MainFuelPool::attach() - attched new fueling observer
+20/05/2015 11:35:03: In GasStation()::setCleaningService()
+20/05/2015 11:35:03: GasStation::addCar()
+20/05/2015 11:35:03: Car id :111 Want Cleaning :true
+20/05/2015 11:35:03: Num of Liters :47 Pump :2
+20/05/2015 11:35:03: GasStation::addCar()
+20/05/2015 11:35:03: Car id :333 Want Cleaning :false
+20/05/2015 11:35:03: Num of Liters :42 Pump :1
+20/05/2015 11:35:03: GasStation::addCar()
+20/05/2015 11:35:03: Car id :222 Want Cleaning :true
+20/05/2015 11:35:03: GasStation::addCar()
+20/05/2015 11:35:03: Car id :444 Want Cleaning :true
+20/05/2015 11:35:03: Num of Liters :35 Pump :1
+20/05/2015 11:35:05: GasStationBL the GasStation object was created
+20/05/2015 11:35:05: GasStationBL: there are 4 cars in the station
+20/05/2015 11:35:05: GasStationBL: there are 4 pumps in the station
+20/05/2015 11:35:05: In GasStationsBL::run()
+20/05/2015 11:35:05: GasStationBL began execution as seprate thread (id = 14)
+20/05/2015 11:35:05: In GasStationBL::run() - executing the GasStation object in a seperate thread 
+20/05/2015 11:35:05: In GasStation()::run()
+20/05/2015 11:35:05: In GasStation()::run() -  Started running as a separate thread
+20/05/2015 11:35:05: In GasStation()::activatePumps()
+20/05/2015 11:35:05: In GasStation()::activatePumps() - creating thread pool for 4 pumps
+20/05/2015 11:35:05: In GasStation()::activatePumps() - creating thread for pump: 1
+20/05/2015 11:35:05: In GasStation()::activatePumps() - created thread for pump: 1
+20/05/2015 11:35:05: In GasStation()::activatePumps() - creating thread for pump: 2
+20/05/2015 11:35:05: In GasStation()::activatePumps() - created thread for pump: 2
+20/05/2015 11:35:05: In GasStation()::activatePumps() - creating thread for pump: 3
+20/05/2015 11:35:05: In GasStation()::activatePumps() - created thread for pump: 3
+20/05/2015 11:35:05: In GasStation()::activatePumps() - creating thread for pump: 4
+20/05/2015 11:35:05: In GasStation()::activatePumps() - created thread for pump: 4
+20/05/2015 11:35:05: In GasStation()::activateCleaningService()
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 111 to fueling
+20/05/2015 11:35:05: In GasStation()::run() - car 111 was added to handling queue
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 333 to fueling
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 222 to cleaning
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 444 to fueling
+20/05/2015 11:35:05: In GasStation()::run() - car 444 was added to handling queue
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 333 to fueling
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 222 to cleaning
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 333 to fueling
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 222 to cleaning
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 333 to fueling
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 222 to cleaning
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 333 to fueling
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 222 to cleaning
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 333 to fueling
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 222 to cleaning
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 333 to fueling
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 222 to cleaning
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 333 to fueling
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 222 to cleaning
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 333 to fueling
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 222 to cleaning
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 333 to fueling
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 222 to cleaning
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 333 to fueling
+20/05/2015 11:35:05: In MainFuelPool::getGas() - send exception
+20/05/2015 11:35:05: In MainFuelPool::getGas() - current: 96 max: 500
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 222 to cleaning
+20/05/2015 11:35:05: In GasStation()::run() - sendind car 333 to fueling
+20/05/2015 11:35:06: In GasStation()::run() - sendind car 222 to cleaning
+20/05/2015 11:35:06: In MainFuelPool::getGas() - send exception
+20/05/2015 11:35:06: In MainFuelPool::getGas() - current: 54 max: 500
+20/05/2015 11:35:06: In GasStation()::run() - car 444 was removed from handling queue
+20/05/2015 11:35:06: In GasStation()::run() - sending car 444 to cleaning
+20/05/2015 11:35:06: In GasStation()::run() - car 111 was removed from handling queue
+20/05/2015 11:35:06: In GasStation()::run() - sending car 111 to cleaning
+20/05/2015 11:35:06: In GasStation()::run() - sendind car 333 to fueling
+20/05/2015 11:35:06: In MainFuelPool::getGas() - send exception
+20/05/2015 11:35:06: In MainFuelPool::getGas() - current: 12 max: 500
+20/05/2015 11:35:06: In GasStation()::run() - sendind car 222 to cleaning
+20/05/2015 11:35:06: In GasStation()::run() - sendind car 333 to fueling
+20/05/2015 11:35:06: In GasStation()::run() - sendind car 222 to cleaning
+20/05/2015 11:35:06: In GasStation()::run() - sendind car 333 to fueling

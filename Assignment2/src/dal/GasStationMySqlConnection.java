@@ -26,13 +26,11 @@ public class GasStationMySqlConnection {
 		
 		if(instance == null){
 			instance = new GasStationMySqlConnection();
-<<<<<<< HEAD
-			
-=======
+
 			if(!isConnected){
 				instance = null;
 			}
->>>>>>> dc7c5c4886165bd13dff0ea89a2072b403c56467
+
 		}
 		
 		return instance;
