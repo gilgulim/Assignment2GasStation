@@ -14,6 +14,8 @@ public class ClientMain {
 
 	public static void main(String[] args) {
 		
+		Car.getActions();
+		
 		TcpClient tcpClient = new TcpClient("192.168.2.101", 8000);
 		tcpClient.connect();
 		
