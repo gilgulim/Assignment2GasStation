@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="ui.ClientMain"/>
+<fullyQualifiedTypeName name="ui.ClientGUI"/>
+<fullyQualifiedTypeName name="javax.swing.JButton"/>
+<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="cl.TcpClient"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="pl.AddCarPacket"/>
+<fullyQualifiedTypeName name="bl.ClientController"/>
+<fullyQualifiedTypeName name="java.lang.Boolean"/>
+<fullyQualifiedTypeName name="bl.Car"/>
+<fullyQualifiedTypeName name="bl.GasStation"/>
+<fullyQualifiedTypeName name="bl.BlProxy"/>
+<fullyQualifiedTypeName name="dal.GasStationHistoryRecord.ServiceEntityType"/>
+<fullyQualifiedTypeName name="dal.GasStationMySqlConnection"/>
+<fullyQualifiedTypeName name="dal.GasStationHistoryRecord"/>
+<fullyQualifiedTypeName name="dal.GasStationHistoryRecord.ActionType"/>
+<fullyQualifiedTypeName name="javax.swing.JLabel"/>
+<fullyQualifiedTypeName name="javax.swing.JRadioButton"/>
+<fullyQualifiedTypeName name="javax.swing.ButtonGroup"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="bl.CarChangeState_Observer"/>
+<fullyQualifiedTypeName name="javax.swing.JTextField"/>
+<fullyQualifiedTypeName name="pl.BasePacket"/>
+<fullyQualifiedTypeName name="bl.CarStateChange_Observer"/>
+<fullyQualifiedTypeName name="bl.CarStateTypes"/>
+</qualifiedTypeNameHistroy>
