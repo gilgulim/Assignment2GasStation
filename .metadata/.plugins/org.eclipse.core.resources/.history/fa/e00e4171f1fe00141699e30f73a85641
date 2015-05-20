@@ -16,9 +16,10 @@ import dal.GasStationHistoryRecord.ActionType;
 import dal.GasStationHistoryRecord.ServiceEntityType;
 import dal.GasStationMySqlConnection;
 
-public class GasStation implements Runnable, CarStateChange_Observer{
+public class GasStation implements Runnable {
 	GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
 	private int id;
+	private CarStateTypes carStateType;
 	private MainFuelPool fuelPool;
 	private List<Pump> pumps = new ArrayList<Pump>();
 	
@@ -263,7 +264,8 @@ public class GasStation implements Runnable, CarStateChange_Observer{
 			}
 			
 			if (theCar != null) {				
-				updateCarState(CarStateTypes.DISPACHER.ordinal());
+				
+				notifyAllCarChangeStateObservers(carStateType.DISPACHER.ordinal());
 
 				if (theCar.wantsFuel() == true && theCar.wantsCleaning() == true) {
 
@@ -276,14 +278,14 @@ public class GasStation implements Runnable, CarStateChange_Observer{
 							theLogger.log(Level.INFO, "In GasStation()::run() - car " + theCar.getId() + " was removed from handling queue", this);
 							
 							theLogger.log(Level.INFO, "In GasStation()::run() - sending car " + theCar.getId() + " to cleaning", this);
-							updateCarState(CarStateTypes.AUTOWASH.ordinal());
+							notifyAllCarChangeStateObservers(carStateType.AUTOWASH.ordinal());
 							cleanService.cleaning(theCar);
 							
 						}
 						else {
 							// Back to the queue
 							try {
-								updateCarState(CarStateTypes.DISPACHER.ordinal());
+								notifyAllCarChangeStateObservers(carStateType.DISPACHER.ordinal());
 								cars.put(theCar);
 							}
 							catch( InterruptedException e) {
@@ -298,12 +300,12 @@ public class GasStation implements Runnable, CarStateChange_Observer{
 						handledCars.add(theCar);
 						
 						// send it to fueling 
-						updateCarState(CarStateTypes.FUEL.ordinal());
+						notifyAllCarChangeStateObservers(carStateType.FUEL.ordinal());
 						pumps.get(theCar.getPumpNum()-1).refuel(theCar);
 											
 						// Place it back on the queue for later being cleaned
 						try {
-							updateCarState(CarStateTypes.DISPACHER.ordinal());
+							notifyAllCarChangeStateObservers(carStateType.DISPACHER.ordinal());
 							cars.put(theCar);
 						}
 						catch( InterruptedException e) {
@@ -314,7 +316,7 @@ public class GasStation implements Runnable, CarStateChange_Observer{
 				else if(theCar.wantsFuel() == true && theCar.wantsCleaning() == false) {
 					// Fuel the car
 					theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to fueling", this);
-					updateCarState(CarStateTypes.FUEL.ordinal());
+					notifyAllCarChangeStateObservers(carStateType.FUEL.ordinal());
 					pumps.get(theCar.getPumpNum()-1).refuel(theCar);
 					
 					try {
@@ -325,7 +327,7 @@ public class GasStation implements Runnable, CarStateChange_Observer{
 				else if (theCar.wantsCleaning()){
 					// The car wants only cleaning					  
 					theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to cleaning", this);
-					updateCarState(CarStateTypes.AUTOWASH.ordinal());
+					notifyAllCarChangeStateObservers(carStateType.AUTOWASH.ordinal());
 					cleanService.cleaning(theCar);
 					
 					try {
@@ -333,7 +335,7 @@ public class GasStation implements Runnable, CarStateChange_Observer{
 					} catch (InterruptedException e) {}
 					
 				}else{
-					updateCarState(CarStateTypes.LEFTSTATION.ordinal());
+					notifyAllCarChangeStateObservers(carStateType.LEFTSTATION.ordinal());
 					GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
 							theCar.getId(),
 							ActionType.Exit,
@@ -383,11 +385,5 @@ public class GasStation implements Runnable, CarStateChange_Observer{
 	    for (CarChangeState_Observer observer : carChangeStateObservers) {
 	         observer.updateCarState(state);
 	    }
-	}
-
-	@Override
-	public void updateCarState(int state) {
-		notifyAllCarChangeStateObservers(state);
-		
 	} 
 }

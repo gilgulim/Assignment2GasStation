@@ -1,2 +1,5 @@
 1432112418549	Rename field 'jtfPort'
 1432116072316	Rename method 'addCarActionListener'
+1432127509401	Delete element
+1432127613899	Rename type 'CarStateChange_Observer'
+1432127750935	Rename type 'ICarStateChange_Observer'

@@ -2,7 +2,7 @@ package pl;
 
 import com.google.gson.annotations.Expose;
 
-public class CarStatusPacket extends BasePacket  {
+public class CarStatusPacket extends BasePacket {
 	
 	public enum CarStatusType{
 		Entered,

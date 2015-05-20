@@ -16,7 +16,7 @@ import dal.GasStationHistoryRecord.ActionType;
 import dal.GasStationHistoryRecord.ServiceEntityType;
 import dal.GasStationMySqlConnection;
 
-public class GasStation implements Runnable, CarStateChange_Observer{
+public class GasStation implements Runnable, ICarStateChange_Observer{
 	GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
 	private int id;
 	private MainFuelPool fuelPool;
