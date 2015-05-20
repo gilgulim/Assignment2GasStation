@@ -11,7 +11,6 @@ import pl.BasePacket.PacketsOpcodes;
 import pl.BasePacket;
 import pl.CarStatusPacket;
 import pl.WashActionPacket;
-import pl.WashActionPacket.WashAction;
 
 public class TcpClient extends  ClientEntity{
 	

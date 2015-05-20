@@ -2,23 +2,17 @@ package pl;
 
 public class WashActionPacket extends BasePacket {
 	
-	public enum WashAction {
-		Read,
-		Play,
-		Talk,
-	}
+	private String methodName;
 	
-	private WashAction washAction;
-	
-	public WashActionPacket(WashAction washAction){
+	public WashActionPacket(String methodName){
 		super();
 		
 		this.opcode = PacketsOpcodes.WashActionOpcode;
-		this.washAction = washAction;
+		this.methodName = methodName;
 	}
 	
-	public WashAction getWashAction() {
-		return washAction;
+	public String getWashAction() {
+		return methodName;
 	}
 
 }

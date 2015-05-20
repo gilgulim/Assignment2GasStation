@@ -7,8 +7,14 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import pl.CarStatusPacket;
+import pl.WashActionPacket;
+import pl.CarStatusPacket.*;
+import cl.ClientEntity;
 
 import com.google.gson.annotations.*;
 
@@ -29,6 +35,8 @@ public class Car {
 	private int numOfLiters;
 	@Expose
 	private int pumpNum;
+	
+	private ClientEntity clientEntity;
 	
 	private Logger theLogger;
 	
@@ -139,45 +147,72 @@ public class Car {
 		return id;
 	}
 	
-	@DriverAction
-	public void readAction(){
+	public void setClientEntity(ClientEntity clientEntity) {
 		
+		this.clientEntity = clientEntity;
 	}
 	
-	@DriverAction
-	public void playAction(){
+	public boolean notifyStatusToRemoteClient(CarStatusType carStatus){
 		
-	}
-	
-	@DriverAction
-	public void talkAction(){
-		
-	}
-	
-	public static void getActions(){
-		
-		List<Method> methods = getMethodsAnnotatedWith(Car.class, DriverAction.class);
-		for(Method method : methods){
-			
-			System.out.println(method.getName());
+		CarStatusPacket carStatusPacket = new CarStatusPacket(carStatus);
+		if(clientEntity!= null){
+			return clientEntity.sendData(carStatusPacket.serialize());
 		}
+		return false;
 	}
 	
-	public static List<Method> getMethodsAnnotatedWith(final Class<?> type, final Class<? extends Annotation> annotation) {
-	    final List<Method> methods = new ArrayList<Method>();
-	    Class<?> klass = type;
-	    while (klass != Object.class) { // need to iterated thought hierarchy in order to retrieve methods from above the current instance
-	        // iterate though the list of methods declared in the class represented by klass variable, and add those annotated with the specified annotation
-	        final List<Method> allMethods = new ArrayList<Method>(Arrays.asList(klass.getDeclaredMethods()));       
-	        for (final Method method : allMethods) {
+	public boolean sendRandomActionToRemoteClient(){
+		
+		WashActionPacket washActionPacket = new WashActionPacket(getDriverRandomActionName());
+		
+		if(clientEntity!= null){
+			return clientEntity.sendData(washActionPacket.serialize());
+		}
+		return false;
+	}
+	
+	@DriverActionAnnotation
+	public void readAction(){
+		System.out.println("Read Action");
+	}
+	
+	@DriverActionAnnotation
+	public void playAction(){
+		System.out.println("PlayAction");
+	}
+	
+	@DriverActionAnnotation
+	public void talkAction(){
+		System.out.println("TalkAction");
+	}
+	
+	public String getDriverRandomActionName(){
+		
+		List<Method> methods = getMethodsAnnotatedWith(Car.class, DriverActionAnnotation.class);
+		Random r = new Random();
+		int Low = 0;
+		int High = methods.size();
+		int index = (r.nextInt(High-Low) + Low);
+		
+		return methods.get(index).getName();
+	}
+	
+	private List<Method> getMethodsAnnotatedWith(final Class<?> type, Class<? extends Annotation> annotation) {
+		
+	    List<Method> methods = new ArrayList<Method>();
+	    Class<?> className = type;
+	    while (className != Object.class) { 
+	    	
+	       List<Method> allMethods = new ArrayList<Method>(Arrays.asList(className.getDeclaredMethods()));       
+	        
+	        for (Method method : allMethods) {
+	        	
 	            if (annotation == null || method.isAnnotationPresent(annotation)) {
-	                Annotation annotInstance = method.getAnnotation(annotation);
-	                // TODO process annotInstance
 	                methods.add(method);
 	            }
 	        }
-	        // move to the upper class in the hierarchy in search for more methods
-	        klass = klass.getSuperclass();
+	        
+	        className = className.getSuperclass();
 	    }
 	    return methods;
 	}
