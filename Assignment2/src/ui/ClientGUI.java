@@ -16,12 +16,14 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import pl.CarStatusPacket.CarStatusType;
+import cl.GasStationClient_Observer;
 import bl.BlProxy;
 import bl.CarChangeState_Observer;
 import bl.ClientController;
 import bl.FillingMainFuelPool_Observer;
 
-public class ClientGUI extends JFrame{
+public class ClientGUI extends JFrame implements GasStationClient_Observer{
 	
 	private JPanel jplMain;
 	private JLabel jlbCarId, jlbReqWash, jlbReqFuel, jlbServerIp, jlbServerPort, jlbServerStatus;
@@ -259,6 +261,17 @@ public class ClientGUI extends JFrame{
 		case 3: jrbCarleft.setSelected(true);
 			break;
 		}
+	}
+
+	@Override
+	public void ReceivedCarStatusHandler(CarStatusType carStatus) {
+		//TODO: Show in the GUI the status of the car
+	}
+
+	@Override
+	public void ReceivedCarWashAction(String methodName) {
+		//TODO: Activate the method name in the car object
+		
 	}
 	
 	

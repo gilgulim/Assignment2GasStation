@@ -8,6 +8,7 @@ import java.util.Arrays;
 
 import dal.GasStationMySqlConnection;
 import bl.BlProxy;
+import bl.Car;
 import pl.AddCarPacket;
 import pl.BasePacket;
 import pl.BasePacket.PacketsOpcodes;
@@ -119,19 +120,27 @@ public class ClientEntity implements Runnable{
 	public void packetHandler(PacketsOpcodes opcode, byte[] msgData){
 		BlProxy blProxy = BlProxy.getBlProxy();
 		
-		
-		
 		  switch(opcode){
 		  	case AddCarOpcode:
-		  		int pumpNum;
-		  		pumpNum = (int)(Math.random()*blProxy.getNumOfPumps())+1;
-		  		
+		  		//Deserializing the received add car packet
 		  		AddCarPacket addCarPacket = (AddCarPacket) BasePacket.deserialize(msgData, AddCarPacket.class);
+		  		Car receivedCar = addCarPacket.getCar();
+		  		
+		  		//Setting a random pump number to the car
+		  		int pumpNum = (int)(Math.random()*blProxy.getNumOfPumps())+1;
+		  		receivedCar.setPumpNum(pumpNum);
+		  		
+		  		//Setting the client entity to the car object
+		  		receivedCar.setClientEntity(this);
+	
+		  		//Adding car to the business cars queue
+	         	blProxy.addCar(	receivedCar.getId(), 
+	         					receivedCar.wantsFuel(), 
+	         					receivedCar.getPumpNum(), 
+	         					receivedCar.getNumOfLiters(), 
+	         					receivedCar.wantsCleaning());
 	         	 
-		  		addCarPacket.getCar().setPumpNum(pumpNum);
-	         	 blProxy.addCar(addCarPacket.getCar().getId(), addCarPacket.getCar().wantsFuel(), 
-	         			 addCarPacket.getCar().getPumpNum(), addCarPacket.getCar().getNumOfLiters(),addCarPacket.getCar().wantsCleaning());
-	         	 
+	         	 //Adding car to DB
 	         	 GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
 	         	 connection.insertCar(addCarPacket.getCar());
 	         	 break;
