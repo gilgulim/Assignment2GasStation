@@ -18,7 +18,6 @@ import dal.GasStationHistoryRecord.ActionType;
 
 public class CleaningService implements Runnable, CleaningDoneIF {
 	
-	GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
 	private AutoClean autoClean;
 	private ArrayList<InsideClean> insideCleanArr;
 	private ArrayList<Thread> insideCleanThreads = null;
@@ -255,12 +254,7 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 					
 					team.cleaning(car, this);
 					
-					GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
-							car.getId(),
-							ActionType.Wash,
-							ServiceEntityType.WashTeam,
-							team.getId());
-					connection.insertGasStationHistoryRecord(historyRecord);
+					
 				}
 				else {
 					fTeamsFull = true;

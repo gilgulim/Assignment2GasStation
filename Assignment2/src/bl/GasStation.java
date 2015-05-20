@@ -122,12 +122,27 @@ public class GasStation implements Runnable {
 		cars.add(car);
 		
 		connection.insertCar(car);
+		
 		GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
 				car.getId(),
 				ActionType.Enter,
 				null,
 				null);
 		connection.insertGasStationHistoryRecord(historyRecord);
+		theLogger.log(Level.INFO, "Car id :" + car.getId() + " Want Cleaning :" + car.wantsCleaning(), this);
+	
+		if(car.wantsFuel()) {
+			theLogger.log(Level.INFO, "Num of Liters :" + car.getNumOfLiters() + " Pump :" + car.getPumpNum(), this);
+		}
+	}
+	
+	public void addInitCar(Car car) {
+		theLogger.log(Level.INFO, "GasStation::addCar()", this);
+		
+		// Add the car to the list
+		cars.add(car);
+		
+		
 		theLogger.log(Level.INFO, "Car id :" + car.getId() + " Want Cleaning :" + car.wantsCleaning(), this);
 	
 		if(car.wantsFuel()) {

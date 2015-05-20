@@ -167,14 +167,15 @@ public class GasStationMySqlConnection {
 			}
 			
 			//Insert All Cars
-			/*
+			
 			Iterator<Car> carIt = gasStation.getCarsIterator();
 			while(carIt.hasNext()) {
 		         Car car = carIt.next();
 		         
 		         insertCar(car);
+		         insertCarHistoryLog(car);
 		    }
-			 */
+			
 		}catch(Exception ex) {
 			return false;
 		}
@@ -182,6 +183,10 @@ public class GasStationMySqlConnection {
 		return true;
 	}
 	
+	private void insertCarHistoryLog(Car car) {
+		insertGasStationHistoryRecord(new GasStationHistoryRecord(car.getId(),ActionType.Enter,null,null));
+	}
+
 	public GasStation getGasStationById(int gasStationId){
 		GasStation gasStation = null;
 		

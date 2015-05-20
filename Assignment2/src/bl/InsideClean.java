@@ -6,9 +6,14 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import dal.GasStationHistoryRecord;
+import dal.GasStationMySqlConnection;
+import dal.GasStationHistoryRecord.ActionType;
+import dal.GasStationHistoryRecord.ServiceEntityType;
+
 
 public class InsideClean extends CleaningServiceBase {
-	
+	private GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
 	private static int counter = 0;
 	private int id;
 	
@@ -58,6 +63,12 @@ public class InsideClean extends CleaningServiceBase {
 		setBusy(false);
 		
 		this.doneListener.insideCleanIsDone(theCar);
+		GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
+				theCar.getId(),
+				ActionType.Wash,
+				ServiceEntityType.WashTeam,
+				id);
+		connection.insertGasStationHistoryRecord(historyRecord);
 		
 	}
 

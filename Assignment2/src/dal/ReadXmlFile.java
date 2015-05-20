@@ -123,14 +123,14 @@ public class ReadXmlFile {
     		
     		if(wantCleaning && pumpNum == 0) {
     			
-    			gasStation.addCar(new Car(id, wantCleaning));
+    			gasStation.addInitCar(new Car(id, wantCleaning));
         	}
     		else if (!wantCleaning && pumpNum !=0) {
     			
-    			gasStation.addCar(new Car(id, numOfLiters, pumpNum));
+    			gasStation.addInitCar(new Car(id, numOfLiters, pumpNum));
     		}
     		else {
-    			gasStation.addCar(new Car(id, numOfLiters, pumpNum, wantCleaning));
+    			gasStation.addInitCar(new Car(id, numOfLiters, pumpNum, wantCleaning));
     		}
     		
     		wantCleaning = false;

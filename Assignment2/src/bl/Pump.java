@@ -74,13 +74,6 @@ public class Pump extends FillingMainFuelPool_Observer implements Runnable {
 		
 		try {
 			cars.put(car);
-			
-			GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
-					car.getId(),
-					ActionType.Fuel,
-					ServiceEntityType.FuelPump,
-					this.id);
-			connection.insertGasStationHistoryRecord(historyRecord);
 		}
 		catch (InterruptedException e) {
 			
@@ -147,6 +140,14 @@ public class Pump extends FillingMainFuelPool_Observer implements Runnable {
 					  " is fueled", this);
 			
 			car.finishFuel();
+			
+			GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
+					car.getId(),
+					ActionType.Fuel,
+					ServiceEntityType.FuelPump,
+					this.id);
+			connection.insertGasStationHistoryRecord(historyRecord);
+			
 		}
 		catch (FuelPoolException e) {
 			theLogger.log(Level.INFO,e.getMessage(),this);
