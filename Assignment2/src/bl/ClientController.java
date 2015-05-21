@@ -17,7 +17,9 @@ public class ClientController implements  GasStationClient_Observer{
 		gasStationClientObservers = new ArrayList<GasStationClient_Observer>();
 		
 		tcpClient = new TcpClient(serverIp, port);
+		tcpClient.attachObserver(this);
 		status = tcpClient.connect();
+		
 	}
 	
 	public void addCar(int carId,boolean requiredFuel,int fuelAmount,boolean requiredWash){

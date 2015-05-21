@@ -1,0 +1,4 @@
+21/05/2015 18:55:33: In Pump::Pump()
+21/05/2015 18:55:33: Pump init (id=3)
+21/05/2015 18:55:35: In Pump::run()
+21/05/2015 18:55:35: In Pump::run() - pump number: 3 started running as a seperate thread

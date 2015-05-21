@@ -16,7 +16,7 @@ import dal.GasStationHistoryRecord.ActionType;
 import dal.GasStationHistoryRecord.ServiceEntityType;
 import dal.GasStationMySqlConnection;
 
-public class GasStation implements Runnable, CarStateChange_Observer{
+public class GasStation implements Runnable{
 	GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
 	private int id;
 	private MainFuelPool fuelPool;
@@ -273,10 +273,8 @@ public class GasStation implements Runnable, CarStateChange_Observer{
 						if (theCar.isFueled() == true) {
 							// Remove from the handled list and send to cleaning
 							handledCars.remove(theCar);
-							theLogger.log(Level.INFO, "In GasStation()::run() - car " + theCar.getId() + " was removed from handling queue", this);
-							
+							theLogger.log(Level.INFO, "In GasStation()::run() - car " + theCar.getId() + " was removed from handling queue", this);		
 							theLogger.log(Level.INFO, "In GasStation()::run() - sending car " + theCar.getId() + " to cleaning", this);
-							updateCarState(CarStateTypes.AUTOWASH.ordinal());
 							cleanService.cleaning(theCar);
 							
 						}
@@ -385,8 +383,8 @@ public class GasStation implements Runnable, CarStateChange_Observer{
 	    }
 	}
 
-	@Override
-	public void updateCarState(int state) {
+
+	public void updateCarState(int state){
 		notifyAllCarChangeStateObservers(state);
 		
 	} 

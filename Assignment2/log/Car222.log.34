@@ -1,0 +1,20 @@
+21/05/2015 19:17:47: In Car::Car()
+21/05/2015 19:17:47: In Car::Car() - created Car id = 222
+21/05/2015 19:17:51: In Car::finishCleaning()
+21/05/2015 19:17:51: In Car::finishCleaning() - Car id = 222
+21/05/2015 19:17:53: In Car::finishCleaning()
+21/05/2015 19:17:53: In Car::finishCleaning() - Car id = 222
+21/05/2015 19:17:55: In Car::finishCleaning()
+21/05/2015 19:17:55: In Car::finishCleaning() - Car id = 222
+21/05/2015 19:17:57: In Car::finishCleaning()
+21/05/2015 19:17:57: In Car::finishCleaning() - Car id = 222
+21/05/2015 19:17:59: In Car::finishCleaning()
+21/05/2015 19:17:59: In Car::finishCleaning() - Car id = 222
+21/05/2015 19:18:01: In Car::finishCleaning()
+21/05/2015 19:18:01: In Car::finishCleaning() - Car id = 222
+21/05/2015 19:18:03: In Car::finishCleaning()
+21/05/2015 19:18:03: In Car::finishCleaning() - Car id = 222
+21/05/2015 19:18:05: In Car::finishCleaning()
+21/05/2015 19:18:05: In Car::finishCleaning() - Car id = 222
+21/05/2015 19:18:07: In Car::finishCleaning()
+21/05/2015 19:18:07: In Car::finishCleaning() - Car id = 222

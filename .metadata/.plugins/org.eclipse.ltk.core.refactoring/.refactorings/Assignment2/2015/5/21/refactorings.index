@@ -3,3 +3,5 @@
 1432127509401	Delete element
 1432127613899	Rename type 'CarStateChange_Observer'
 1432127750935	Rename type 'ICarStateChange_Observer'
+1432226567650	Rename method 'notifyStatusToRemoteClient'
+1432226784937	Delete element

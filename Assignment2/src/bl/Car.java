@@ -38,6 +38,10 @@ public class Car {
 	
 	private ClientEntity clientEntity;
 	
+	public ClientEntity getClientEntity() {
+		return clientEntity;
+	}
+
 	private Logger theLogger;
 	
 	public Car(int id, boolean wantFuel, int numOfLiters, boolean wantCleaning){
@@ -152,7 +156,7 @@ public class Car {
 		this.clientEntity = clientEntity;
 	}
 	
-	public boolean notifyStatusToRemoteClient(CarStatusType carStatus){
+	public boolean sendStatusToRemoteClient(CarStatusType carStatus){
 		
 		CarStatusPacket carStatusPacket = new CarStatusPacket(carStatus);
 		if(clientEntity!= null){

@@ -1,3 +1,4 @@
 activeuserprofiles=GIL-LAP;Team
 eclipse.preferences.version=1
 org.eclipse.rse.systemtype.local.systemType.defaultUserId=Gilp
+useridperkey=GIL-LAP.Local\=Gilp;

@@ -14,12 +14,6 @@ public class ClientMain {
 
 	public static void main(String[] args) {
 		
-		Car car = new Car(444, true);
-		for(int i=0; i<20; i++) {
-			
-			System.out.println(car.getDriverRandomActionName());
-			
-		}
 		
 		TcpClient tcpClient = new TcpClient("192.168.2.101", 8000);
 		tcpClient.connect();

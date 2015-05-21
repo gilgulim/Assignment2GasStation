@@ -1,0 +1,536 @@
+21/05/2015 19:19:16: In Pump::Pump()
+21/05/2015 19:19:16: Pump init (id=1)
+21/05/2015 19:19:18: In Pump::run()
+21/05/2015 19:19:18: In Pump::run() - pump number: 1 started running as a seperate thread
+21/05/2015 19:19:18: In Pump::refuel()
+21/05/2015 19:19:18: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:18: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:18: In Pump::refuel()
+21/05/2015 19:19:18: In Pump::refuel - car 444 wants to enter
+21/05/2015 19:19:18: In Pump::refuel - car 444 is in queue
+21/05/2015 19:19:18: In Pump::refuel()
+21/05/2015 19:19:18: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:18: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:18: In Pump::refuel()
+21/05/2015 19:19:18: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:18: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:18: In Pump::refuel()
+21/05/2015 19:19:18: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:18: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:18: In Pump::refuel()
+21/05/2015 19:19:18: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:18: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:18: In Pump::refuel()
+21/05/2015 19:19:18: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:18: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:18: In Pump::refuel()
+21/05/2015 19:19:18: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:18: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:18: In Pump::refuel()
+21/05/2015 19:19:18: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:18: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:18: In Pump::refuel()
+21/05/2015 19:19:18: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:18: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:18: In Pump::refuel()
+21/05/2015 19:19:18: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:18: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:19:18: In Pump::run() - serving car 333
+21/05/2015 19:19:18: In Pump::serveCar()
+21/05/2015 19:19:18: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:19:18: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:19:18: In Pump::serveCar() - car  333 is fueling for 124 ms
+21/05/2015 19:19:18: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:18: In Pump::refuel()
+21/05/2015 19:19:18: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:18: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:19:32: In Pump::getNextCar() - car 444 is ready to be served
+21/05/2015 19:19:32: In Pump::run() - serving car 444
+21/05/2015 19:19:32: In Pump::serveCar()
+21/05/2015 19:19:32: In Pump::serveCar() - car 444 is being served
+21/05/2015 19:19:32: In Pump::serveCar() - car needs 35 litres
+21/05/2015 19:19:32: In Pump::serveCar() - car  444 is fueling for 70 ms
+21/05/2015 19:19:32: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:32: In Pump::refuel()
+21/05/2015 19:19:32: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:32: In Pump::serveCar() - car  444 is fueled
+21/05/2015 19:19:42: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:19:42: In Pump::run() - serving car 333
+21/05/2015 19:19:42: In Pump::serveCar()
+21/05/2015 19:19:42: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:19:42: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:19:42: In Pump::serveCar() - car  333 is fueling for 205 ms
+21/05/2015 19:19:42: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:42: In Pump::refuel()
+21/05/2015 19:19:42: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:42: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:19:46: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:19:46: In Pump::run() - serving car 333
+21/05/2015 19:19:46: In Pump::serveCar()
+21/05/2015 19:19:46: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:19:46: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:19:46: In Pump::serveCar() - car  333 is fueling for 171 ms
+21/05/2015 19:19:46: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:46: In Pump::refuel()
+21/05/2015 19:19:46: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:46: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:19:51: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:19:51: In Pump::run() - serving car 333
+21/05/2015 19:19:51: In Pump::serveCar()
+21/05/2015 19:19:51: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:19:51: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:19:51: In Pump::serveCar() - car  333 is fueling for 162 ms
+21/05/2015 19:19:51: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:51: In Pump::refuel()
+21/05/2015 19:19:51: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:51: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:19:55: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:19:55: In Pump::run() - serving car 333
+21/05/2015 19:19:55: In Pump::serveCar()
+21/05/2015 19:19:55: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:19:55: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:19:55: In Pump::serveCar() - car  333 is fueling for 265 ms
+21/05/2015 19:19:55: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:55: In Pump::refuel()
+21/05/2015 19:19:55: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:55: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:19:56: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:19:56: In Pump::run() - serving car 333
+21/05/2015 19:19:56: In Pump::serveCar()
+21/05/2015 19:19:56: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:19:56: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:19:56: In Pump::serveCar() - car  333 is fueling for 156 ms
+21/05/2015 19:19:56: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:56: In Pump::refuel()
+21/05/2015 19:19:56: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:56: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:19:56: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:19:56: In Pump::run() - serving car 333
+21/05/2015 19:19:56: In Pump::serveCar()
+21/05/2015 19:19:56: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:19:56: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:19:56: In Pump::serveCar() - car  333 is fueling for 339 ms
+21/05/2015 19:19:56: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:56: In Pump::refuel()
+21/05/2015 19:19:56: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:57: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:19:57: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:19:57: In Pump::run() - serving car 333
+21/05/2015 19:19:57: In Pump::serveCar()
+21/05/2015 19:19:57: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:19:57: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:19:57: In Pump::serveCar() - car  333 is fueling for 405 ms
+21/05/2015 19:19:57: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:57: In Pump::refuel()
+21/05/2015 19:19:57: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:58: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:19:58: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:19:58: In Pump::run() - serving car 333
+21/05/2015 19:19:58: In Pump::serveCar()
+21/05/2015 19:19:58: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:19:58: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:19:58: In Pump::serveCar() - car  333 is fueling for 230 ms
+21/05/2015 19:19:58: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:58: In Pump::refuel()
+21/05/2015 19:19:58: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:58: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:19:59: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:19:59: In Pump::run() - serving car 333
+21/05/2015 19:19:59: In Pump::serveCar()
+21/05/2015 19:19:59: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:19:59: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:19:59: In Pump::serveCar() - car  333 is fueling for 74 ms
+21/05/2015 19:19:59: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:59: In Pump::refuel()
+21/05/2015 19:19:59: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:59: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:19:59: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:19:59: In Pump::run() - serving car 333
+21/05/2015 19:19:59: In Pump::serveCar()
+21/05/2015 19:19:59: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:19:59: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:19:59: In Pump::serveCar() - car  333 is fueling for 301 ms
+21/05/2015 19:19:59: In Pump::refuel - car 333 is in queue
+21/05/2015 19:19:59: In Pump::refuel()
+21/05/2015 19:19:59: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:19:59: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:00: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:00: In Pump::run() - serving car 333
+21/05/2015 19:20:00: In Pump::serveCar()
+21/05/2015 19:20:00: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:00: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:00: In Pump::serveCar() - car  333 is fueling for 314 ms
+21/05/2015 19:20:00: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:00: In Pump::refuel()
+21/05/2015 19:20:00: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:00: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:02: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:02: In Pump::run() - serving car 333
+21/05/2015 19:20:02: In Pump::serveCar()
+21/05/2015 19:20:02: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:02: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:02: In Pump::serveCar() - car  333 is fueling for 171 ms
+21/05/2015 19:20:02: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:02: In Pump::refuel()
+21/05/2015 19:20:02: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:02: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:02: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:02: In Pump::run() - serving car 333
+21/05/2015 19:20:02: In Pump::serveCar()
+21/05/2015 19:20:02: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:02: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:02: In Pump::serveCar() - car  333 is fueling for 280 ms
+21/05/2015 19:20:02: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:02: In Pump::refuel()
+21/05/2015 19:20:02: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:03: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:03: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:03: In Pump::run() - serving car 333
+21/05/2015 19:20:03: In Pump::serveCar()
+21/05/2015 19:20:03: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:03: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:03: In Pump::serveCar() - car  333 is fueling for 10 ms
+21/05/2015 19:20:03: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:03: In Pump::refuel()
+21/05/2015 19:20:03: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:03: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:34: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:34: In Pump::run() - serving car 333
+21/05/2015 19:20:34: In Pump::serveCar()
+21/05/2015 19:20:34: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:34: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:34: In Pump::serveCar() - car  333 is fueling for 361 ms
+21/05/2015 19:20:34: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:34: In Pump::refuel()
+21/05/2015 19:20:34: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:34: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:36: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:36: In Pump::run() - serving car 333
+21/05/2015 19:20:36: In Pump::serveCar()
+21/05/2015 19:20:36: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:36: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:36: In Pump::serveCar() - car  333 is fueling for 12 ms
+21/05/2015 19:20:36: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:36: In Pump::refuel()
+21/05/2015 19:20:36: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:36: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:36: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:36: In Pump::run() - serving car 333
+21/05/2015 19:20:36: In Pump::serveCar()
+21/05/2015 19:20:36: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:36: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:36: In Pump::serveCar() - car  333 is fueling for 136 ms
+21/05/2015 19:20:36: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:36: In Pump::refuel()
+21/05/2015 19:20:36: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:36: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:37: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:37: In Pump::run() - serving car 333
+21/05/2015 19:20:37: In Pump::serveCar()
+21/05/2015 19:20:37: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:37: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:37: In Pump::serveCar() - car  333 is fueling for 95 ms
+21/05/2015 19:20:37: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:37: In Pump::refuel()
+21/05/2015 19:20:37: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:37: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:37: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:37: In Pump::run() - serving car 333
+21/05/2015 19:20:37: In Pump::serveCar()
+21/05/2015 19:20:37: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:37: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:37: In Pump::serveCar() - car  333 is fueling for 14 ms
+21/05/2015 19:20:37: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:37: In Pump::refuel()
+21/05/2015 19:20:37: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:37: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:38: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:38: In Pump::run() - serving car 333
+21/05/2015 19:20:38: In Pump::serveCar()
+21/05/2015 19:20:38: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:38: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:38: In Pump::serveCar() - car  333 is fueling for 402 ms
+21/05/2015 19:20:38: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:38: In Pump::refuel()
+21/05/2015 19:20:38: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:38: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:39: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:39: In Pump::run() - serving car 333
+21/05/2015 19:20:39: In Pump::serveCar()
+21/05/2015 19:20:39: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:39: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:39: In Pump::serveCar() - car  333 is fueling for 195 ms
+21/05/2015 19:20:39: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:39: In Pump::refuel()
+21/05/2015 19:20:39: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:39: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:40: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:40: In Pump::run() - serving car 333
+21/05/2015 19:20:40: In Pump::serveCar()
+21/05/2015 19:20:40: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:40: In Pump::refuel()
+21/05/2015 19:20:40: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:40: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:40: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:40: In Pump::serveCar() - car  333 is fueling for 12 ms
+21/05/2015 19:20:40: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:41: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:41: In Pump::run() - serving car 333
+21/05/2015 19:20:41: In Pump::serveCar()
+21/05/2015 19:20:41: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:41: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:41: In Pump::serveCar() - car  333 is fueling for 386 ms
+21/05/2015 19:20:41: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:41: In Pump::refuel()
+21/05/2015 19:20:41: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:41: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:42: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:42: In Pump::run() - serving car 333
+21/05/2015 19:20:42: In Pump::serveCar()
+21/05/2015 19:20:42: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:42: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:42: In Pump::serveCar() - car  333 is fueling for 338 ms
+21/05/2015 19:20:42: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:42: In Pump::refuel()
+21/05/2015 19:20:42: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:42: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:42: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:42: In Pump::run() - serving car 333
+21/05/2015 19:20:42: In Pump::serveCar()
+21/05/2015 19:20:42: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:42: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:42: In Pump::serveCar() - car  333 is fueling for 399 ms
+21/05/2015 19:20:42: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:42: In Pump::refuel()
+21/05/2015 19:20:42: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:43: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:43: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:43: In Pump::run() - serving car 333
+21/05/2015 19:20:43: In Pump::serveCar()
+21/05/2015 19:20:43: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:43: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:43: In Pump::serveCar() - car  333 is fueling for 332 ms
+21/05/2015 19:20:43: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:43: In Pump::refuel()
+21/05/2015 19:20:43: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:44: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:44: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:44: In Pump::run() - serving car 333
+21/05/2015 19:20:44: In Pump::serveCar()
+21/05/2015 19:20:44: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:44: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:44: In Pump::serveCar() - car  333 is fueling for 386 ms
+21/05/2015 19:20:44: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:44: In Pump::refuel()
+21/05/2015 19:20:44: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:44: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:45: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:45: In Pump::run() - serving car 333
+21/05/2015 19:20:45: In Pump::serveCar()
+21/05/2015 19:20:45: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:45: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:45: In Pump::serveCar() - car  333 is fueling for 163 ms
+21/05/2015 19:20:45: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:45: In Pump::refuel()
+21/05/2015 19:20:45: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:45: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:46: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:46: In Pump::run() - serving car 333
+21/05/2015 19:20:46: In Pump::serveCar()
+21/05/2015 19:20:46: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:46: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:46: In Pump::serveCar() - car  333 is fueling for 331 ms
+21/05/2015 19:20:46: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:46: In Pump::refuel()
+21/05/2015 19:20:46: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:46: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:47: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:47: In Pump::run() - serving car 333
+21/05/2015 19:20:47: In Pump::serveCar()
+21/05/2015 19:20:47: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:47: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:47: In Pump::serveCar() - car  333 is fueling for 135 ms
+21/05/2015 19:20:47: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:47: In Pump::refuel()
+21/05/2015 19:20:47: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:47: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:50: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:50: In Pump::run() - serving car 333
+21/05/2015 19:20:50: In Pump::serveCar()
+21/05/2015 19:20:50: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:50: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:50: In Pump::serveCar() - car  333 is fueling for 362 ms
+21/05/2015 19:20:50: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:50: In Pump::refuel()
+21/05/2015 19:20:50: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:50: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:50: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:50: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:50: In Pump::run() - serving car 333
+21/05/2015 19:20:50: In Pump::serveCar()
+21/05/2015 19:20:50: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:50: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:50: In Pump::serveCar() - car  333 is fueling for 407 ms
+21/05/2015 19:20:50: In Pump::refuel()
+21/05/2015 19:20:50: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:51: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:51: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:51: In Pump::run() - serving car 333
+21/05/2015 19:20:51: In Pump::serveCar()
+21/05/2015 19:20:51: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:51: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:51: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:51: In Pump::serveCar() - car  333 is fueling for 58 ms
+21/05/2015 19:20:51: In Pump::refuel()
+21/05/2015 19:20:51: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:51: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:51: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:51: In Pump::run() - serving car 333
+21/05/2015 19:20:51: In Pump::serveCar()
+21/05/2015 19:20:51: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:51: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:51: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:51: In Pump::serveCar() - car  333 is fueling for 256 ms
+21/05/2015 19:20:51: In Pump::refuel()
+21/05/2015 19:20:51: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:51: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:51: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:51: In Pump::run() - serving car 333
+21/05/2015 19:20:51: In Pump::serveCar()
+21/05/2015 19:20:51: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:51: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:51: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:51: In Pump::serveCar() - car  333 is fueling for 73 ms
+21/05/2015 19:20:51: In Pump::refuel()
+21/05/2015 19:20:51: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:51: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:51: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:51: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:51: In Pump::run() - serving car 333
+21/05/2015 19:20:51: In Pump::serveCar()
+21/05/2015 19:20:51: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:51: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:51: In Pump::serveCar() - car  333 is fueling for 249 ms
+21/05/2015 19:20:51: In Pump::refuel()
+21/05/2015 19:20:51: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:52: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:52: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:52: In Pump::run() - serving car 333
+21/05/2015 19:20:52: In Pump::serveCar()
+21/05/2015 19:20:52: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:52: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:52: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:52: In Pump::serveCar() - car  333 is fueling for 369 ms
+21/05/2015 19:20:52: In Pump::refuel()
+21/05/2015 19:20:52: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:52: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:52: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:52: In Pump::run() - serving car 333
+21/05/2015 19:20:52: In Pump::serveCar()
+21/05/2015 19:20:52: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:52: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:52: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:52: In Pump::serveCar() - car  333 is fueling for 304 ms
+21/05/2015 19:20:52: In Pump::refuel()
+21/05/2015 19:20:52: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:52: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:53: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:53: In Pump::run() - serving car 333
+21/05/2015 19:20:53: In Pump::serveCar()
+21/05/2015 19:20:53: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:53: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:53: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:53: In Pump::serveCar() - car  333 is fueling for 402 ms
+21/05/2015 19:20:53: In Pump::refuel()
+21/05/2015 19:20:53: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:53: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:53: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:53: In Pump::run() - serving car 333
+21/05/2015 19:20:53: In Pump::serveCar()
+21/05/2015 19:20:53: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:53: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:53: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:53: In Pump::serveCar() - car  333 is fueling for 304 ms
+21/05/2015 19:20:53: In Pump::refuel()
+21/05/2015 19:20:53: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:53: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:53: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:53: In Pump::run() - serving car 333
+21/05/2015 19:20:53: In Pump::serveCar()
+21/05/2015 19:20:53: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:53: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:53: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:53: In Pump::serveCar() - car  333 is fueling for 284 ms
+21/05/2015 19:20:53: In Pump::refuel()
+21/05/2015 19:20:53: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:54: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:54: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:54: In Pump::run() - serving car 333
+21/05/2015 19:20:54: In Pump::serveCar()
+21/05/2015 19:20:54: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:54: In Pump::refuel()
+21/05/2015 19:20:54: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:54: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:54: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:54: In Pump::serveCar() - car  333 is fueling for 30 ms
+21/05/2015 19:20:54: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:54: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:54: In Pump::run() - serving car 333
+21/05/2015 19:20:54: In Pump::serveCar()
+21/05/2015 19:20:54: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:54: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:54: In Pump::serveCar() - car  333 is fueling for 192 ms
+21/05/2015 19:20:54: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:54: In Pump::refuel()
+21/05/2015 19:20:54: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:54: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:54: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:54: In Pump::run() - serving car 333
+21/05/2015 19:20:54: In Pump::serveCar()
+21/05/2015 19:20:54: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:54: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:54: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:54: In Pump::serveCar() - car  333 is fueling for 321 ms
+21/05/2015 19:20:54: In Pump::refuel()
+21/05/2015 19:20:54: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:55: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:55: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:55: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:55: In Pump::run() - serving car 333
+21/05/2015 19:20:55: In Pump::serveCar()
+21/05/2015 19:20:55: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:55: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:55: In Pump::serveCar() - car  333 is fueling for 90 ms
+21/05/2015 19:20:55: In Pump::refuel()
+21/05/2015 19:20:55: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:55: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:55: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:55: In Pump::run() - serving car 333
+21/05/2015 19:20:55: In Pump::serveCar()
+21/05/2015 19:20:55: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:55: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:55: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:55: In Pump::serveCar() - car  333 is fueling for 126 ms
+21/05/2015 19:20:55: In Pump::refuel()
+21/05/2015 19:20:55: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:55: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:55: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:55: In Pump::run() - serving car 333
+21/05/2015 19:20:55: In Pump::serveCar()
+21/05/2015 19:20:55: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:55: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:55: In Pump::serveCar() - car  333 is fueling for 5 ms
+21/05/2015 19:20:55: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:55: In Pump::refuel()
+21/05/2015 19:20:55: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:55: In Pump::serveCar() - car  333 is fueled
+21/05/2015 19:20:55: In Pump::getNextCar() - car 333 is ready to be served
+21/05/2015 19:20:55: In Pump::run() - serving car 333
+21/05/2015 19:20:55: In Pump::serveCar()
+21/05/2015 19:20:55: In Pump::serveCar() - car 333 is being served
+21/05/2015 19:20:55: In Pump::serveCar() - car needs 42 litres
+21/05/2015 19:20:55: In Pump::serveCar() - car  333 is fueling for 97 ms
+21/05/2015 19:20:55: In Pump::refuel - car 333 is in queue
+21/05/2015 19:20:55: In Pump::refuel()
+21/05/2015 19:20:55: In Pump::refuel - car 333 wants to enter
+21/05/2015 19:20:55: In Pump::serveCar() - car  333 is fueled

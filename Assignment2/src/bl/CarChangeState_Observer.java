@@ -1,5 +1,5 @@
 package bl;
 
-public abstract class CarChangeState_Observer {
-	public abstract void updateCarState(int state);
+public interface CarChangeState_Observer {
+	void updateCarState(int state);
 }

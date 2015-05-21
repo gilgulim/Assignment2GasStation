@@ -1,0 +1,8 @@
+21/05/2015 14:32:09: In Car::Car()
+21/05/2015 14:32:09: In Car::Car() - created Car id = 333
+21/05/2015 14:32:11: In Car::finishFuel()
+21/05/2015 14:32:11: In Car::finishFuel() - Car id = 333
+21/05/2015 14:32:12: In Car::finishFuel()
+21/05/2015 14:32:12: In Car::finishFuel() - Car id = 333
+21/05/2015 14:32:12: In Car::finishFuel()
+21/05/2015 14:32:12: In Car::finishFuel() - Car id = 333

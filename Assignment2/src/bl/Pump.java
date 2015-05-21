@@ -8,6 +8,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import pl.CarStatusPacket;
+import pl.CarStatusPacket.CarStatusType;
 import dal.GasStationHistoryRecord;
 import dal.GasStationHistoryRecord.ActionType;
 import dal.GasStationHistoryRecord.ServiceEntityType;
@@ -141,12 +143,23 @@ public class Pump extends FillingMainFuelPool_Observer implements Runnable {
 			
 			car.finishFuel();
 			
+			//DB history log
 			GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
 					car.getId(),
 					ActionType.Fuel,
 					ServiceEntityType.FuelPump,
 					this.id);
 			connection.insertGasStationHistoryRecord(historyRecord);
+			
+			//Client GUI status notify
+			if(car.getClientEntity() == null){
+			}
+			else{
+				car.sendStatusToRemoteClient(CarStatusType.Fueling);	
+			}
+			
+			
+			
 			
 		}
 		catch (FuelPoolException e) {

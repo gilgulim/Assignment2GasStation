@@ -212,6 +212,7 @@ public class ClientGUI extends JFrame implements GasStationClient_Observer{
 		try{
 			serverIp = jtfServerIp.getText();
 			clientController = new ClientController(serverIp, Integer.parseInt(jtfServerPort.getText()));
+			clientController.attachObserver(this);
 			if(clientController.isStatus()){
 				jrbServerOn.setSelected(true);
 				jbnAddCar.setEnabled(true);
@@ -247,25 +248,27 @@ public class ClientGUI extends JFrame implements GasStationClient_Observer{
 		}		
 	}
 
-	public void setCarState(int state){
-		switch(state){
-		case 0: jrbCarEnter.setSelected(true);
-			break;
-		
-		case 1: jrbCarWash.setSelected(true);
-			break;
-		
-		case 2: jrbCarFuel.setSelected(true);
-			break;
-		
-		case 3: jrbCarleft.setSelected(true);
-			break;
-		}
-	}
+
 
 	@Override
 	public void ReceivedCarStatusHandler(CarStatusType carStatus) {
-		//TODO: Show in the GUI the status of the car
+		switch(carStatus){
+			case Entered: 
+				jrbCarEnter.setSelected(true);
+				break;
+			
+			case AutoWashing: 
+				jrbCarWash.setSelected(true);
+				break;
+			
+			case Fueling: 
+				jrbCarFuel.setSelected(true);
+				break;
+			
+			case Exited: 
+				jrbCarleft.setSelected(true);
+				break;
+		}
 	}
 
 	@Override

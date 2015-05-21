@@ -1,0 +1,300 @@
+21/05/2015 18:28:57: In CleaningService::CleaningService()
+21/05/2015 18:28:57: CleaningService init
+21/05/2015 18:28:57: In CleaningService::createAutoCleaningTeam()
+21/05/2015 18:28:57: In AutoClean::AutoClean()
+21/05/2015 18:28:57: AutoCleaningTeam init
+21/05/2015 18:28:57: In CleaningService::createAutoCleaningTeam()
+21/05/2015 18:28:57: In CleaningService::createAutoCleaningTeam() - created 3 inside cleaning teams
+21/05/2015 18:28:59: In CleaningService::run()
+21/05/2015 18:28:59: In CleaningService::run() - started running as a seperate thread
+21/05/2015 18:28:59: In CleaningService::startServiceThreads()
+21/05/2015 18:28:59: In CleaningService::startServiceThreads() - starting auto clean thread
+21/05/2015 18:28:59: In CleaningService()::startServiceThreads() - creating thread for inside team: 1
+21/05/2015 18:28:59: In AutoClean::run()
+21/05/2015 18:28:59: AutoCleaningTeam - started execution as a seperate thread
+21/05/2015 18:28:59: In CleaningService()::startServiceThreads() - created thread for inside team: 1
+21/05/2015 18:28:59: In CleaningService()::startServiceThreads() - creating thread for inside team: 2
+21/05/2015 18:28:59: In CleaningService()::startServiceThreads() - created thread for inside team: 2
+21/05/2015 18:28:59: In CleaningService()::startServiceThreads() - creating thread for inside team: 3
+21/05/2015 18:28:59: In CleaningService()::startServiceThreads() - created thread for inside team: 3
+21/05/2015 18:28:59: In CleaningService::cleaning()
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 wants to enter
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 is in queue
+21/05/2015 18:28:59: In CleaningService::cleaning()
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 wants to enter
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 is in queue
+21/05/2015 18:28:59: In CleaningService::getNextCar() - car 222 is ready to be served
+21/05/2015 18:28:59: In CleaningService::cleaning()
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 wants to enter
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 is in queue
+21/05/2015 18:28:59: In CleaningService::cleaning()
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 wants to enter
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 is in queue
+21/05/2015 18:28:59: In CleaningService::run() - sending car 222 to auto cleaning
+21/05/2015 18:28:59: In CleaningService::getNextCar() - car 222 is ready to be served
+21/05/2015 18:28:59: In CleaningService::run() - sending car 222 to auto cleaning queue
+21/05/2015 18:28:59: In CleaningService::getNextCar() - car 222 is ready to be served
+21/05/2015 18:28:59: In CleaningService::run() - sending car 222 to auto cleaning queue
+21/05/2015 18:28:59: In CleaningService::getNextCar() - car 222 is ready to be served
+21/05/2015 18:28:59: In CleaningService::run() - sending car 222 to auto cleaning queue
+21/05/2015 18:28:59: In CleaningService::cleaning()
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 wants to enter
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 is in queue
+21/05/2015 18:28:59: In CleaningService::getNextCar() - car 222 is ready to be served
+21/05/2015 18:28:59: In CleaningService::run() - sending car 222 to auto cleaning queue
+21/05/2015 18:28:59: In CleaningService::cleaning()
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 wants to enter
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 is in queue
+21/05/2015 18:28:59: In CleaningService::cleaning()
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 wants to enter
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 is in queue
+21/05/2015 18:28:59: In CleaningService::cleaning()
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 wants to enter
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 is in queue
+21/05/2015 18:28:59: In CleaningService::cleaning()
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 wants to enter
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 is in queue
+21/05/2015 18:28:59: In CleaningService::getNextCar() - car 222 is ready to be served
+21/05/2015 18:28:59: In CleaningService::run() - sending car 222 to auto cleaning queue
+21/05/2015 18:28:59: In CleaningService::getNextCar() - car 222 is ready to be served
+21/05/2015 18:28:59: In CleaningService::run() - sending car 222 to auto cleaning queue
+21/05/2015 18:28:59: In CleaningService::getNextCar() - car 222 is ready to be served
+21/05/2015 18:28:59: In CleaningService::run() - sending car 222 to auto cleaning queue
+21/05/2015 18:28:59: In CleaningService::getNextCar() - car 222 is ready to be served
+21/05/2015 18:28:59: In CleaningService::run() - sending car 222 to auto cleaning queue
+21/05/2015 18:28:59: In CleaningService::cleaning()
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 wants to enter
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 is in queue
+21/05/2015 18:28:59: In CleaningService::getNextCar() - car 222 is ready to be served
+21/05/2015 18:28:59: In CleaningService::run() - sending car 222 to auto cleaning queue
+21/05/2015 18:28:59: AutoCleaningTeam - car 222 Arrived
+21/05/2015 18:28:59: In AutoClean::serveCar()
+21/05/2015 18:28:59: In AutoClean::serveCar() - Auto clean car 222
+21/05/2015 18:28:59: In CleaningService::cleaning()
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 wants to enter
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 is in queue
+21/05/2015 18:28:59: In CleaningService::cleaning()
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 111 wants to enter
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 111 is in queue
+21/05/2015 18:28:59: In CleaningService::getNextCar() - car 222 is ready to be served
+21/05/2015 18:28:59: In CleaningService::run() - sending car 222 to auto cleaning queue
+21/05/2015 18:28:59: In CleaningService::getNextCar() - car 111 is ready to be served
+21/05/2015 18:28:59: In CleaningService::run() - sending car 111 to auto cleaning queue
+21/05/2015 18:28:59: In CleaningService::cleaning()
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 wants to enter
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 222 is in queue
+21/05/2015 18:28:59: In CleaningService::getNextCar() - car 222 is ready to be served
+21/05/2015 18:28:59: In CleaningService::run() - sending car 222 to auto cleaning queue
+21/05/2015 18:28:59: In CleaningService::cleaning()
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 444 wants to enter
+21/05/2015 18:28:59: In CleaningService::cleaning() - car 444 is in queue
+21/05/2015 18:28:59: In CleaningService::getNextCar() - car 444 is ready to be served
+21/05/2015 18:28:59: In CleaningService::run() - sending car 444 to auto cleaning queue
+21/05/2015 18:29:00: In CleaningService::cleaning()
+21/05/2015 18:29:00: In CleaningService::cleaning() - car 222 wants to enter
+21/05/2015 18:29:00: In CleaningService::cleaning() - car 222 is in queue
+21/05/2015 18:29:00: In CleaningService::getNextCar() - car 222 is ready to be served
+21/05/2015 18:29:00: In CleaningService::run() - sending car 222 to auto cleaning queue
+21/05/2015 18:29:00: In CleaningService::cleaning()
+21/05/2015 18:29:00: In CleaningService::cleaning() - car 222 wants to enter
+21/05/2015 18:29:00: In CleaningService::cleaning() - car 222 is in queue
+21/05/2015 18:29:00: In CleaningService::getNextCar() - car 222 is ready to be served
+21/05/2015 18:29:00: In CleaningService::run() - sending car 222 to auto cleaning queue
+21/05/2015 18:29:01: In AutoClean::serveCar() - Auto clean car 222 finished
+21/05/2015 18:29:01: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:01: In CleaningService::autoCleanIsDone() - car 222 finished the auto clean
+21/05/2015 18:29:01: In CleaningService::run() - car 222 is added to inside cleaning queue
+21/05/2015 18:29:01: In CleaningService::run() - sending car 222 to auto cleaning
+21/05/2015 18:29:01: AutoCleaningTeam - car 222 Arrived
+21/05/2015 18:29:01: In AutoClean::serveCar()
+21/05/2015 18:29:01: In AutoClean::serveCar() - Auto clean car 222
+21/05/2015 18:29:03: In AutoClean::serveCar() - Auto clean car 222 finished
+21/05/2015 18:29:03: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:03: In CleaningService::autoCleanIsDone() - car 222 finished the auto clean
+21/05/2015 18:29:03: In CleaningService::run() - car 222 is added to inside cleaning queue
+21/05/2015 18:29:03: In CleaningService::run() - sending car 222 to auto cleaning
+21/05/2015 18:29:03: AutoCleaningTeam - car 222 Arrived
+21/05/2015 18:29:03: In AutoClean::serveCar()
+21/05/2015 18:29:03: In AutoClean::serveCar() - Auto clean car 222
+21/05/2015 18:29:05: In AutoClean::serveCar() - Auto clean car 222 finished
+21/05/2015 18:29:05: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:05: In CleaningService::autoCleanIsDone() - car 222 finished the auto clean
+21/05/2015 18:29:05: In CleaningService::run() - car 222 is added to inside cleaning queue
+21/05/2015 18:29:05: In CleaningService::run() - sending car 222 to auto cleaning
+21/05/2015 18:29:05: AutoCleaningTeam - car 222 Arrived
+21/05/2015 18:29:05: In AutoClean::serveCar()
+21/05/2015 18:29:05: In AutoClean::serveCar() - Auto clean car 222
+21/05/2015 18:29:07: In AutoClean::serveCar() - Auto clean car 222 finished
+21/05/2015 18:29:07: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:07: In CleaningService::autoCleanIsDone() - car 222 finished the auto clean
+21/05/2015 18:29:07: In CleaningService::run() - car 222 is added to inside cleaning queue
+21/05/2015 18:29:07: In CleaningService::run() - sending car 222 to auto cleaning
+21/05/2015 18:29:07: AutoCleaningTeam - car 222 Arrived
+21/05/2015 18:29:07: In AutoClean::serveCar()
+21/05/2015 18:29:07: In AutoClean::serveCar() - Auto clean car 222
+21/05/2015 18:29:09: In AutoClean::serveCar() - Auto clean car 222 finished
+21/05/2015 18:29:09: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:09: In CleaningService::autoCleanIsDone() - car 222 finished the auto clean
+21/05/2015 18:29:09: In CleaningService::run() - car 222 is added to inside cleaning queue
+21/05/2015 18:29:09: In CleaningService::run() - sending car 222 to auto cleaning
+21/05/2015 18:29:09: AutoCleaningTeam - car 222 Arrived
+21/05/2015 18:29:09: In AutoClean::serveCar()
+21/05/2015 18:29:09: In AutoClean::serveCar() - Auto clean car 222
+21/05/2015 18:29:10: In CleaningService::serveInsideClean() - there are 5 cars wating for inside cleaning
+21/05/2015 18:29:10: In CleaningService::serveInsideClean() - sending car 222 to team 3
+21/05/2015 18:29:10: In CleaningService::serveInsideClean() - there are 4 cars wating for inside cleaning
+21/05/2015 18:29:10: In CleaningService::serveInsideClean() - sending car 222 to team 2
+21/05/2015 18:29:10: In CleaningService::serveInsideClean() - there are 3 cars wating for inside cleaning
+21/05/2015 18:29:10: In CleaningService::serveInsideClean() - sending car 222 to team 1
+21/05/2015 18:29:10: In CleaningService::serveInsideClean() - there are 2 cars wating for inside cleaning
+21/05/2015 18:29:10: In CleaningService::serveInsideClean() - all inside cleaning teams are busy
+21/05/2015 18:29:10: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:10: In CleaningService::insideCleanIsDone() - car 222 finished the inside clean
+21/05/2015 18:29:10: In CleaningService::serveInsideClean() - there are 2 cars wating for inside cleaning
+21/05/2015 18:29:10: In CleaningService::serveInsideClean() - sending car 222 to team 3
+21/05/2015 18:29:10: In CleaningService::serveInsideClean() - there are 1 cars wating for inside cleaning
+21/05/2015 18:29:10: In CleaningService::serveInsideClean() - all inside cleaning teams are busy
+21/05/2015 18:29:10: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:10: In CleaningService::insideCleanIsDone() - car 222 finished the inside clean
+21/05/2015 18:29:10: In CleaningService::serveInsideClean() - there are 1 cars wating for inside cleaning
+21/05/2015 18:29:10: In CleaningService::serveInsideClean() - sending car 222 to team 2
+21/05/2015 18:29:10: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:10: In CleaningService::insideCleanIsDone() - car 222 finished the inside clean
+21/05/2015 18:29:10: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:10: In CleaningService::insideCleanIsDone() - car 222 finished the inside clean
+21/05/2015 18:29:10: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:10: In CleaningService::insideCleanIsDone() - car 222 finished the inside clean
+21/05/2015 18:29:11: In AutoClean::serveCar() - Auto clean car 222 finished
+21/05/2015 18:29:11: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:11: In CleaningService::autoCleanIsDone() - car 222 finished the auto clean
+21/05/2015 18:29:11: In CleaningService::run() - car 222 is added to inside cleaning queue
+21/05/2015 18:29:11: In CleaningService::run() - sending car 222 to auto cleaning
+21/05/2015 18:29:11: AutoCleaningTeam - car 222 Arrived
+21/05/2015 18:29:11: In AutoClean::serveCar()
+21/05/2015 18:29:11: In AutoClean::serveCar() - Auto clean car 222
+21/05/2015 18:29:13: In AutoClean::serveCar() - Auto clean car 222 finished
+21/05/2015 18:29:13: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:13: In CleaningService::autoCleanIsDone() - car 222 finished the auto clean
+21/05/2015 18:29:13: In CleaningService::run() - car 222 is added to inside cleaning queue
+21/05/2015 18:29:13: In CleaningService::run() - sending car 222 to auto cleaning
+21/05/2015 18:29:13: AutoCleaningTeam - car 222 Arrived
+21/05/2015 18:29:13: In AutoClean::serveCar()
+21/05/2015 18:29:13: In AutoClean::serveCar() - Auto clean car 222
+21/05/2015 18:29:15: In AutoClean::serveCar() - Auto clean car 222 finished
+21/05/2015 18:29:15: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:15: In CleaningService::autoCleanIsDone() - car 222 finished the auto clean
+21/05/2015 18:29:15: In CleaningService::run() - car 222 is added to inside cleaning queue
+21/05/2015 18:29:15: In CleaningService::run() - sending car 222 to auto cleaning
+21/05/2015 18:29:15: AutoCleaningTeam - car 222 Arrived
+21/05/2015 18:29:15: In AutoClean::serveCar()
+21/05/2015 18:29:15: In AutoClean::serveCar() - Auto clean car 222
+21/05/2015 18:29:17: In AutoClean::serveCar() - Auto clean car 222 finished
+21/05/2015 18:29:17: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:17: In CleaningService::autoCleanIsDone() - car 222 finished the auto clean
+21/05/2015 18:29:17: In CleaningService::run() - car 222 is added to inside cleaning queue
+21/05/2015 18:29:17: In CleaningService::run() - sending car 222 to auto cleaning
+21/05/2015 18:29:17: AutoCleaningTeam - car 222 Arrived
+21/05/2015 18:29:17: In AutoClean::serveCar()
+21/05/2015 18:29:17: In AutoClean::serveCar() - Auto clean car 222
+21/05/2015 18:29:19: In AutoClean::serveCar() - Auto clean car 222 finished
+21/05/2015 18:29:19: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:19: In CleaningService::autoCleanIsDone() - car 222 finished the auto clean
+21/05/2015 18:29:19: In CleaningService::run() - car 222 is added to inside cleaning queue
+21/05/2015 18:29:19: In CleaningService::run() - sending car 222 to auto cleaning
+21/05/2015 18:29:19: AutoCleaningTeam - car 222 Arrived
+21/05/2015 18:29:19: In AutoClean::serveCar()
+21/05/2015 18:29:19: In AutoClean::serveCar() - Auto clean car 222
+21/05/2015 18:29:20: In CleaningService::serveInsideClean() - there are 5 cars wating for inside cleaning
+21/05/2015 18:29:20: In CleaningService::serveInsideClean() - sending car 222 to team 3
+21/05/2015 18:29:20: In CleaningService::serveInsideClean() - there are 4 cars wating for inside cleaning
+21/05/2015 18:29:20: In CleaningService::serveInsideClean() - sending car 222 to team 2
+21/05/2015 18:29:20: In CleaningService::serveInsideClean() - there are 3 cars wating for inside cleaning
+21/05/2015 18:29:20: In CleaningService::serveInsideClean() - sending car 222 to team 1
+21/05/2015 18:29:20: In CleaningService::serveInsideClean() - there are 2 cars wating for inside cleaning
+21/05/2015 18:29:20: In CleaningService::serveInsideClean() - all inside cleaning teams are busy
+21/05/2015 18:29:20: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:20: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:20: In CleaningService::insideCleanIsDone() - car 222 finished the inside clean
+21/05/2015 18:29:20: In CleaningService::serveInsideClean() - there are 2 cars wating for inside cleaning
+21/05/2015 18:29:20: In CleaningService::serveInsideClean() - sending car 222 to team 3
+21/05/2015 18:29:20: In CleaningService::serveInsideClean() - there are 1 cars wating for inside cleaning
+21/05/2015 18:29:20: In CleaningService::serveInsideClean() - sending car 222 to team 2
+21/05/2015 18:29:20: In CleaningService::insideCleanIsDone() - car 222 finished the inside clean
+21/05/2015 18:29:20: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:20: In CleaningService::insideCleanIsDone() - car 222 finished the inside clean
+21/05/2015 18:29:20: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:20: In CleaningService::insideCleanIsDone() - car 222 finished the inside clean
+21/05/2015 18:29:20: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:20: In CleaningService::insideCleanIsDone() - car 222 finished the inside clean
+21/05/2015 18:29:21: In AutoClean::serveCar() - Auto clean car 222 finished
+21/05/2015 18:29:21: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:21: In CleaningService::autoCleanIsDone() - car 222 finished the auto clean
+21/05/2015 18:29:21: In CleaningService::run() - car 222 is added to inside cleaning queue
+21/05/2015 18:29:21: In CleaningService::run() - sending car 111 to auto cleaning
+21/05/2015 18:29:21: AutoCleaningTeam - car 111 Arrived
+21/05/2015 18:29:21: In AutoClean::serveCar()
+21/05/2015 18:29:21: In AutoClean::serveCar() - Auto clean car 111
+21/05/2015 18:29:23: In AutoClean::serveCar() - Auto clean car 111 finished
+21/05/2015 18:29:23: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:23: In CleaningService::autoCleanIsDone() - car 111 finished the auto clean
+21/05/2015 18:29:23: In CleaningService::run() - car 111 is added to inside cleaning queue
+21/05/2015 18:29:23: In CleaningService::run() - sending car 222 to auto cleaning
+21/05/2015 18:29:23: AutoCleaningTeam - car 222 Arrived
+21/05/2015 18:29:23: In AutoClean::serveCar()
+21/05/2015 18:29:23: In AutoClean::serveCar() - Auto clean car 222
+21/05/2015 18:29:25: In AutoClean::serveCar() - Auto clean car 222 finished
+21/05/2015 18:29:25: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:25: In CleaningService::autoCleanIsDone() - car 222 finished the auto clean
+21/05/2015 18:29:25: In CleaningService::run() - car 222 is added to inside cleaning queue
+21/05/2015 18:29:25: In CleaningService::run() - sending car 444 to auto cleaning
+21/05/2015 18:29:25: AutoCleaningTeam - car 444 Arrived
+21/05/2015 18:29:25: In AutoClean::serveCar()
+21/05/2015 18:29:25: In AutoClean::serveCar() - Auto clean car 444
+21/05/2015 18:29:27: In AutoClean::serveCar() - Auto clean car 444 finished
+21/05/2015 18:29:27: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:27: In CleaningService::autoCleanIsDone() - car 444 finished the auto clean
+21/05/2015 18:29:27: In CleaningService::run() - car 444 is added to inside cleaning queue
+21/05/2015 18:29:27: In CleaningService::run() - sending car 222 to auto cleaning
+21/05/2015 18:29:27: AutoCleaningTeam - car 222 Arrived
+21/05/2015 18:29:27: In AutoClean::serveCar()
+21/05/2015 18:29:27: In AutoClean::serveCar() - Auto clean car 222
+21/05/2015 18:29:29: In AutoClean::serveCar() - Auto clean car 222 finished
+21/05/2015 18:29:29: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:29: In CleaningService::autoCleanIsDone() - car 222 finished the auto clean
+21/05/2015 18:29:29: In CleaningService::run() - car 222 is added to inside cleaning queue
+21/05/2015 18:29:29: In CleaningService::run() - sending car 222 to auto cleaning
+21/05/2015 18:29:29: AutoCleaningTeam - car 222 Arrived
+21/05/2015 18:29:29: In AutoClean::serveCar()
+21/05/2015 18:29:29: In AutoClean::serveCar() - Auto clean car 222
+21/05/2015 18:29:30: In CleaningService::serveInsideClean() - there are 5 cars wating for inside cleaning
+21/05/2015 18:29:30: In CleaningService::serveInsideClean() - sending car 222 to team 3
+21/05/2015 18:29:30: In CleaningService::serveInsideClean() - there are 4 cars wating for inside cleaning
+21/05/2015 18:29:30: In CleaningService::serveInsideClean() - sending car 111 to team 2
+21/05/2015 18:29:30: In CleaningService::serveInsideClean() - there are 3 cars wating for inside cleaning
+21/05/2015 18:29:30: In CleaningService::serveInsideClean() - sending car 222 to team 1
+21/05/2015 18:29:30: In CleaningService::serveInsideClean() - there are 2 cars wating for inside cleaning
+21/05/2015 18:29:30: In CleaningService::serveInsideClean() - all inside cleaning teams are busy
+21/05/2015 18:29:30: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:30: In CleaningService::insideCleanIsDone() - car 111 finished the inside clean
+21/05/2015 18:29:30: In CleaningService::serveInsideClean() - there are 2 cars wating for inside cleaning
+21/05/2015 18:29:30: In CleaningService::serveInsideClean() - sending car 444 to team 2
+21/05/2015 18:29:30: In CleaningService::serveInsideClean() - there are 1 cars wating for inside cleaning
+21/05/2015 18:29:30: In CleaningService::serveInsideClean() - all inside cleaning teams are busy
+21/05/2015 18:29:30: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:30: In CleaningService::insideCleanIsDone() - car 222 finished the inside clean
+21/05/2015 18:29:30: In CleaningService::serveInsideClean() - there are 1 cars wating for inside cleaning
+21/05/2015 18:29:30: In CleaningService::serveInsideClean() - sending car 222 to team 3
+21/05/2015 18:29:30: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:30: In CleaningService::insideCleanIsDone() - car 222 finished the inside clean
+21/05/2015 18:29:30: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:30: In CleaningService::insideCleanIsDone() - car 444 finished the inside clean
+21/05/2015 18:29:30: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:30: In CleaningService::insideCleanIsDone() - car 222 finished the inside clean
+21/05/2015 18:29:31: In AutoClean::serveCar() - Auto clean car 222 finished
+21/05/2015 18:29:31: In CleaningService::autoCleanIsDone()
+21/05/2015 18:29:31: In CleaningService::autoCleanIsDone() - car 222 finished the auto clean
+21/05/2015 18:29:31: In CleaningService::run() - car 222 is added to inside cleaning queue
+21/05/2015 18:29:40: In CleaningService::serveInsideClean() - there are 1 cars wating for inside cleaning
+21/05/2015 18:29:40: In CleaningService::serveInsideClean() - sending car 222 to team 3
+21/05/2015 18:29:40: In CleaningService::insideCleanIsDone()
+21/05/2015 18:29:40: In CleaningService::insideCleanIsDone() - car 222 finished the inside clean

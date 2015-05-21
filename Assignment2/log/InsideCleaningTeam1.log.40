@@ -1,0 +1,184 @@
+21/05/2015 19:29:54: In InsideClean::InsideClean()
+21/05/2015 19:29:54: InsideCleaningTeam init ( id = 1 )
+21/05/2015 19:29:55: In InsideClean::run()
+21/05/2015 19:29:55: InsideCleaningTeam (id = 1) - started execution as a seperate thread
+21/05/2015 19:31:15: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:31:15: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:31:15: In InsideClean::serveCar() - car  222 is being cleaned for 54 ms
+21/05/2015 19:31:15: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:31:25: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:31:25: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:31:25: In InsideClean::serveCar() - car  222 is being cleaned for 95 ms
+21/05/2015 19:31:25: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:31:35: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:31:35: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:31:35: In InsideClean::serveCar() - car  222 is being cleaned for 62 ms
+21/05/2015 19:31:35: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:31:45: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:31:45: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:31:45: In InsideClean::serveCar() - car  222 is being cleaned for 38 ms
+21/05/2015 19:31:45: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:31:55: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:31:55: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:31:55: In InsideClean::serveCar() - car  222 is being cleaned for 17 ms
+21/05/2015 19:31:55: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:31:55: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:31:55: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:31:55: In InsideClean::serveCar() - car  222 is being cleaned for 65 ms
+21/05/2015 19:31:56: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:32:05: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:32:05: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:32:05: In InsideClean::serveCar() - car  222 is being cleaned for 7 ms
+21/05/2015 19:32:05: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:32:05: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:32:05: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:32:05: In InsideClean::serveCar() - car  222 is being cleaned for 19 ms
+21/05/2015 19:32:05: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:32:15: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:32:15: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:32:15: In InsideClean::serveCar() - car  222 is being cleaned for 68 ms
+21/05/2015 19:32:15: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:32:25: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:32:25: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:32:25: In InsideClean::serveCar() - car  222 is being cleaned for 2 ms
+21/05/2015 19:32:25: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:32:25: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:32:25: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:32:25: In InsideClean::serveCar() - car  222 is being cleaned for 23 ms
+21/05/2015 19:32:25: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:32:35: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:32:35: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:32:35: In InsideClean::serveCar() - car  222 is being cleaned for 53 ms
+21/05/2015 19:32:35: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:32:36: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:32:36: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:32:36: In InsideClean::serveCar() - car  222 is being cleaned for 10 ms
+21/05/2015 19:32:36: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:32:45: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:32:45: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:32:45: In InsideClean::serveCar() - car  222 is being cleaned for 92 ms
+21/05/2015 19:32:45: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:38:06: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:38:06: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:38:06: In InsideClean::serveCar() - car  222 is being cleaned for 26 ms
+21/05/2015 19:38:06: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:38:07: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:38:07: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:38:07: In InsideClean::serveCar() - car  222 is being cleaned for 8 ms
+21/05/2015 19:38:07: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:38:16: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:38:16: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:38:16: In InsideClean::serveCar() - car  222 is being cleaned for 47 ms
+21/05/2015 19:38:16: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:38:16: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:38:16: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:38:16: In InsideClean::serveCar() - car  222 is being cleaned for 75 ms
+21/05/2015 19:38:16: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:38:26: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:38:26: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:38:26: In InsideClean::serveCar() - car  222 is being cleaned for 9 ms
+21/05/2015 19:38:26: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:38:36: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:38:36: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:38:36: In InsideClean::serveCar() - car  222 is being cleaned for 87 ms
+21/05/2015 19:38:36: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:38:46: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:38:46: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:38:46: In InsideClean::serveCar() - car  222 is being cleaned for 79 ms
+21/05/2015 19:38:46: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:38:46: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:38:46: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:38:46: In InsideClean::serveCar() - car  222 is being cleaned for 10 ms
+21/05/2015 19:38:46: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:38:56: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:38:56: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:38:56: In InsideClean::serveCar() - car  222 is being cleaned for 80 ms
+21/05/2015 19:38:56: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:39:06: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:39:06: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:39:06: In InsideClean::serveCar() - car  222 is being cleaned for 58 ms
+21/05/2015 19:39:06: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:39:06: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:39:06: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:39:06: In InsideClean::serveCar() - car  222 is being cleaned for 63 ms
+21/05/2015 19:39:06: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:39:16: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:39:16: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:39:16: In InsideClean::serveCar() - car  222 is being cleaned for 53 ms
+21/05/2015 19:39:16: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:39:16: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:39:16: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:39:16: In InsideClean::serveCar() - car  222 is being cleaned for 25 ms
+21/05/2015 19:39:16: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:39:26: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:39:26: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:39:26: In InsideClean::serveCar() - car  222 is being cleaned for 29 ms
+21/05/2015 19:39:26: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:39:36: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:39:36: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:39:36: In InsideClean::serveCar() - car  222 is being cleaned for 17 ms
+21/05/2015 19:39:36: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:39:36: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:39:36: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:39:36: In InsideClean::serveCar() - car  222 is being cleaned for 27 ms
+21/05/2015 19:39:36: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:39:36: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:39:36: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:39:36: In InsideClean::serveCar() - car  222 is being cleaned for 7 ms
+21/05/2015 19:39:36: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:39:46: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:39:46: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:39:46: In InsideClean::serveCar() - car  222 is being cleaned for 91 ms
+21/05/2015 19:39:46: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:39:56: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:39:56: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:39:56: In InsideClean::serveCar() - car  222 is being cleaned for 57 ms
+21/05/2015 19:39:56: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:39:56: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:39:56: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:39:56: In InsideClean::serveCar() - car  222 is being cleaned for 72 ms
+21/05/2015 19:39:56: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:40:06: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:40:06: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:40:06: In InsideClean::serveCar() - car  222 is being cleaned for 44 ms
+21/05/2015 19:40:06: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:40:16: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:40:16: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:40:16: In InsideClean::serveCar() - car  222 is being cleaned for 90 ms
+21/05/2015 19:40:16: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:40:26: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:40:26: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:40:26: In InsideClean::serveCar() - car  222 is being cleaned for 55 ms
+21/05/2015 19:40:26: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:40:26: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:40:26: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:40:26: In InsideClean::serveCar() - car  222 is being cleaned for 37 ms
+21/05/2015 19:40:26: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:40:36: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:40:36: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:40:36: In InsideClean::serveCar() - car  222 is being cleaned for 9 ms
+21/05/2015 19:40:36: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:40:46: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:40:46: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:40:46: In InsideClean::serveCar() - car  222 is being cleaned for 96 ms
+21/05/2015 19:40:46: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:40:56: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:40:56: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:40:56: In InsideClean::serveCar() - car  222 is being cleaned for 67 ms
+21/05/2015 19:40:56: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:40:56: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:40:56: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:40:56: In InsideClean::serveCar() - car  222 is being cleaned for 35 ms
+21/05/2015 19:40:56: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:41:06: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:41:06: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:41:06: In InsideClean::serveCar() - car  222 is being cleaned for 90 ms
+21/05/2015 19:41:06: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:41:16: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:41:16: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:41:16: In InsideClean::serveCar() - car  222 is being cleaned for 27 ms
+21/05/2015 19:41:16: In InsideClean::serveCar() - inside clean car 222 finished
+21/05/2015 19:41:16: AutoCleaningTeam - car 222 Arrived
+21/05/2015 19:41:16: In InsideClean::serveCar() - inside clean car 222
+21/05/2015 19:41:16: In InsideClean::serveCar() - car  222 is being cleaned for 70 ms
+21/05/2015 19:41:16: In InsideClean::serveCar() - inside clean car 222 finished

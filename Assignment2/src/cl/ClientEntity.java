@@ -9,9 +9,12 @@ import java.util.Arrays;
 import dal.GasStationMySqlConnection;
 import bl.BlProxy;
 import bl.Car;
+import bl.ClientController;
 import pl.AddCarPacket;
 import pl.BasePacket;
 import pl.BasePacket.PacketsOpcodes;
+import pl.CarStatusPacket;
+import pl.CarStatusPacket.CarStatusType;
 
 
 public class ClientEntity implements Runnable{
@@ -35,6 +38,7 @@ public class ClientEntity implements Runnable{
 		
 		this.socket = socket;
 		inputStream = new DataInputStream(socket.getInputStream());
+		outputStream = new DataOutputStream(socket.getOutputStream());
 		receiveThread.start();
 	}
 	
@@ -143,8 +147,11 @@ public class ClientEntity implements Runnable{
 	         	 //Adding car to DB
 	         	 GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
 	         	 connection.insertCar(addCarPacket.getCar());
-	         	 break;
 	         	 
+	         	 //Updated client on car status
+	         	 receivedCar.sendStatusToRemoteClient(CarStatusType.Entered);	         	 
+	         	 break;
+	
 		  	default:
 				break;
 		  }	  

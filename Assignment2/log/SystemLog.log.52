@@ -1,0 +1,100 @@
+21/05/2015 18:58:30: BLProxy init
+21/05/2015 18:58:30: In BLProxy()::blProxy()
+21/05/2015 18:58:30: Created BLProxy object
+21/05/2015 18:58:30: In BLProxy::getBlProxy()
+21/05/2015 18:58:30: In BLProxy::runThread()
+21/05/2015 18:58:30: In BLProxy:: Running the BL as a seperate thread
+21/05/2015 18:58:30: GasStationsBL init
+21/05/2015 18:58:30: In GasStationsBL()::GasStationsBL()
+21/05/2015 18:58:30: In GasStationsBL()::init()
+21/05/2015 18:58:30: GasStationBL created DAL proxy object
+21/05/2015 18:58:30: DALProxy init
+21/05/2015 18:58:30: In DalProxy()::DalProxy()
+21/05/2015 18:58:30: Created DALProxy object
+21/05/2015 18:58:30: In DalProxy::getDalProxy()
+21/05/2015 18:58:30: In DalProxy::init()
+21/05/2015 18:58:30: GasStationDAL init
+21/05/2015 18:58:30: In GasStationDAL::GasStationDAL()
+21/05/2015 18:58:30: In GasStationDAL::init()
+21/05/2015 18:58:30: GasStationBL getting GasStation object from configuration file
+21/05/2015 18:58:30: In DalProxy::getGasStationFromConfiguration()
+21/05/2015 18:58:30: In GasStationDAL::loadConfiguration()
+21/05/2015 18:58:30: GasStation init
+21/05/2015 18:58:30: In GasStation()::GasStation()
+21/05/2015 18:58:30: MainFuelPool init
+21/05/2015 18:58:30: In MainFuelPool()::MainFuelPool()
+21/05/2015 18:58:30: In MainFuelPool()::MainFuelPool() - current capacity: 10000
+21/05/2015 18:58:30: In MainFuelPool()::MainFuelPool() - max capacity: 10000
+21/05/2015 18:58:30: In MainFuelPool::attach() - attched new fueling observer
+21/05/2015 18:58:30: In MainFuelPool::attach() - attched new fueling observer
+21/05/2015 18:58:30: In MainFuelPool::attach() - attched new fueling observer
+21/05/2015 18:58:30: In MainFuelPool::attach() - attched new fueling observer
+21/05/2015 18:58:30: In GasStation()::setCleaningService()
+21/05/2015 18:58:30: GasStation::addCar()
+21/05/2015 18:58:30: Car id :111 Want Cleaning :true
+21/05/2015 18:58:30: Num of Liters :47 Pump :2
+21/05/2015 18:58:30: GasStation::addCar()
+21/05/2015 18:58:30: Car id :333 Want Cleaning :false
+21/05/2015 18:58:30: Num of Liters :42 Pump :1
+21/05/2015 18:58:30: GasStation::addCar()
+21/05/2015 18:58:30: Car id :222 Want Cleaning :true
+21/05/2015 18:58:30: GasStation::addCar()
+21/05/2015 18:58:30: Car id :444 Want Cleaning :true
+21/05/2015 18:58:30: Num of Liters :35 Pump :1
+21/05/2015 18:58:32: GasStationBL the GasStation object was created
+21/05/2015 18:58:32: GasStationBL: there are 4 cars in the station
+21/05/2015 18:58:32: GasStationBL: there are 4 pumps in the station
+21/05/2015 18:58:32: In GasStationsBL::run()
+21/05/2015 18:58:32: GasStationBL began execution as seprate thread (id = 14)
+21/05/2015 18:58:32: In GasStationBL::run() - executing the GasStation object in a seperate thread 
+21/05/2015 18:58:32: In GasStation()::run()
+21/05/2015 18:58:32: In GasStation()::run() -  Started running as a separate thread
+21/05/2015 18:58:32: In GasStation()::activatePumps()
+21/05/2015 18:58:32: In GasStation()::activatePumps() - creating thread pool for 4 pumps
+21/05/2015 18:58:32: In GasStation()::activatePumps() - creating thread for pump: 1
+21/05/2015 18:58:32: In GasStation()::activatePumps() - created thread for pump: 1
+21/05/2015 18:58:32: In GasStation()::activatePumps() - creating thread for pump: 2
+21/05/2015 18:58:32: In GasStation()::activatePumps() - created thread for pump: 2
+21/05/2015 18:58:32: In GasStation()::activatePumps() - creating thread for pump: 3
+21/05/2015 18:58:32: In GasStation()::activatePumps() - created thread for pump: 3
+21/05/2015 18:58:32: In GasStation()::activatePumps() - creating thread for pump: 4
+21/05/2015 18:58:32: In GasStation()::activatePumps() - created thread for pump: 4
+21/05/2015 18:58:32: In GasStation()::activateCleaningService()
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 111 to fueling
+21/05/2015 18:58:32: In GasStation()::run() - car 111 was added to handling queue
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 333 to fueling
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 222 to cleaning
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 444 to fueling
+21/05/2015 18:58:32: In GasStation()::run() - car 444 was added to handling queue
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 333 to fueling
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 222 to cleaning
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 333 to fueling
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 222 to cleaning
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 333 to fueling
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 222 to cleaning
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 333 to fueling
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 222 to cleaning
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 333 to fueling
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 222 to cleaning
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 333 to fueling
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 222 to cleaning
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 333 to fueling
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 222 to cleaning
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 333 to fueling
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 222 to cleaning
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 333 to fueling
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 222 to cleaning
+21/05/2015 18:58:32: In GasStation()::run() - sendind car 333 to fueling
+21/05/2015 18:58:47: BLProxy object already exists
+21/05/2015 18:58:47: In BLProxy::getBlProxy()
+21/05/2015 18:58:47: In BLProxy()::getNumOfPumps()
+21/05/2015 18:58:47: In BLProxy():: Got num of pumps request
+21/05/2015 18:58:47: In GasStationsBL()::getNumOfPumps()
+21/05/2015 18:58:47: In GasStationsBL():: Got num of pumps request
+21/05/2015 18:58:47: In BLProxy()::addCar()
+21/05/2015 18:58:47: In BLProxy():: Got car addition request
+21/05/2015 18:58:47: In GasStationsBL()::addCar()
+21/05/2015 18:58:47: In GasStationsBL():: Got car addition request
+21/05/2015 18:58:47: GasStation::addCar()
+21/05/2015 18:58:47: Car id :123 Want Cleaning :true
+21/05/2015 18:58:47: Num of Liters :10 Pump :3

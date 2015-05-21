@@ -1,0 +1,4 @@
+21/05/2015 19:18:15: In InsideClean::InsideClean()
+21/05/2015 19:18:15: InsideCleaningTeam init ( id = 1 )
+21/05/2015 19:18:17: In InsideClean::run()
+21/05/2015 19:18:17: InsideCleaningTeam (id = 1) - started execution as a seperate thread

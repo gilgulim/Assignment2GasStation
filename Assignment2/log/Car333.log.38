@@ -1,0 +1,390 @@
+21/05/2015 19:26:19: In Car::Car()
+21/05/2015 19:26:19: In Car::Car() - created Car id = 333
+21/05/2015 19:26:20: In Car::finishFuel()
+21/05/2015 19:26:20: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:21: In Car::finishFuel()
+21/05/2015 19:26:21: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:21: In Car::finishFuel()
+21/05/2015 19:26:21: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:21: In Car::finishFuel()
+21/05/2015 19:26:21: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:22: In Car::finishFuel()
+21/05/2015 19:26:22: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:22: In Car::finishFuel()
+21/05/2015 19:26:22: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:22: In Car::finishFuel()
+21/05/2015 19:26:22: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:22: In Car::finishFuel()
+21/05/2015 19:26:22: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:22: In Car::finishFuel()
+21/05/2015 19:26:22: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:23: In Car::finishFuel()
+21/05/2015 19:26:23: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:23: In Car::finishFuel()
+21/05/2015 19:26:23: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:23: In Car::finishFuel()
+21/05/2015 19:26:23: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:24: In Car::finishFuel()
+21/05/2015 19:26:24: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:24: In Car::finishFuel()
+21/05/2015 19:26:24: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:24: In Car::finishFuel()
+21/05/2015 19:26:24: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:25: In Car::finishFuel()
+21/05/2015 19:26:25: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:25: In Car::finishFuel()
+21/05/2015 19:26:25: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:25: In Car::finishFuel()
+21/05/2015 19:26:25: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:25: In Car::finishFuel()
+21/05/2015 19:26:25: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:26: In Car::finishFuel()
+21/05/2015 19:26:26: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:26: In Car::finishFuel()
+21/05/2015 19:26:26: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:26: In Car::finishFuel()
+21/05/2015 19:26:26: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:26: In Car::finishFuel()
+21/05/2015 19:26:26: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:27: In Car::finishFuel()
+21/05/2015 19:26:27: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:27: In Car::finishFuel()
+21/05/2015 19:26:27: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:27: In Car::finishFuel()
+21/05/2015 19:26:27: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:27: In Car::finishFuel()
+21/05/2015 19:26:27: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:28: In Car::finishFuel()
+21/05/2015 19:26:28: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:28: In Car::finishFuel()
+21/05/2015 19:26:28: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:28: In Car::finishFuel()
+21/05/2015 19:26:28: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:29: In Car::finishFuel()
+21/05/2015 19:26:29: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:29: In Car::finishFuel()
+21/05/2015 19:26:29: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:29: In Car::finishFuel()
+21/05/2015 19:26:29: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:29: In Car::finishFuel()
+21/05/2015 19:26:29: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:30: In Car::finishFuel()
+21/05/2015 19:26:30: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:30: In Car::finishFuel()
+21/05/2015 19:26:30: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:30: In Car::finishFuel()
+21/05/2015 19:26:30: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:30: In Car::finishFuel()
+21/05/2015 19:26:30: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:30: In Car::finishFuel()
+21/05/2015 19:26:30: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:31: In Car::finishFuel()
+21/05/2015 19:26:31: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:31: In Car::finishFuel()
+21/05/2015 19:26:31: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:31: In Car::finishFuel()
+21/05/2015 19:26:31: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:31: In Car::finishFuel()
+21/05/2015 19:26:31: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:31: In Car::finishFuel()
+21/05/2015 19:26:31: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:31: In Car::finishFuel()
+21/05/2015 19:26:31: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:31: In Car::finishFuel()
+21/05/2015 19:26:31: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:32: In Car::finishFuel()
+21/05/2015 19:26:32: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:32: In Car::finishFuel()
+21/05/2015 19:26:32: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:32: In Car::finishFuel()
+21/05/2015 19:26:32: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:33: In Car::finishFuel()
+21/05/2015 19:26:33: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:33: In Car::finishFuel()
+21/05/2015 19:26:33: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:33: In Car::finishFuel()
+21/05/2015 19:26:33: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:34: In Car::finishFuel()
+21/05/2015 19:26:34: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:34: In Car::finishFuel()
+21/05/2015 19:26:34: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:34: In Car::finishFuel()
+21/05/2015 19:26:34: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:35: In Car::finishFuel()
+21/05/2015 19:26:35: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:35: In Car::finishFuel()
+21/05/2015 19:26:35: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:35: In Car::finishFuel()
+21/05/2015 19:26:35: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:36: In Car::finishFuel()
+21/05/2015 19:26:36: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:36: In Car::finishFuel()
+21/05/2015 19:26:36: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:37: In Car::finishFuel()
+21/05/2015 19:26:37: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:37: In Car::finishFuel()
+21/05/2015 19:26:37: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:37: In Car::finishFuel()
+21/05/2015 19:26:37: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:38: In Car::finishFuel()
+21/05/2015 19:26:38: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:38: In Car::finishFuel()
+21/05/2015 19:26:38: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:38: In Car::finishFuel()
+21/05/2015 19:26:38: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:39: In Car::finishFuel()
+21/05/2015 19:26:39: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:39: In Car::finishFuel()
+21/05/2015 19:26:39: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:40: In Car::finishFuel()
+21/05/2015 19:26:40: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:40: In Car::finishFuel()
+21/05/2015 19:26:40: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:40: In Car::finishFuel()
+21/05/2015 19:26:40: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:40: In Car::finishFuel()
+21/05/2015 19:26:40: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:41: In Car::finishFuel()
+21/05/2015 19:26:41: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:41: In Car::finishFuel()
+21/05/2015 19:26:41: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:41: In Car::finishFuel()
+21/05/2015 19:26:41: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:41: In Car::finishFuel()
+21/05/2015 19:26:41: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:42: In Car::finishFuel()
+21/05/2015 19:26:42: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:42: In Car::finishFuel()
+21/05/2015 19:26:42: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:43: In Car::finishFuel()
+21/05/2015 19:26:43: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:43: In Car::finishFuel()
+21/05/2015 19:26:43: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:44: In Car::finishFuel()
+21/05/2015 19:26:44: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:44: In Car::finishFuel()
+21/05/2015 19:26:44: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:45: In Car::finishFuel()
+21/05/2015 19:26:45: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:45: In Car::finishFuel()
+21/05/2015 19:26:45: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:45: In Car::finishFuel()
+21/05/2015 19:26:45: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:45: In Car::finishFuel()
+21/05/2015 19:26:45: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:46: In Car::finishFuel()
+21/05/2015 19:26:46: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:46: In Car::finishFuel()
+21/05/2015 19:26:46: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:46: In Car::finishFuel()
+21/05/2015 19:26:46: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:46: In Car::finishFuel()
+21/05/2015 19:26:46: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:46: In Car::finishFuel()
+21/05/2015 19:26:46: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:47: In Car::finishFuel()
+21/05/2015 19:26:47: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:47: In Car::finishFuel()
+21/05/2015 19:26:47: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:47: In Car::finishFuel()
+21/05/2015 19:26:47: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:47: In Car::finishFuel()
+21/05/2015 19:26:47: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:48: In Car::finishFuel()
+21/05/2015 19:26:48: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:48: In Car::finishFuel()
+21/05/2015 19:26:48: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:48: In Car::finishFuel()
+21/05/2015 19:26:48: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:49: In Car::finishFuel()
+21/05/2015 19:26:49: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:49: In Car::finishFuel()
+21/05/2015 19:26:49: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:49: In Car::finishFuel()
+21/05/2015 19:26:49: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:50: In Car::finishFuel()
+21/05/2015 19:26:50: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:50: In Car::finishFuel()
+21/05/2015 19:26:50: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:50: In Car::finishFuel()
+21/05/2015 19:26:50: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:50: In Car::finishFuel()
+21/05/2015 19:26:50: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:50: In Car::finishFuel()
+21/05/2015 19:26:50: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:51: In Car::finishFuel()
+21/05/2015 19:26:51: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:51: In Car::finishFuel()
+21/05/2015 19:26:51: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:51: In Car::finishFuel()
+21/05/2015 19:26:51: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:51: In Car::finishFuel()
+21/05/2015 19:26:51: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:52: In Car::finishFuel()
+21/05/2015 19:26:52: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:52: In Car::finishFuel()
+21/05/2015 19:26:52: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:52: In Car::finishFuel()
+21/05/2015 19:26:52: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:52: In Car::finishFuel()
+21/05/2015 19:26:52: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:53: In Car::finishFuel()
+21/05/2015 19:26:53: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:53: In Car::finishFuel()
+21/05/2015 19:26:53: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:54: In Car::finishFuel()
+21/05/2015 19:26:54: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:54: In Car::finishFuel()
+21/05/2015 19:26:54: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:54: In Car::finishFuel()
+21/05/2015 19:26:54: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:55: In Car::finishFuel()
+21/05/2015 19:26:55: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:55: In Car::finishFuel()
+21/05/2015 19:26:55: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:55: In Car::finishFuel()
+21/05/2015 19:26:55: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:56: In Car::finishFuel()
+21/05/2015 19:26:56: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:56: In Car::finishFuel()
+21/05/2015 19:26:56: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:56: In Car::finishFuel()
+21/05/2015 19:26:56: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:57: In Car::finishFuel()
+21/05/2015 19:26:57: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:57: In Car::finishFuel()
+21/05/2015 19:26:57: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:57: In Car::finishFuel()
+21/05/2015 19:26:57: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:58: In Car::finishFuel()
+21/05/2015 19:26:58: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:58: In Car::finishFuel()
+21/05/2015 19:26:58: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:58: In Car::finishFuel()
+21/05/2015 19:26:58: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:58: In Car::finishFuel()
+21/05/2015 19:26:58: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:59: In Car::finishFuel()
+21/05/2015 19:26:59: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:59: In Car::finishFuel()
+21/05/2015 19:26:59: In Car::finishFuel() - Car id = 333
+21/05/2015 19:26:59: In Car::finishFuel()
+21/05/2015 19:26:59: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:00: In Car::finishFuel()
+21/05/2015 19:27:00: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:00: In Car::finishFuel()
+21/05/2015 19:27:00: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:00: In Car::finishFuel()
+21/05/2015 19:27:00: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:00: In Car::finishFuel()
+21/05/2015 19:27:00: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:01: In Car::finishFuel()
+21/05/2015 19:27:01: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:01: In Car::finishFuel()
+21/05/2015 19:27:01: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:02: In Car::finishFuel()
+21/05/2015 19:27:02: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:02: In Car::finishFuel()
+21/05/2015 19:27:02: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:02: In Car::finishFuel()
+21/05/2015 19:27:02: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:03: In Car::finishFuel()
+21/05/2015 19:27:03: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:03: In Car::finishFuel()
+21/05/2015 19:27:03: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:03: In Car::finishFuel()
+21/05/2015 19:27:03: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:04: In Car::finishFuel()
+21/05/2015 19:27:04: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:04: In Car::finishFuel()
+21/05/2015 19:27:04: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:04: In Car::finishFuel()
+21/05/2015 19:27:04: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:05: In Car::finishFuel()
+21/05/2015 19:27:05: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:05: In Car::finishFuel()
+21/05/2015 19:27:05: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:05: In Car::finishFuel()
+21/05/2015 19:27:05: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:06: In Car::finishFuel()
+21/05/2015 19:27:06: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:06: In Car::finishFuel()
+21/05/2015 19:27:06: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:06: In Car::finishFuel()
+21/05/2015 19:27:06: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:07: In Car::finishFuel()
+21/05/2015 19:27:07: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:07: In Car::finishFuel()
+21/05/2015 19:27:07: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:07: In Car::finishFuel()
+21/05/2015 19:27:07: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:07: In Car::finishFuel()
+21/05/2015 19:27:07: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:07: In Car::finishFuel()
+21/05/2015 19:27:07: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:08: In Car::finishFuel()
+21/05/2015 19:27:08: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:08: In Car::finishFuel()
+21/05/2015 19:27:08: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:09: In Car::finishFuel()
+21/05/2015 19:27:09: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:09: In Car::finishFuel()
+21/05/2015 19:27:09: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:09: In Car::finishFuel()
+21/05/2015 19:27:09: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:10: In Car::finishFuel()
+21/05/2015 19:27:10: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:10: In Car::finishFuel()
+21/05/2015 19:27:10: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:10: In Car::finishFuel()
+21/05/2015 19:27:10: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:10: In Car::finishFuel()
+21/05/2015 19:27:10: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:10: In Car::finishFuel()
+21/05/2015 19:27:10: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:11: In Car::finishFuel()
+21/05/2015 19:27:11: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:11: In Car::finishFuel()
+21/05/2015 19:27:11: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:12: In Car::finishFuel()
+21/05/2015 19:27:12: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:12: In Car::finishFuel()
+21/05/2015 19:27:12: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:12: In Car::finishFuel()
+21/05/2015 19:27:12: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:12: In Car::finishFuel()
+21/05/2015 19:27:12: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:13: In Car::finishFuel()
+21/05/2015 19:27:13: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:13: In Car::finishFuel()
+21/05/2015 19:27:13: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:13: In Car::finishFuel()
+21/05/2015 19:27:13: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:14: In Car::finishFuel()
+21/05/2015 19:27:14: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:14: In Car::finishFuel()
+21/05/2015 19:27:14: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:15: In Car::finishFuel()
+21/05/2015 19:27:15: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:15: In Car::finishFuel()
+21/05/2015 19:27:15: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:15: In Car::finishFuel()
+21/05/2015 19:27:15: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:16: In Car::finishFuel()
+21/05/2015 19:27:16: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:16: In Car::finishFuel()
+21/05/2015 19:27:16: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:16: In Car::finishFuel()
+21/05/2015 19:27:16: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:16: In Car::finishFuel()
+21/05/2015 19:27:16: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:16: In Car::finishFuel()
+21/05/2015 19:27:16: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:17: In Car::finishFuel()
+21/05/2015 19:27:17: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:17: In Car::finishFuel()
+21/05/2015 19:27:17: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:17: In Car::finishFuel()
+21/05/2015 19:27:17: In Car::finishFuel() - Car id = 333
+21/05/2015 19:27:17: In Car::finishFuel()
+21/05/2015 19:27:17: In Car::finishFuel() - Car id = 333
