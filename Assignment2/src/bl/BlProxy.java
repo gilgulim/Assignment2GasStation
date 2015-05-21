@@ -65,11 +65,16 @@ public class BlProxy extends GasStationBlBase{
 	/* User actions from UI */
 	
 	/* Add car */
+	//****DEPRICATED***
 	public void addCar(int id, boolean fAddToPump,  int pumpNum, int numOfLiters, boolean addToCleaning) {
 		theLogger.log(Level.INFO, "In BLProxy()::addCar()", this);
 		theLogger.log(Level.INFO, "In BLProxy():: Got car addition request", this);
 		
 		theBL.addCar(id, fAddToPump, pumpNum, numOfLiters, addToCleaning);
+	}
+	
+	public void addCar(Car car){
+		theBL.addCar(car);
 	}
 	
 	/* Add Fuel to main pool */

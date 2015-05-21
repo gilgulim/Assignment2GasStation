@@ -68,8 +68,11 @@ public class GasStationsBL extends GasStationBlBase implements Runnable {
 			car = new Car(id, addToCleaning);
 		}
 		
+		addCar(car);
+	}
+	
+	public void addCar(Car car){
 		theGasStation.addCar(car);
-		
 	}
 	
 	/* Add Fuel to main pool */

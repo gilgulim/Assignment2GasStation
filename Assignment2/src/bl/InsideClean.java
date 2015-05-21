@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import pl.CarStatusPacket.CarStatusType;
 import dal.GasStationHistoryRecord;
 import dal.GasStationMySqlConnection;
 import dal.GasStationHistoryRecord.ActionType;
@@ -69,6 +70,7 @@ public class InsideClean extends CleaningServiceBase {
 				ServiceEntityType.WashTeam,
 				id);
 		connection.insertGasStationHistoryRecord(historyRecord);
+		theCar.sendStatusToRemoteClient(CarStatusType.AutoWashing);
 		
 	}
 

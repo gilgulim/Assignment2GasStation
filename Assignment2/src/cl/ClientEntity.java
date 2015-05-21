@@ -138,11 +138,7 @@ public class ClientEntity implements Runnable{
 		  		receivedCar.setClientEntity(this);
 	
 		  		//Adding car to the business cars queue
-	         	blProxy.addCar(	receivedCar.getId(), 
-	         					receivedCar.wantsFuel(), 
-	         					receivedCar.getPumpNum(), 
-	         					receivedCar.getNumOfLiters(), 
-	         					receivedCar.wantsCleaning());
+	         	blProxy.addCar(receivedCar);
 	         	 
 	         	 //Adding car to DB
 	         	 GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();

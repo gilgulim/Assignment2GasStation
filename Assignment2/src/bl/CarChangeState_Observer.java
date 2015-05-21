@@ -1,5 +1,7 @@
 package bl;
 
+import pl.CarStatusPacket.CarStatusType;
+
 public interface CarChangeState_Observer {
-	void updateCarState(int state);
+	void updateCarState(Car car, CarStatusType state);
 }

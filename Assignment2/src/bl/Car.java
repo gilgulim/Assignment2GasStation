@@ -36,6 +36,17 @@ public class Car {
 	@Expose
 	private int pumpNum;
 	
+	private int washTeamID;
+	private List<CarChangeState_Observer> carChangeStateObservers = new ArrayList<CarChangeState_Observer>();
+	
+	public int getWashTeamID() {
+		return washTeamID;
+	}
+	
+	public void setWashTeamID(int washTeamID) {
+		this.washTeamID = washTeamID;
+	}
+
 	private ClientEntity clientEntity;
 	
 	public ClientEntity getClientEntity() {
@@ -43,6 +54,12 @@ public class Car {
 	}
 
 	private Logger theLogger;
+	
+	public Car(){
+		initLog();
+		theLogger.log(Level.INFO, "In Car::Car()",this);
+		theLogger.log(Level.INFO, "In Car::Car() - created Car id = " + id,this);
+	}
 	
 	public Car(int id, boolean wantFuel, int numOfLiters, boolean wantCleaning){
 		this.id = id;
@@ -162,6 +179,11 @@ public class Car {
 		if(clientEntity!= null){
 			return clientEntity.sendData(carStatusPacket.serialize());
 		}
+		//TODO:add DB calls
+		
+		//update server
+		notifyAll(carStatus);
+		
 		return false;
 	}
 	
@@ -219,6 +241,19 @@ public class Car {
 	        className = className.getSuperclass();
 	    }
 	    return methods;
+	}
+	
+	private void notifyAll(CarStatusType state){
+		for(CarChangeState_Observer observer : carChangeStateObservers){
+			observer.updateCarState(this, state);
+		}
+	}
+	
+	public void attachObserver(CarChangeState_Observer observer){
+		
+		if(observer != null){
+			carChangeStateObservers.add(observer);	
+		}
 	}
 	
 }

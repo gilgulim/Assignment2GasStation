@@ -152,11 +152,7 @@ public class Pump extends FillingMainFuelPool_Observer implements Runnable {
 			connection.insertGasStationHistoryRecord(historyRecord);
 			
 			//Client GUI status notify
-			if(car.getClientEntity() == null){
-			}
-			else{
 				car.sendStatusToRemoteClient(CarStatusType.Fueling);	
-			}
 			
 			
 			
