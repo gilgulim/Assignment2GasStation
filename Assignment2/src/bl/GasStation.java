@@ -122,7 +122,7 @@ public class GasStation implements Runnable{
 		cars.add(car);
 		
 		//update car status
-		car.updateCarStatus(CarStatusType.Entered);
+		car.sendCarStatus(CarStatusType.Entered);
 		
 		theLogger.log(Level.INFO, "Car id :" + car.getId() + " Want Cleaning :" + car.wantsCleaning(), this);
 	
@@ -262,7 +262,7 @@ public class GasStation implements Runnable{
 				//Gil: check if car finished all services
 				if ((theCar.isCleaned() == true && theCar.isFueled() == true) ){
 					cars.poll();
-					theCar.updateCarStatus(CarStatusType.Exited);
+					theCar.sendCarStatus(CarStatusType.Exited);
 					
 				}else if (theCar.wantsFuel() == true && theCar.wantsCleaning() == true) {
 					if (handledCars.contains(theCar)) {
@@ -305,7 +305,7 @@ public class GasStation implements Runnable{
 					//Gil: check if car finished all services
 					if (theCar.isFueled()){
 						cars.poll();
-						theCar.updateCarStatus(CarStatusType.Exited);
+						theCar.sendCarStatus(CarStatusType.Exited);
 						
 					}else{
 						// Fuel the car
@@ -322,7 +322,7 @@ public class GasStation implements Runnable{
 					//Gil: check if car finished all services
 					if (theCar.isCleaned()){
 						cars.poll();
-						theCar.updateCarStatus(CarStatusType.Exited);
+						theCar.sendCarStatus(CarStatusType.Exited);
 					}else{
 						// The car wants only cleaning					  
 						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to cleaning", this);
@@ -331,6 +331,10 @@ public class GasStation implements Runnable{
 							cars.put(theCar);
 						} catch (InterruptedException e) {}
 					}
+				}
+				else{
+					cars.poll();
+					theCar.sendCarStatus(CarStatusType.Exited);
 				}
 			}
 		}

@@ -178,7 +178,7 @@ public class Car {
 		this.clientEntity = clientEntity;
 	}
 	
-	public boolean updateCarStatus(CarStatusType carStatus){		
+	public boolean sendCarStatus(CarStatusType carStatus){		
 		//update DB
 		GasStationHistoryRecord historyRecord;
 		
@@ -206,8 +206,9 @@ public class Car {
 						this.getId(),
 						ActionType.Wash,
 						ServiceEntityType.WashTeam,
-						this.getWashTeamID());
+						this.getWashTeamID()+1);
 				 GasStationMySqlConnection.getInstance().insertGasStationHistoryRecord(historyRecord);
+				 sendRandomActionToRemoteClient();
 				break;
 			
 			case Exited : 
@@ -235,9 +236,7 @@ public class Car {
 	}
 	
 	public boolean sendRandomActionToRemoteClient(){
-		
 		WashActionPacket washActionPacket = new WashActionPacket(getDriverRandomActionName());
-		
 		if(clientEntity!= null){
 			return clientEntity.sendData(washActionPacket.serialize());
 		}
@@ -245,18 +244,18 @@ public class Car {
 	}
 	
 	@DriverActionAnnotation
-	public void readAction(){
-		System.out.println("Read Action");
+	public String readAction(){
+		return "Read Action";
 	}
 	
 	@DriverActionAnnotation
-	public void playAction(){
-		System.out.println("PlayAction");
+	public String playAction(){
+		return "PlayAction";
 	}
 	
 	@DriverActionAnnotation
-	public void talkAction(){
-		System.out.println("TalkAction");
+	public String talkAction(){
+		return "TalkAction";
 	}
 	
 	public String getDriverRandomActionName(){

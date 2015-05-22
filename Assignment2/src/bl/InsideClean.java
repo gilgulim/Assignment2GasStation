@@ -47,7 +47,7 @@ public class InsideClean extends CleaningServiceBase {
 		
 		theLogger.log(Level.INFO, "In InsideClean::serveCar() - inside clean car " + theCar.getId(), this);
 		
-		int cleaningTime = (int)(Math.random() * 100);
+		int cleaningTime = (int)(Math.random() * 1000);
 		
 		theLogger.log(Level.INFO, "In InsideClean::serveCar() - car  " +  theCar.getId() + 
 					  " is being cleaned for " + cleaningTime + " ms", this);
@@ -66,7 +66,7 @@ public class InsideClean extends CleaningServiceBase {
 		this.doneListener.insideCleanIsDone(theCar);
 		
 		//update car status
-		theCar.updateCarStatus(CarStatusType.AutoWashing);
+		theCar.sendCarStatus(CarStatusType.AutoWashing);
 		
 	}
 

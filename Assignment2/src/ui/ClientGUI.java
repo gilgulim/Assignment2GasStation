@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import gasstation.GasStationUtility;
 
@@ -19,6 +21,7 @@ import javax.swing.SpringLayout;
 import pl.CarStatusPacket.CarStatusType;
 import cl.GasStationClient_Observer;
 import bl.BlProxy;
+import bl.Car;
 import bl.CarChangeState_Observer;
 import bl.ClientController;
 import bl.FillingMainFuelPool_Observer;
@@ -276,7 +279,21 @@ public class ClientGUI extends JFrame implements GasStationClient_Observer{
 
 	@Override
 	public void ReceivedCarWashAction(String methodName) {
-		//TODO: Activate the method name in the car object
+		Car car = new Car();
+		Method func;
+		System.out.println(methodName);
+		try {
+			func = Car.class.getMethod(methodName, new Class[]{});
+			String action = (String) func.invoke(car);
+			jtfWashAction.setText(action);
+				
+		} catch (NoSuchMethodException | SecurityException | IllegalArgumentException
+				| InvocationTargetException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		
+		
+		
 		
 	}
 	

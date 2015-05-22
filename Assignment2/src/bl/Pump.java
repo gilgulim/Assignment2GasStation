@@ -144,7 +144,7 @@ public class Pump extends FillingMainFuelPool_Observer implements Runnable {
 			car.finishFuel();
 			
 			//update car status
-			car.updateCarStatus(CarStatusType.Fueling);	
+			car.sendCarStatus(CarStatusType.Fueling);	
 			
 			
 			
