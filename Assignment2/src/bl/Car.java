@@ -18,6 +18,11 @@ import cl.ClientEntity;
 
 import com.google.gson.annotations.*;
 
+import dal.GasStationHistoryRecord;
+import dal.GasStationHistoryRecord.ActionType;
+import dal.GasStationHistoryRecord.ServiceEntityType;
+import dal.GasStationMySqlConnection;
+
 
 public class Car {
 	
@@ -173,17 +178,59 @@ public class Car {
 		this.clientEntity = clientEntity;
 	}
 	
-	public boolean sendStatusToRemoteClient(CarStatusType carStatus){
+	public boolean updateCarStatus(CarStatusType carStatus){		
+		//update DB
+		GasStationHistoryRecord historyRecord;
 		
-		CarStatusPacket carStatusPacket = new CarStatusPacket(carStatus);
-		if(clientEntity!= null){
-			return clientEntity.sendData(carStatusPacket.serialize());
+		switch (carStatus){
+			case Entered :
+				historyRecord = new GasStationHistoryRecord(
+						this.getId(),
+						ActionType.Enter,
+						null,
+						null);
+				GasStationMySqlConnection.getInstance().insertGasStationHistoryRecord(historyRecord);
+				break;
+		
+			case Fueling : 
+				historyRecord = new GasStationHistoryRecord(						
+						this.getId(),
+						ActionType.Fuel,
+						ServiceEntityType.FuelPump,
+						this.getPumpNum());		
+				GasStationMySqlConnection.getInstance().insertGasStationHistoryRecord(historyRecord);
+				break;
+				
+			case AutoWashing :
+				 historyRecord = new GasStationHistoryRecord(
+						this.getId(),
+						ActionType.Wash,
+						ServiceEntityType.WashTeam,
+						this.getWashTeamID());
+				 GasStationMySqlConnection.getInstance().insertGasStationHistoryRecord(historyRecord);
+				break;
+			
+			case Exited : 
+				historyRecord = new GasStationHistoryRecord(
+						this.getId(),
+						ActionType.Exit,
+						null,
+						null);
+				GasStationMySqlConnection.getInstance().insertGasStationHistoryRecord(historyRecord);
+				break;
+				
+			default :
+				break;
 		}
-		//TODO:add DB calls
 		
 		//update server
 		notifyAll(carStatus);
 		
+		//send status to client
+		CarStatusPacket carStatusPacket = new CarStatusPacket(carStatus);
+		if(clientEntity!= null){
+			return clientEntity.sendData(carStatusPacket.serialize());
+		}
 		return false;
 	}
 	

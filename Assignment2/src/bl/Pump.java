@@ -143,16 +143,8 @@ public class Pump extends FillingMainFuelPool_Observer implements Runnable {
 			
 			car.finishFuel();
 			
-			//DB history log
-			GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
-					car.getId(),
-					ActionType.Fuel,
-					ServiceEntityType.FuelPump,
-					this.id);
-			connection.insertGasStationHistoryRecord(historyRecord);
-			
-			//Client GUI status notify
-				car.sendStatusToRemoteClient(CarStatusType.Fueling);	
+			//update car status
+			car.updateCarStatus(CarStatusType.Fueling);	
 			
 			
 			

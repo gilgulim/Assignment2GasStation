@@ -194,7 +194,7 @@ public class ClientGUI extends JFrame implements GasStationClient_Observer{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				addCar();	
-				clearAddCarForm();
+				//clearAddCarForm();
 			}
 		});
 		
@@ -216,6 +216,7 @@ public class ClientGUI extends JFrame implements GasStationClient_Observer{
 			if(clientController.isStatus()){
 				jrbServerOn.setSelected(true);
 				jbnAddCar.setEnabled(true);
+				jbnConnect.setEnabled(false);
 			}else{
 				jrbServerOff.setSelected(false);
 			}
@@ -239,7 +240,7 @@ public class ClientGUI extends JFrame implements GasStationClient_Observer{
 			fuelAmount = Integer.parseInt(jtfReqFuel.getText());
 			
 			clientController.addCar(carId, requiredFuel, fuelAmount, requiredWash);
-			
+			jbnAddCar.setEnabled(false);
 			
 			
 		}catch (Exception e){
@@ -267,6 +268,8 @@ public class ClientGUI extends JFrame implements GasStationClient_Observer{
 			
 			case Exited: 
 				jrbCarleft.setSelected(true);
+				jbnAddCar.setEnabled(true);
+				
 				break;
 		}
 	}

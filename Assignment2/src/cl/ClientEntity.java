@@ -137,15 +137,11 @@ public class ClientEntity implements Runnable{
 		  		//Setting the client entity to the car object
 		  		receivedCar.setClientEntity(this);
 	
+		  		//Add car to DB
+		  		GasStationMySqlConnection.getInstance().insertCar(receivedCar);
+		  		
 		  		//Adding car to the business cars queue
 	         	blProxy.addCar(receivedCar);
-	         	 
-	         	 //Adding car to DB
-	         	 GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
-	         	 connection.insertCar(addCarPacket.getCar());
-	         	 
-	         	 //Updated client on car status
-	         	 receivedCar.sendStatusToRemoteClient(CarStatusType.Entered);	         	 
 	         	 break;
 	
 		  	default:

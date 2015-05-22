@@ -64,13 +64,9 @@ public class InsideClean extends CleaningServiceBase {
 		setBusy(false);
 		
 		this.doneListener.insideCleanIsDone(theCar);
-		GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
-				theCar.getId(),
-				ActionType.Wash,
-				ServiceEntityType.WashTeam,
-				id);
-		connection.insertGasStationHistoryRecord(historyRecord);
-		theCar.sendStatusToRemoteClient(CarStatusType.AutoWashing);
+		
+		//update car status
+		theCar.updateCarStatus(CarStatusType.AutoWashing);
 		
 	}
 

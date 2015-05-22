@@ -121,14 +121,9 @@ public class GasStation implements Runnable{
 		// Add the car to the list
 		cars.add(car);
 		
-		connection.insertCar(car);
+		//update car status
+		car.updateCarStatus(CarStatusType.Entered);
 		
-		GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
-				car.getId(),
-				ActionType.Enter,
-				null,
-				null);
-		connection.insertGasStationHistoryRecord(historyRecord);
 		theLogger.log(Level.INFO, "Car id :" + car.getId() + " Want Cleaning :" + car.wantsCleaning(), this);
 	
 		if(car.wantsFuel()) {
@@ -263,10 +258,13 @@ public class GasStation implements Runnable{
 				
 			}
 			
-			if (theCar != null) {				
-
-				if (theCar.wantsFuel() == true && theCar.wantsCleaning() == true) {
-
+			if (theCar != null) {	
+				//Gil: check if car finished all services
+				if ((theCar.isCleaned() == true && theCar.isFueled() == true) ){
+					cars.poll();
+					theCar.updateCarStatus(CarStatusType.Exited);
+					
+				}else if (theCar.wantsFuel() == true && theCar.wantsCleaning() == true) {
 					if (handledCars.contains(theCar)) {
 						
 						
@@ -276,19 +274,16 @@ public class GasStation implements Runnable{
 							theLogger.log(Level.INFO, "In GasStation()::run() - car " + theCar.getId() + " was removed from handling queue", this);		
 							theLogger.log(Level.INFO, "In GasStation()::run() - sending car " + theCar.getId() + " to cleaning", this);
 							cleanService.cleaning(theCar);
-							
-						}
-						else {
-							// Back to the queue
 							try {
 								cars.put(theCar);
-							}
-							catch( InterruptedException e) {
-								
+							} 
+							catch (InterruptedException e) {
+								e.printStackTrace();
 							}
 						}
 					}
-					else {
+					else { //car not fueled
+						
 						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to fueling", this);
 						theLogger.log(Level.INFO, "In GasStation()::run() - car " + theCar.getId() + " was added to handling queue", this);
 						// Add the car to the handled cars list
@@ -307,32 +302,35 @@ public class GasStation implements Runnable{
 					}
 				}
 				else if(theCar.wantsFuel() == true && theCar.wantsCleaning() == false) {
-					// Fuel the car
-					theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to fueling", this);
-					pumps.get(theCar.getPumpNum()-1).refuel(theCar);
-					
-					try {
-						cars.put(theCar);
-					} catch (InterruptedException e) {
+					//Gil: check if car finished all services
+					if (theCar.isFueled()){
+						cars.poll();
+						theCar.updateCarStatus(CarStatusType.Exited);
+						
+					}else{
+						// Fuel the car
+						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to fueling", this);
+						pumps.get(theCar.getPumpNum()-1).refuel(theCar);
+						
+						try {
+							cars.put(theCar);
+						} catch (InterruptedException e) {
+						}
 					}
 				}
 				else if (theCar.wantsCleaning()){
-					// The car wants only cleaning					  
-					theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to cleaning", this);
-					cleanService.cleaning(theCar);
-					
-					try {
-						cars.put(theCar);
-					} catch (InterruptedException e) {}
-					
-				}
-				if ((theCar.wantsFuel() == false && theCar.wantsCleaning() == false) ){
-					GasStationHistoryRecord historyRecord = new GasStationHistoryRecord(
-							theCar.getId(),
-							ActionType.Exit,
-							null,
-							null);
-					theCar.sendStatusToRemoteClient(CarStatusType.Exited);
+					//Gil: check if car finished all services
+					if (theCar.isCleaned()){
+						cars.poll();
+						theCar.updateCarStatus(CarStatusType.Exited);
+					}else{
+						// The car wants only cleaning					  
+						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to cleaning", this);
+						cleanService.cleaning(theCar);
+						try {
+							cars.put(theCar);
+						} catch (InterruptedException e) {}
+					}
 				}
 			}
 		}
