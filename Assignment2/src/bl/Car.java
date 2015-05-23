@@ -223,6 +223,8 @@ public class Car {
 			default :
 				break;
 		}
+		//update server GUI
+		ServerController.getServerController().updateCarStatus(this, carStatus);
 		
 		//update server
 		notifyAll(carStatus);

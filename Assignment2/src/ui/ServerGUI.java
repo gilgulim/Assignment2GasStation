@@ -2,6 +2,8 @@ package ui;
 
 import bl.ServerController;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -25,22 +27,26 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class ServerGUI extends Application{
-
+	
 	private StackPane root;
 	private GridPane jgpRoot, jgpAddCar, jgpAddFuel, jgpStationStatus, jgpCarsStatus, jgpStatisticsHeader, jgpStatisticsTable, jgpStatisticsContainer;
 	private Label jlbAddCarTitle, jlbAddCarID, jlbAddCarWantsWash, jlbAddCarFuelAmount, jlbAddFuelTitle, jlbAddFuelAmount, jlbCloseStationTitle, jlbCarStatusTitle, jlbStatisticsTitle, jlbStatisticsService, jlbStatisticsPump;
 	private TextField jtfAddCarId, jtfAddCarFuelAmount, jtfAddFuelAmount;
 	private CheckBox jchWantsWash;
 	private Button jbnAddCarAdd, jbnAddFuelAdd, jbnCloseStationStatus, jbnStatisticsRun;
-	private TableView jtvCarsStatus, jtvStatistics;
-	private TableColumn<String, String> jtcCarsStatusCarId, jtcCarsStatusFuel, jtcCarsStatusWash, jtcCarsStatusLeft, jtcStatisticDate, jtcStatisticCar, jtcStatisticAction, jtcStatisticServiceId, jtcStatisticProfit;
+	private TableView<CarStatusRecord> jtvCarsStatus; 
+	private TableView jtvStatistics;
+	TableColumn<CarStatusRecord, String> jtcCarsStatusCarId;
+	TableColumn<CarStatusRecord, String> jtcCarsStatusFuel;
+	TableColumn<CarStatusRecord, String> jtcCarsStatusWash;
+	TableColumn<CarStatusRecord, String> jtcCarsStatusLeft;
+	private TableColumn<String, String> jtcStatisticDate, jtcStatisticCar, jtcStatisticAction, jtcStatisticServiceId, jtcStatisticProfit;
 	private ComboBox<String> jcbServiceType, jcbPump;
 	
 	private final static int TEXT_FIELD_MAX_WIDTH = 80;
-	private ServerController serverController;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		serverController = new ServerController();
+		
 		root = new StackPane();
 		jgpRoot = new GridPane();
 		setGridPaneSpacing(jgpRoot);
@@ -119,12 +125,12 @@ public class ServerGUI extends Application{
 		jlbCarStatusTitle = new Label("Cars Statuses");
 		jlbCarStatusTitle.setUnderline(true);
 			
-		jtcCarsStatusCarId = new TableColumn<String, String>("Car");
-		jtcCarsStatusFuel = new TableColumn<String, String>("Fueling");
-		jtcCarsStatusWash = new TableColumn<String, String>("Washing");
-		jtcCarsStatusLeft = new TableColumn<String, String>("Left");
+		jtcCarsStatusCarId = new TableColumn<CarStatusRecord, String>("Car");
+		jtcCarsStatusFuel = new TableColumn<CarStatusRecord, String>("Fueling");
+		jtcCarsStatusWash = new TableColumn<CarStatusRecord, String>("Washing");
+		jtcCarsStatusLeft = new TableColumn<CarStatusRecord, String>("Left");
 		
-		jtvCarsStatus = new TableView<String>();
+		jtvCarsStatus = new TableView<CarStatusRecord>();
 		jtvCarsStatus.getColumns().addAll(jtcCarsStatusCarId, jtcCarsStatusFuel, jtcCarsStatusWash, jtcCarsStatusLeft);
 		
 		jgpCarsStatus = new GridPane();
@@ -224,10 +230,13 @@ public class ServerGUI extends Application{
 			requiredWash = jchWantsWash.isSelected();
 			requiredFuel = Integer.parseInt(jtfAddCarFuelAmount.getText()) == 0 ? false : true ;
 			fuelAmount = Integer.parseInt(jtfAddCarFuelAmount.getText());
+			updateCarStatus();
+			//ServerController.getServerController().addCar(carId, requiredFuel, fuelAmount, requiredWash);
 			
-			serverController.addCar(carId, requiredFuel, fuelAmount, requiredWash);
-			
-			
+			//clear form
+			jtfAddCarId.setText("");
+			jchWantsWash.setSelected(true);
+			jtfAddFuelAmount.setText("0");
 			
 		}catch (Exception e){
 			//TODO:invalid input;
@@ -236,6 +245,14 @@ public class ServerGUI extends Application{
 		
 	}
 
+	public void updateCarStatus(){
+		ObservableList<Object> data = FXCollections.observableArrayList();
+		CarStatusRecord tblRecord = new CarStatusRecord("1", "2", "3", "4");
+		
+		data.add(tblRecord);
+		jtvCarsStatus.setItems(data);
+	}
+	
 	private void setGridPaneSpacing(GridPane gp){
 		gp.setPadding(new Insets(5));
 		gp.setHgap(10);
