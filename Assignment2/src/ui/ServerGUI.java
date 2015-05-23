@@ -1,9 +1,13 @@
 package ui;
 
+import bl.ServerController;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SingleSelectionModel;
@@ -26,21 +30,22 @@ public class ServerGUI extends Application{
 	private GridPane jgpRoot, jgpAddCar, jgpAddFuel, jgpStationStatus, jgpCarsStatus, jgpStatisticsHeader, jgpStatisticsTable, jgpStatisticsContainer;
 	private Label jlbAddCarTitle, jlbAddCarID, jlbAddCarWantsWash, jlbAddCarFuelAmount, jlbAddFuelTitle, jlbAddFuelAmount, jlbCloseStationTitle, jlbCarStatusTitle, jlbStatisticsTitle, jlbStatisticsService, jlbStatisticsPump;
 	private TextField jtfAddCarId, jtfAddCarFuelAmount, jtfAddFuelAmount;
+	private CheckBox jchWantsWash;
 	private Button jbnAddCarAdd, jbnAddFuelAdd, jbnCloseStationStatus, jbnStatisticsRun;
 	private TableView jtvCarsStatus, jtvStatistics;
 	private TableColumn<String, String> jtcCarsStatusCarId, jtcCarsStatusFuel, jtcCarsStatusWash, jtcCarsStatusLeft, jtcStatisticDate, jtcStatisticCar, jtcStatisticAction, jtcStatisticServiceId, jtcStatisticProfit;
 	private ComboBox<String> jcbServiceType, jcbPump;
-	private final static int TEXT_FIELD_MAX_WIDTH = 80;
 	
+	private final static int TEXT_FIELD_MAX_WIDTH = 80;
+	private ServerController serverController;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		serverController = new ServerController();
 		root = new StackPane();
 		jgpRoot = new GridPane();
 		setGridPaneSpacing(jgpRoot);
 		initComponents();
 
-		
-		
 		root.getChildren().add(jgpRoot);
 		primaryStage.setScene(new Scene(root, 900, 800));
 		primaryStage.setTitle("Gas Station Management System");
@@ -180,7 +185,18 @@ public class ServerGUI extends Application{
 		jtfAddCarFuelAmount = new TextField("0");
 		jtfAddCarFuelAmount.setMaxWidth(TEXT_FIELD_MAX_WIDTH);
 		
+		jchWantsWash = new CheckBox();
+		jchWantsWash.setSelected(true);
+		
 		jbnAddCarAdd = new Button("Add");
+		
+		jbnAddCarAdd.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				addCarToStation();	
+			}
+		});
 		
 		jgpAddCar = new GridPane();
 		setGridPaneSpacing(jgpAddCar);
@@ -188,6 +204,7 @@ public class ServerGUI extends Application{
 		jgpAddCar.add(jlbAddCarTitle, 0, 0);
 		jgpAddCar.add(jlbAddCarID, 0, 1);
 		jgpAddCar.add(jlbAddCarWantsWash, 0, 2);
+		jgpAddCar.add(jchWantsWash, 1, 2);
 		jgpAddCar.add(jlbAddCarFuelAmount, 0, 3);
 		jgpAddCar.add(jtfAddCarId, 1, 1);
 		jgpAddCar.add(jtfAddCarFuelAmount, 1, 3);
@@ -196,11 +213,35 @@ public class ServerGUI extends Application{
 
 	}
 
+	protected void addCarToStation() {
+		int carId;
+		boolean requiredWash;
+		boolean requiredFuel;
+		int fuelAmount=0;
+		
+		try{
+			carId = Integer.parseInt(jtfAddCarId.getText());
+			requiredWash = jchWantsWash.isSelected();
+			requiredFuel = Integer.parseInt(jtfAddCarFuelAmount.getText()) == 0 ? false : true ;
+			fuelAmount = Integer.parseInt(jtfAddCarFuelAmount.getText());
+			
+			serverController.addCar(carId, requiredFuel, fuelAmount, requiredWash);
+			
+			
+			
+		}catch (Exception e){
+			//TODO:invalid input;
+			System.out.println(e);
+		}		
+		
+	}
+
 	private void setGridPaneSpacing(GridPane gp){
 		gp.setPadding(new Insets(5));
 		gp.setHgap(10);
 		gp.setVgap(10);
 	}
+	
 	public static void main(String[] args) {
 		launch(args);
 

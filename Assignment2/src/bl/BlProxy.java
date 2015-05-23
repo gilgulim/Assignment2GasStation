@@ -6,6 +6,8 @@ import gasstation.GasStationUtility;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import dal.GasStationMySqlConnection;
+
 public class BlProxy extends GasStationBlBase{
 	private static BlProxy theBlProxy = null;
 	private static Object theBlProxyMutex = new Object();
@@ -74,6 +76,7 @@ public class BlProxy extends GasStationBlBase{
 	}
 	
 	public void addCar(Car car){
+		GasStationMySqlConnection.getInstance().insertCar(car);
 		theBL.addCar(car);
 	}
 	
