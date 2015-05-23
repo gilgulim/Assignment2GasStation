@@ -9,12 +9,9 @@
 <fullyQualifiedTypeName name="pl.AddCarPacket"/>
 <fullyQualifiedTypeName name="bl.ClientController"/>
 <fullyQualifiedTypeName name="java.lang.Boolean"/>
-<fullyQualifiedTypeName name="bl.Car"/>
 <fullyQualifiedTypeName name="bl.GasStation"/>
 <fullyQualifiedTypeName name="bl.BlProxy"/>
 <fullyQualifiedTypeName name="dal.GasStationHistoryRecord.ServiceEntityType"/>
-<fullyQualifiedTypeName name="dal.GasStationMySqlConnection"/>
-<fullyQualifiedTypeName name="dal.GasStationHistoryRecord"/>
 <fullyQualifiedTypeName name="dal.GasStationHistoryRecord.ActionType"/>
 <fullyQualifiedTypeName name="javax.swing.JLabel"/>
 <fullyQualifiedTypeName name="javax.swing.JRadioButton"/>
@@ -25,4 +22,10 @@
 <fullyQualifiedTypeName name="pl.BasePacket"/>
 <fullyQualifiedTypeName name="bl.CarStateChange_Observer"/>
 <fullyQualifiedTypeName name="bl.CarStateTypes"/>
+<fullyQualifiedTypeName name="pl.CarStatusPacket.CarStatusType"/>
+<fullyQualifiedTypeName name="dal.GasStationHistoryRecord"/>
+<fullyQualifiedTypeName name="dal.GasStationMySqlConnection"/>
+<fullyQualifiedTypeName name="bl.Car"/>
+<fullyQualifiedTypeName name="java.lang.reflect.Method"/>
+<fullyQualifiedTypeName name="pl.WashActionPacket"/>
 </qualifiedTypeNameHistroy>

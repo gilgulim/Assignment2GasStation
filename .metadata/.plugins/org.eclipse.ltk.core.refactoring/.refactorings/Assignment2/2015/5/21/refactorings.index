@@ -7,3 +7,12 @@
 1432226784937	Delete element
 1432231790813	Delete element
 1432280911950	Rename method 'sendStatusToRemoteClient'
+1432369500726	Delete element
+1432369548563	Delete element
+1432373566618	Rename field 'jtfCarId'
+1432373578628	Rename field 'jtfFuelAmount'
+1432385737824	Rename local variable 'type'
+1432386271121	Rename field 'jgpStatistics'
+1432386728039	Delete element
+1432386732491	Delete element
+1432386743998	Rename type 'ServerGUI_New'
