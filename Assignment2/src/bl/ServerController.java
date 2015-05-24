@@ -1,14 +1,21 @@
 package bl;
 
-import java.util.logging.Level;
-
+import dal.GasStationHistoryRecord.ActionType;
+import dal.GasStationMySqlConnection;
 import pl.CarStatusPacket.CarStatusType;
 
 public class ServerController {
 	private static ServerController theServerController;
 	private static Object theServerControllerMutex = new Object();
-	BlProxy blProxy = BlProxy.getBlProxy();
 	
+	private BlProxy blProxy; 
+	private GasStationMySqlConnection dbConnection;
+	
+	
+	private ServerController(){
+		blProxy = BlProxy.getBlProxy();
+		dbConnection = GasStationMySqlConnection.getInstance();
+	}
 	
 	public static ServerController getServerController(){
 		synchronized (theServerControllerMutex) {
@@ -30,6 +37,15 @@ public class ServerController {
 	}
 	
 	public void updateCarStatus(Car car, CarStatusType status){
+		
+	}
+	
+	public void getStatistics(String actionType, String serviceId){
+		
+		ActionType action = ActionType.valueOf(actionType);
+		int servId = Integer.parseInt(serviceId);
+		
+		dbConnection.getStatistics(action, servId);
 		
 	}
 }
