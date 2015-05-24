@@ -113,6 +113,11 @@ public class BlProxy extends GasStationBlBase{
 	}
 	
 	
+	public CleaningService GetCleaningServices(){
+		
+		return theBL.GetCleaningServices();
+	}
+	
 	/* close the gas station */
 	public void closeGasStation() {
 		theLogger.log(Level.INFO, "In BLProxy()::closeGasStation()", this);

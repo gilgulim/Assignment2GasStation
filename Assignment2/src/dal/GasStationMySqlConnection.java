@@ -218,6 +218,61 @@ public class GasStationMySqlConnection {
 		return gasStation;
 	}
 	
+	public int getLittersByCarId(int carId){
+		
+
+		try{
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(String.format("SELECT * FROM cars WHERE CarID = %d", carId));
+			
+			while(rs.next()){			
+				return rs.getInt("CarFuelQuantity");
+			}
+
+		}catch(Exception ex){
+			return -1;
+		}
+		
+		return -1;
+		
+	}
+	
+	public int getPricePerLittersByPumpId(int pumpId){
+		
+
+		try{
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(String.format("SELECT * FROM pimps WHERE PumpID = %d", pumpId));
+			
+			while(rs.next()){			
+				return rs.getInt("PumpPricePerLiter");
+			}
+
+		}catch(Exception ex){
+			return -1;
+		}
+		
+		return -1;
+		
+	}
+	
+	public int getNumberOfPumps(){
+		int numOfPumps = 0;
+		try{
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(String.format("SELECT * FROM pimps"));
+			
+			while(rs.next()){			
+				numOfPumps++;
+			}
+
+		}catch(Exception ex){
+			return -1;
+		}
+		
+		return numOfPumps;
+	}
+	
 	public ArrayList<GasStationHistoryRecord> getStatistics(ActionType actionType, int serviceId){
 		
 		ArrayList<GasStationHistoryRecord> records = new ArrayList<GasStationHistoryRecord>();
@@ -235,8 +290,9 @@ public class GasStationMySqlConnection {
 														rs.getInt("CarID"), 
 														ActionType.values()[rs.getInt("ActionTypeID")], 
 														ServiceEntityType.values()[rs.getInt("ServiceEntityTypeID")],
-														rs.getInt("ServiceEntityID")) 
-														);
+														rs.getInt("ServiceEntityID"),
+														rs.getString("CreationTime")
+														));
 			}
 
 		}catch(Exception ex){

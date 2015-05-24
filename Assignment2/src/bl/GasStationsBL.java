@@ -108,6 +108,12 @@ public class GasStationsBL extends GasStationBlBase implements Runnable {
 	}
 	
 	
+	public CleaningService GetCleaningServices(){
+		
+		return theGasStation.getCleaningServices();
+	}
+	
+	
 	/* close the gas station */
 	public void closeGasStation() {
 		theLogger.log(Level.INFO, "In GasStationsBL()::closeGasStation()", this);

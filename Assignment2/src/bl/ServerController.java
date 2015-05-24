@@ -1,8 +1,12 @@
 package bl;
 
+import java.util.ArrayList;
+
 import dal.GasStationHistoryRecord.ActionType;
+import dal.GasStationHistoryRecord;
 import dal.GasStationMySqlConnection;
 import pl.CarStatusPacket.CarStatusType;
+import ui.StatisticsRecord;
 
 public class ServerController {
 	private static ServerController theServerController;
@@ -40,12 +44,48 @@ public class ServerController {
 		
 	}
 	
-	public void getStatistics(String actionType, String serviceId){
+	public ArrayList<StatisticsRecord> getStatistics(String actionType, String serviceId){
+		
+		ArrayList<StatisticsRecord> statisticsRecords = new ArrayList<StatisticsRecord>();
 		
 		ActionType action = ActionType.valueOf(actionType);
 		int servId = Integer.parseInt(serviceId);
 		
-		dbConnection.getStatistics(action, servId);
+		//The DAL returns GasStationHistoryRecord
+		ArrayList<GasStationHistoryRecord> gsHistoryRecordsList = dbConnection.getStatistics(action, servId);
+		
+		//Convert the GasStationHistoryRecord to UI - StatisticsRecord
+		for(GasStationHistoryRecord gsHistoryRecord :  gsHistoryRecordsList){
+			
+			int profit = 0;
+
+			
+			if(gsHistoryRecord.getActionType() == ActionType.Fuel){
+				
+				int litters =  dbConnection.getLittersByCarId(gsHistoryRecord.getCarId());
+				int pricePerLitter = dbConnection.getPricePerLittersByPumpId(gsHistoryRecord.getServiceEntityId());
+				
+				if(litters != -1 && pricePerLitter != -1){
+					profit = litters * pricePerLitter;
+				}
+				
+				
+				
+			}else if(gsHistoryRecord.getActionType() == ActionType.Wash){
+				
+				profit = blProxy.getBlProxy().GetCleaningServices().getPrice();
+				
+			}
+			
+			statisticsRecords.add(new StatisticsRecord(	gsHistoryRecord.getDateTime(),
+					gsHistoryRecord.getCarId() + "",
+					gsHistoryRecord.getActionType().toString(),
+					gsHistoryRecord.getServiceEntityId() + "",
+					profit + ""));
+
+		}
+		
+		return statisticsRecords;
 		
 	}
 }

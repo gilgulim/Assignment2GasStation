@@ -299,9 +299,10 @@ public class ServerGUI extends Application {
 	}
 
 	private void getStatistics() {
-		statisticsRecordsData.add(new StatisticsRecord("26-5-15", "333", "Fuel", "3", "120"));
 		
-		//ServerController.getServerController().getStatistics("Fuel", "1");
+		String serviceType = jcbServiceType.getSelectionModel().getSelectedItem();
+		
+		ServerController.getServerController().getStatistics(serviceType, "1");
 	}
 
 	public static void main(String[] args) {
