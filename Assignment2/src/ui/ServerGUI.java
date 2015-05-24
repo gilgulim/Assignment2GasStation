@@ -302,6 +302,7 @@ public class ServerGUI extends Application {
 		
 		String serviceType = jcbServiceType.getSelectionModel().getSelectedItem();
 		
+		//TODO: Fix Here - Get the value of the pump id from the combo box
 		ServerController.getServerController().getStatistics(serviceType, "1");
 	}
 
