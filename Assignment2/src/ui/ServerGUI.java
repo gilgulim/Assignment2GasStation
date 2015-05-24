@@ -16,6 +16,7 @@ import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -41,13 +42,14 @@ public class ServerGUI extends Application {
 	private Button jbnAddCarAdd, jbnAddFuelAdd, jbnCloseStationStatus,
 			jbnStatisticsRun;
 	private TableView<CarStatusRecord> jtvCarsStatus;
-	private TableView jtvStatistics;
+	private TableView<StatisticsRecord> jtvStatistics;
+	private ObservableList<StatisticsRecord> statisticsRecordsData;
+	
 	TableColumn<CarStatusRecord, String> jtcCarsStatusCarId;
 	TableColumn<CarStatusRecord, String> jtcCarsStatusFuel;
 	TableColumn<CarStatusRecord, String> jtcCarsStatusWash;
 	TableColumn<CarStatusRecord, String> jtcCarsStatusLeft;
-	private TableColumn<String, String> jtcStatisticDate, jtcStatisticCar,
-			jtcStatisticAction, jtcStatisticServiceId, jtcStatisticProfit;
+	
 	private ComboBox<String> jcbServiceType, jcbPump;
 
 	private final static int TEXT_FIELD_MAX_WIDTH = 80;
@@ -103,15 +105,33 @@ public class ServerGUI extends Application {
 		jcbPump = new ComboBox<String>();
 		setListOfPumps(jcbPump);
 
-		jtcStatisticDate = new TableColumn<String, String>("Datetime");
-		jtcStatisticCar = new TableColumn<String, String>("Car");
-		jtcStatisticAction = new TableColumn<String, String>("Action Type");
-		jtcStatisticServiceId = new TableColumn<String, String>("Service ID");
-		jtcStatisticProfit = new TableColumn<String, String>("Profit");
+		
+		TableColumn<StatisticsRecord, String> jtcStatisticDate = new TableColumn<StatisticsRecord, String>("Datetime");
+		jtcStatisticDate.setCellValueFactory(new PropertyValueFactory<StatisticsRecord, String>("dateTime"));
+		
+		TableColumn<StatisticsRecord, String> jtcStatisticCar = new TableColumn<StatisticsRecord, String>("Car");
+		jtcStatisticCar.setCellValueFactory(new PropertyValueFactory<StatisticsRecord, String>("carId"));
+		
+		TableColumn<StatisticsRecord, String> jtcStatisticAction = new TableColumn<StatisticsRecord, String>("Action Type");
+		jtcStatisticAction.setCellValueFactory(new PropertyValueFactory<StatisticsRecord, String>("actionType"));
+		
+		TableColumn<StatisticsRecord, String> jtcStatisticServiceId = new TableColumn<StatisticsRecord, String>("Service ID");
+		jtcStatisticServiceId.setCellValueFactory(new PropertyValueFactory<StatisticsRecord, String>("serviceId"));
+		
+		TableColumn<StatisticsRecord, String> jtcStatisticProfit = new TableColumn<StatisticsRecord, String>("Profit");
+		jtcStatisticProfit.setCellValueFactory(new PropertyValueFactory<StatisticsRecord, String>("profit"));
+		
+		statisticsRecordsData = FXCollections.observableArrayList();
 
-		jtvStatistics = new TableView<String>();
-		jtvStatistics.getColumns().setAll(jtcStatisticDate, jtcStatisticCar,
-				jtcStatisticAction, jtcStatisticServiceId, jtcStatisticProfit);
+		jtvStatistics = new TableView<StatisticsRecord>();
+		jtvStatistics.setItems(statisticsRecordsData);
+		
+		jtvStatistics.getColumns().addAll(	jtcStatisticDate, 
+											jtcStatisticCar, 
+											jtcStatisticAction, 
+											jtcStatisticServiceId, 
+											jtcStatisticProfit);
+		
 
 		jgpStatisticsHeader = new GridPane();
 		setGridPaneSpacing(jgpStatisticsHeader);
@@ -279,7 +299,9 @@ public class ServerGUI extends Application {
 	}
 
 	private void getStatistics() {
-		ServerController.getServerController().getStatistics("Fuel", "1");
+		statisticsRecordsData.add(new StatisticsRecord("26-5-15", "333", "Fuel", "3", "120"));
+		
+		//ServerController.getServerController().getStatistics("Fuel", "1");
 	}
 
 	public static void main(String[] args) {
