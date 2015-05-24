@@ -1,13 +1,12 @@
-package gasstation;
+package cl;
 
 import java.io.IOException;
 
 import ui.ServerGUI;
 import bl.BlProxy;
-import cl.TcpServer;
 import dal.GasStationMySqlConnection;
 
-public class ServerMain {
+public class ServerMainTester {
 
 	public static void main(String[] args) {
 		GasStationMySqlConnection connection;
