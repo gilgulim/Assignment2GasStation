@@ -2,6 +2,7 @@ package bl;
 
 import java.util.ArrayList;
 
+import cl.TcpServer;
 import dal.GasStationHistoryRecord.ActionType;
 import dal.GasStationHistoryRecord;
 import dal.GasStationMySqlConnection;
@@ -15,9 +16,14 @@ public class ServerController {
 	
 	private BlProxy blProxy; 
 	private GasStationMySqlConnection dbConnection;
+	private TcpServer tcpServer;
 	
 	
 	private ServerController(){
+		
+		tcpServer = new TcpServer("10.0.0.5", 3456);
+		tcpServer.start();
+		
 		dbConnection = GasStationMySqlConnection.getInstance();
 		dbConnection.clearDatabase();
 		
