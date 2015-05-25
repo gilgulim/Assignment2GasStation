@@ -7,9 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import dal.GasStationHistoryRecord.ActionType;
+import dal.GasStationHistoryRecord.ServiceEntityType;
 import bl.Car;
 import bl.GasStation;
 import bl.Pump;
@@ -204,11 +207,8 @@ public class GasStationMySqlConnection {
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery(String.format("SELECT * FROM gasstation WHERE GasStationID = %s", gasStationId));
 			
-			while(rs.next()){
-			
+			while(rs.next()){			
 				gasStation = new GasStation(gasStationId);
-				
-				
 			}
 
 		}catch(Exception ex){
@@ -216,5 +216,90 @@ public class GasStationMySqlConnection {
 		}
 		
 		return gasStation;
+	}
+	
+	public int getLittersByCarId(int carId){
+		
+
+		try{
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(String.format("SELECT * FROM cars WHERE CarID = %d", carId));
+			
+			while(rs.next()){			
+				return rs.getInt("CarFuelQuantity");
+			}
+
+		}catch(Exception ex){
+			return -1;
+		}
+		
+		return -1;
+		
+	}
+	
+	public int getPricePerLittersByPumpId(int pumpId){
+		
+
+		try{
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(String.format("SELECT * FROM pimps WHERE PumpID = %d", pumpId));
+			
+			while(rs.next()){			
+				return rs.getInt("PumpPricePerLiter");
+			}
+
+		}catch(Exception ex){
+			return -1;
+		}
+		
+		return -1;
+		
+	}
+	
+	public int getNumberOfPumps(){
+		int numOfPumps = 0;
+		try{
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(String.format("SELECT * FROM pimps"));
+			
+			while(rs.next()){			
+				numOfPumps++;
+			}
+
+		}catch(Exception ex){
+			return -1;
+		}
+		
+		return numOfPumps;
+	}
+	
+	public ArrayList<GasStationHistoryRecord> getStatistics(ActionType actionType, int serviceId){
+		
+		ArrayList<GasStationHistoryRecord> records = new ArrayList<GasStationHistoryRecord>();
+		
+		try{
+			Statement statement = connection.createStatement();
+			String query = String.format("SELECT * FROM gasstationhistorylog WHERE ActionTypeID = %s", actionType.ordinal());
+			if(actionType == ActionType.Fuel){
+				query +=	String.format(" AND ServiceEntityID = %d", actionType.ordinal(), serviceId);
+			}
+			ResultSet rs = statement.executeQuery(query);
+			
+			while(rs.next()){	
+				records.add(new GasStationHistoryRecord(
+														rs.getInt("CarID"), 
+														ActionType.values()[rs.getInt("ActionTypeID")], 
+														ServiceEntityType.values()[rs.getInt("ServiceEntityTypeID")],
+														rs.getInt("ServiceEntityID"),
+														rs.getString("CreationTime")
+														));
+			}
+
+		}catch(Exception ex){
+			//gasStation = null;
+		}
+		
+		return records;
+		
 	}
 }

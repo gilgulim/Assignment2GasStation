@@ -1,45 +1,47 @@
 package ui;
 
+import javafx.beans.property.SimpleStringProperty;
+
 public class CarStatusRecord {
-	String carId, carFuel, carWash,carLeft;
+	private SimpleStringProperty carId, carFuel, carWash,carLeft;
 
 	public CarStatusRecord(String carId, String carFuel, String carWash, String carLeft){
-		this.carId = carId;
-		this.carFuel = carFuel;
-		this.carWash = carWash;
-		this.carLeft = carLeft;
+		this.carId = new SimpleStringProperty(carId);
+		this.carFuel = new SimpleStringProperty(carFuel);
+		this.carWash = new SimpleStringProperty(carWash);
+		this.carLeft = new SimpleStringProperty(carLeft);
 	}
 	
-	public String getCarId() {
+	public SimpleStringProperty getCarId() {
 		return carId;
 	}
 
 	public void setCarId(String carId) {
-		this.carId = carId;
+		this.carId.set(carId);
 	}
 
-	public String getCarFuel() {
+	public SimpleStringProperty getCarFuel() {
 		return carFuel;
 	}
 
 	public void setCarFuel(String carFuel) {
-		carFuel = carFuel;
+		this.carFuel.set(carFuel);
 	}
 
-	public String getCarWash() {
+	public SimpleStringProperty getCarWash() {
 		return carWash;
 	}
 
 	public void setCarWash(String carWash) {
-		carWash = carWash;
+		this.carWash.set(carWash);
 	}
 
-	public String getCarLeft() {
+	public SimpleStringProperty getCarLeft() {
 		return carLeft;
 	}
 
 	public void setCarLeft(String carLeft) {
-		carLeft = carLeft;
+		this.carLeft.set(carLeft);
 	}
 	
 }

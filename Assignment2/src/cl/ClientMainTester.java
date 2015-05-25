@@ -1,16 +1,15 @@
-package gasstation;
+package cl;
 
 import java.io.IOException;
 
 import pl.AddCarPacket;
 import pl.BasePacket;
 import bl.Car;
-import cl.TcpClient;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class ClientMain {
+public class ClientMainTester {
 
 	public static void main(String[] args) {
 		

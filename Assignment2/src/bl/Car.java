@@ -42,7 +42,6 @@ public class Car {
 	private int pumpNum;
 	
 	private int washTeamID;
-	private List<CarChangeState_Observer> carChangeStateObservers = new ArrayList<CarChangeState_Observer>();
 	
 	public int getWashTeamID() {
 		return washTeamID;
@@ -223,11 +222,9 @@ public class Car {
 			default :
 				break;
 		}
+		
 		//update server GUI
 		ServerController.getServerController().updateCarStatus(this, carStatus);
-		
-		//update server
-		notifyAll(carStatus);
 		
 		//send status to client
 		CarStatusPacket carStatusPacket = new CarStatusPacket(carStatus);
@@ -289,19 +286,6 @@ public class Car {
 	        className = className.getSuperclass();
 	    }
 	    return methods;
-	}
-	
-	private void notifyAll(CarStatusType state){
-		for(CarChangeState_Observer observer : carChangeStateObservers){
-			observer.updateCarState(this, state);
-		}
-	}
-	
-	public void attachObserver(CarChangeState_Observer observer){
-		
-		if(observer != null){
-			carChangeStateObservers.add(observer);	
-		}
 	}
 	
 }
