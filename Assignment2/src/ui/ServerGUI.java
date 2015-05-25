@@ -1,5 +1,6 @@
 package ui;
 
+import pl.CarStatusPacket.CarStatusType;
 import bl.ServerController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -29,6 +30,8 @@ import javafx.stage.Stage;
 
 public class ServerGUI extends Application {
 
+	private static ServerGUI theServerGUI;
+	private static Object theServerGUIMutex = new Object();
 	private StackPane root;
 	private GridPane jgpRoot, jgpAddCar, jgpAddFuel, jgpStationStatus,
 			jgpCarsStatus, jgpStatisticsHeader, jgpStatisticsTable,
@@ -42,16 +45,23 @@ public class ServerGUI extends Application {
 	private Button jbnAddCarAdd, jbnAddFuelAdd, jbnCloseStationStatus, jbnStatisticsRun;
 	private TableColumn<CarStatusRecord, String> jtcCarsStatusCarId, jtcCarsStatusFuel, jtcCarsStatusWash, jtcCarsStatusLeft;
 	private ObservableList<CarStatusRecord> carStatusData;
-	private TableColumn<String, String> jtcStatisticDate, jtcStatisticCar, jtcStatisticAction, jtcStatisticServiceId, jtcStatisticProfit;
 	private ComboBox<String> jcbServiceType, jcbPump;
 	private TableView<CarStatusRecord> jtvCarsStatus;
 	private TableView<StatisticsRecord> jtvStatistics;
 	private ObservableList<StatisticsRecord> statisticsRecordsData;
 
-	
-
 	private final static int TEXT_FIELD_MAX_WIDTH = 80;
 
+	public static ServerGUI getServerGUI(){
+		synchronized (theServerGUIMutex) {
+			if(theServerGUI == null){
+				theServerGUI = new ServerGUI();
+			}
+		}
+		return theServerGUI;
+		
+	}
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
@@ -161,36 +171,31 @@ public class ServerGUI extends Application {
 		jlbCarStatusTitle = new Label("Cars Statuses");
 		jlbCarStatusTitle.setUnderline(true);
 		
-		jtvCarsStatus = new TableView<CarStatusRecord>();
-		
-		carStatusData = FXCollections.observableArrayList(new CarStatusRecord("1", "2", "3", "4"));
 		jtcCarsStatusCarId = new TableColumn<CarStatusRecord, String>("Car");
-		jtcCarsStatusCarId.setCellValueFactory(new PropertyValueFactory<CarStatusRecord, String>(""));
+		jtcCarsStatusCarId.setCellValueFactory(new PropertyValueFactory<CarStatusRecord, String>("CarId"));
 		
 		jtcCarsStatusFuel = new TableColumn<CarStatusRecord, String>("Fueling");
-		jtcCarsStatusFuel.setCellValueFactory(new PropertyValueFactory<CarStatusRecord, String>(""));
+		jtcCarsStatusFuel.setCellValueFactory(new PropertyValueFactory<CarStatusRecord, String>("carFuel"));
+		
 		jtcCarsStatusWash = new TableColumn<CarStatusRecord, String>("Washing");
-		jtcCarsStatusWash.setCellValueFactory(new PropertyValueFactory<CarStatusRecord, String>(""));
+		jtcCarsStatusWash.setCellValueFactory(new PropertyValueFactory<CarStatusRecord, String>("carWash"));
+		
 		jtcCarsStatusLeft = new TableColumn<CarStatusRecord, String>("Left");
-
-		jtcCarsStatusLeft.setCellValueFactory(new PropertyValueFactory<CarStatusRecord, String>(""));
+		jtcCarsStatusLeft.setCellValueFactory(new PropertyValueFactory<CarStatusRecord, String>("carLeft"));
 		
+		carStatusData = FXCollections.observableArrayList();
 		
+		jtvCarsStatus = new TableView<CarStatusRecord>();
+		jtvCarsStatus.setItems(carStatusData);
 		
 		jtvCarsStatus.getColumns().addAll(jtcCarsStatusCarId, jtcCarsStatusFuel, jtcCarsStatusWash, jtcCarsStatusLeft);
-		jtvCarsStatus.setItems(carStatusData);
 
-
-		jtvCarsStatus = new TableView<CarStatusRecord>();
-		jtvCarsStatus.getColumns().addAll(jtcCarsStatusCarId,
-				jtcCarsStatusFuel, jtcCarsStatusWash, jtcCarsStatusLeft);
-
-
+		
 		jgpCarsStatus = new GridPane();
 		setGridPaneSpacing(jgpCarsStatus);
 
 		jgpCarsStatus.add(jlbCarStatusTitle, 0, 0);
-		// blank gridpane in order to align te content of the screen
+		// blank grid-pane in order to align the content of the screen
 		GridPane jgpBlank = new GridPane();
 		jgpBlank.add(new Label(""), 0, 0);
 		setGridPaneSpacing(jgpBlank);
@@ -285,10 +290,6 @@ public class ServerGUI extends Application {
 			
 			ServerController.getServerController().addCar(carId, requiredFuel, fuelAmount, requiredWash);
 			
-			//clear form
-			updateCarStatus();
-			// ServerController.getServerController().addCar(carId,
-			// requiredFuel, fuelAmount, requiredWash);
 
 			// clear form
 			jtfAddCarId.setText("");
@@ -300,17 +301,35 @@ public class ServerGUI extends Application {
 			System.out.println(e);
 		}		
 		
-		updateCarStatus();
+		
 	}
 
 
 
-	public void updateCarStatus() {
-		ObservableList<Object> data = FXCollections.observableArrayList();
-		CarStatusRecord tblRecord = new CarStatusRecord("1", "2", "3", "4");
+	public void updateCarStatus(String theCarID, CarStatusType status) {
+		try{
+			switch (status){
+				case Entered:
+					CarStatusRecord carRecord = new  CarStatusRecord(theCarID, "", "", "");
+					carStatusData.add(carRecord);
+					break;
+				case AutoWashing:
+					carStatusData.add(new CarStatusRecord(theCarID, "", "V", ""));
+					break;
+				case Fueling:
+					carStatusData.add(new CarStatusRecord(theCarID, "V", "", ""));
+					break;
+				case Exited:
+					carStatusData.add(new CarStatusRecord(theCarID, "", "", "V"));
+					break;
+				default:
+					break;
+					
+			}
+		}catch (Exception e){
+			System.out.println(e);
+		}
 
-		data.add(tblRecord);
-		// jtvCarsStatus.setItems(data);
 	}
 
 	private void setGridPaneSpacing(GridPane gp) {
@@ -322,7 +341,10 @@ public class ServerGUI extends Application {
 	private void getStatistics() {
 		
 		String serviceType = jcbServiceType.getSelectionModel().getSelectedItem();
-		
+       
+		//TODO:DELETE
+		statisticsRecordsData.add(new StatisticsRecord("26-5-15", "333", "Fuel", "3", "120"));
+
 		//TODO: Fix Here - Get the value of the pump id from the combo box
 		ServerController.getServerController().getStatistics(serviceType, "1");
 	}

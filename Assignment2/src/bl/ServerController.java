@@ -6,6 +6,7 @@ import dal.GasStationHistoryRecord.ActionType;
 import dal.GasStationHistoryRecord;
 import dal.GasStationMySqlConnection;
 import pl.CarStatusPacket.CarStatusType;
+import ui.ServerGUI;
 import ui.StatisticsRecord;
 
 public class ServerController {
@@ -40,9 +41,11 @@ public class ServerController {
 		blProxy.addCar(car);
 	}
 	
-	public void updateCarStatus(Car car, CarStatusType status){
-		
-	}
+	public void updateCarStatus(int carId, CarStatusType status){
+		String theCarID = String.valueOf(carId);		
+		ServerGUI serverGUI = ServerGUI.getServerGUI();
+		serverGUI.updateCarStatus(theCarID, status);
+		}
 	
 	public ArrayList<StatisticsRecord> getStatistics(String actionType, String serviceId){
 		

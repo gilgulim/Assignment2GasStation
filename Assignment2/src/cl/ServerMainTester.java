@@ -11,15 +11,16 @@ public class ServerMainTester {
 	public static void main(String[] args) {
 		GasStationMySqlConnection connection;
 		connection = GasStationMySqlConnection.getInstance();
-		connection.clearDatabase();
+		//connection.clearDatabase();
 		
 		
 		Thread blThread = BlProxy.getBlProxy().runThread();
 		
-		TcpServer tcpServer = new TcpServer("192.168.43.59", 3456);
+		TcpServer tcpServer = new TcpServer("10.0.0.5", 3456);
 		tcpServer.start();
 		
 		System.out.println("Server started...");
+		ServerGUI.getServerGUI();
 		ServerGUI.main(args);
 		try {
 			System.in.read();

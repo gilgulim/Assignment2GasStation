@@ -224,7 +224,7 @@ public class Car {
 		}
 		
 		//update server GUI
-		ServerController.getServerController().updateCarStatus(this, carStatus);
+		ServerController.getServerController().updateCarStatus(this.getId(), carStatus);
 		
 		//send status to client
 		CarStatusPacket carStatusPacket = new CarStatusPacket(carStatus);
