@@ -41,13 +41,17 @@ public class ServerGUI extends Application {
 	private TextField jtfAddCarId, jtfAddCarFuelAmount, jtfAddFuelAmount;
 	private CheckBox jchWantsWash;
 	private Button jbnAddCarAdd, jbnAddFuelAdd, jbnCloseStationStatus, jbnStatisticsRun;
+	
 	private TableColumn<CarStatusRecord, String> jtcCarsStatusCarId, jtcCarsStatusFuel, jtcCarsStatusWash, jtcCarsStatusLeft;
 	private ObservableList<CarStatusRecord> carStatusData;
+	
 	private TableColumn<String, String> jtcStatisticDate, jtcStatisticCar, jtcStatisticAction, jtcStatisticServiceId, jtcStatisticProfit;
+	private ObservableList<StatisticsRecord> statisticsRecordsData;
+	
 	private ComboBox<String> jcbServiceType, jcbPump;
 	private TableView<CarStatusRecord> jtvCarsStatus;
 	private TableView<StatisticsRecord> jtvStatistics;
-	private ObservableList<StatisticsRecord> statisticsRecordsData;
+	
 	
 	private ServerController serverController;
 
@@ -111,8 +115,6 @@ public class ServerGUI extends Application {
 		for(int i=1; i<=pumpCount; i++){
 			jcbPump.getItems().add(String.format("%d", i));
 		}
-		setListOfPumps(jcbPump);
-
 		
 		TableColumn<StatisticsRecord, String> jtcStatisticDate = new TableColumn<StatisticsRecord, String>("Datetime");
 		jtcStatisticDate.setCellValueFactory(new PropertyValueFactory<StatisticsRecord, String>("dateTime"));
@@ -160,11 +162,6 @@ public class ServerGUI extends Application {
 
 		jgpStatisticsContainer.add(jgpStatisticsHeader, 0, 0);
 		jgpStatisticsContainer.add(jgpStatisticsTable, 0, 1);
-	}
-
-	private void setListOfPumps(ComboBox<String> jcbPump) {
-		// TODO Set list of pumps
-
 	}
 
 	private void initCarsStatus() {

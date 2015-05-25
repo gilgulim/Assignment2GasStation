@@ -17,10 +17,13 @@ public class ServerController {
 	
 	
 	private ServerController(){
+		dbConnection = GasStationMySqlConnection.getInstance();
+		dbConnection.clearDatabase();
+		
 		blProxy = BlProxy.getBlProxy();
 		blProxy.runThread();
 		
-		dbConnection = GasStationMySqlConnection.getInstance();
+		
 
 	}
 	
@@ -68,7 +71,6 @@ public class ServerController {
 			
 			int profit = 0;
 
-			
 			if(gsHistoryRecord.getActionType() == ActionType.Fuel){
 				
 				int litters =  dbConnection.getLittersByCarId(gsHistoryRecord.getCarId());
