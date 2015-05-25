@@ -16,7 +16,7 @@ import dal.GasStationHistoryRecord.ServiceEntityType;
 import dal.GasStationMySqlConnection;
 
 
-public class Pump extends FillingMainFuelPool_Observer implements Runnable {
+public class Pump implements FillingMainFuelPool_Observer, Runnable {
 	GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
 	private static int counter = 0;
 	private int id;
@@ -38,14 +38,14 @@ public class Pump extends FillingMainFuelPool_Observer implements Runnable {
 	
 	private boolean fWaitForMainPump;
 	private Object fWaitForMainPumpMutex;
+	private MainFuelPool mainFuelPool;
+	
 	
 	public Pump(MainFuelPool subject,double pricePerLiter){
 		
-		
-		this.subject = subject;
+		this.mainFuelPool = subject;
 		this.pricePerLiter = pricePerLiter;
 		id = ++counter;
-		this.subject.attach(this);
 		
 		cars = new ArrayBlockingQueue<Car>(WATING_QUEUE_LEN);
 		
@@ -133,7 +133,7 @@ public class Pump extends FillingMainFuelPool_Observer implements Runnable {
 		
 		try {
 			
-			subject.getGas(car.getNumOfLiters());
+			mainFuelPool.getGas(car.getNumOfLiters());
 			Thread.sleep(fuelingTime);
 			IncreaseNumOfCarsServed();
 			IncreaseNumOfLitersUsed(car.getNumOfLiters());

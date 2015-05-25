@@ -4,6 +4,7 @@ import pl.CarStatusPacket.CarStatusType;
 import bl.BlProxy;
 import bl.Car;
 import bl.CarChangeState_Observer;
+import bl.FillingMainFuelPool_Observer;
 import bl.ServerController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -31,7 +32,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class ServerGUI extends Application implements CarChangeState_Observer{
+public class ServerGUI extends Application implements CarChangeState_Observer, FillingMainFuelPool_Observer{
 
 	private StackPane root;
 	private GridPane jgpRoot, jgpAddCar, jgpAddFuel, jgpStationStatus,
@@ -63,7 +64,8 @@ public class ServerGUI extends Application implements CarChangeState_Observer{
 	public void start(Stage primaryStage) throws Exception {
 
 		serverController = ServerController.getServerController();
-		serverController.attachObserver(this);
+		serverController.attachCarStateChanedObserver(this);
+		serverController.attachMainFuelPoolObserver(this);
 		
 		root = new StackPane();
 		jgpRoot = new GridPane();
@@ -224,6 +226,14 @@ public class ServerGUI extends Application implements CarChangeState_Observer{
 		jtfAddFuelAmount.setMaxWidth(TEXT_FIELD_MAX_WIDTH);
 
 		jbnAddFuelAdd = new Button("Add");
+		jbnAddFuelAdd.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				addFuelToMainRepository();
+				
+			}
+		});
 
 		jgpAddFuel = new GridPane();
 		setGridPaneSpacing(jgpAddFuel);
@@ -315,6 +325,15 @@ public class ServerGUI extends Application implements CarChangeState_Observer{
 
 		statisticsRecordsData.addAll(serverController.getStatistics(serviceType, pumpId));
 	}
+	
+	private void addFuelToMainRepository() {
+		
+		//TODO: Validate that the text in the text box is an integer
+		if(!serverController.addFuelToMainRepository(Integer.parseInt(jtfAddFuelAmount.getText()))){
+
+			//TODO:Throw an error that fueling failed.
+		}
+	}
 
 	public static void main(String[] args) {
 		launch(args);
@@ -338,5 +357,18 @@ public class ServerGUI extends Application implements CarChangeState_Observer{
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public void updateMainPumpStartedFueling() {
+		
+		//TODO: Print a status label about fueling process that is taking place.
+		jbnAddFuelAdd.setDisable(true);
+	}
+
+	@Override
+	public void updateMainPumpFinishedFueling() {
+		
+		jbnAddFuelAdd.setDisable(false);
 	}
 }

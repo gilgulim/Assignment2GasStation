@@ -1,8 +1,7 @@
 package bl;
 
-public abstract class FillingMainFuelPool_Observer {
-	protected MainFuelPool subject;
+public interface FillingMainFuelPool_Observer {
 	
-	public abstract void updateMainPumpStartedFueling();
-	public abstract void updateMainPumpFinishedFueling();
+	void updateMainPumpStartedFueling();
+	void updateMainPumpFinishedFueling();
 }

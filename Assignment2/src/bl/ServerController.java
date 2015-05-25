@@ -14,7 +14,7 @@ import pl.CarStatusPacket.CarStatusType;
 import ui.ServerGUI;
 import ui.StatisticsRecord;
 
-public class ServerController {
+public class ServerController implements FillingMainFuelPool_Observer {
 	private static ServerController theServerController;
 	private static Object theServerControllerMutex = new Object();
 	
@@ -23,6 +23,8 @@ public class ServerController {
 	private BlProxy blProxy; 
 	private GasStationMySqlConnection dbConnection;
 	private TcpServer tcpServer;
+	
+	private ArrayList<FillingMainFuelPool_Observer> mainFuelPoolStatusObservers;
 	
 	
 	private ServerController(){
@@ -33,9 +35,15 @@ public class ServerController {
 		
 		dbConnection = GasStationMySqlConnection.getInstance();
 		dbConnection.clearDatabase();
+		
+		mainFuelPoolStatusObservers = new ArrayList<FillingMainFuelPool_Observer>();
 		carChangeStateObservers = new ArrayList<CarChangeState_Observer>();
+		
 		blProxy = BlProxy.getBlProxy();
+		blProxy.getMainFuelPool().attach(this);
 		blProxy.runThread();
+		
+		
 		
 		
 
@@ -115,6 +123,16 @@ public class ServerController {
 		
 	}
 	
+	public boolean addFuelToMainRepository(int amount){
+		
+		try {
+			blProxy.getMainFuelPool().fullGas(amount);
+			return true;
+		} catch (FuelPoolException e) {
+			return false;
+		}
+	}
+	
 	private void carStatusNotifyAll(Car car, CarStatusType carStatus) {
 		
 		for(CarChangeState_Observer observer : carChangeStateObservers){
@@ -122,7 +140,27 @@ public class ServerController {
 		}
 	}
 	
-	public void attachObserver(CarChangeState_Observer observer){
+	public void attachCarStateChanedObserver(CarChangeState_Observer observer){
 		carChangeStateObservers.add(observer);
+	}
+	
+	public void attachMainFuelPoolObserver(FillingMainFuelPool_Observer observer){
+		mainFuelPoolStatusObservers.add(observer);
+	}
+
+	@Override
+	public void updateMainPumpStartedFueling() {
+		
+		for(FillingMainFuelPool_Observer observer : mainFuelPoolStatusObservers){
+			observer.updateMainPumpStartedFueling();
+		}
+	}
+
+	@Override
+	public void updateMainPumpFinishedFueling() {
+
+		for(FillingMainFuelPool_Observer observer : mainFuelPoolStatusObservers){
+			observer.updateMainPumpFinishedFueling();
+		}
 	}
 }
