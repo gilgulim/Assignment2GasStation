@@ -242,7 +242,7 @@ public class GasStationMySqlConnection {
 
 		try{
 			Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery(String.format("SELECT * FROM pimps WHERE PumpID = %d", pumpId));
+			ResultSet rs = statement.executeQuery(String.format("SELECT * FROM pumps WHERE PumpID = %d", pumpId));
 			
 			while(rs.next()){			
 				return rs.getInt("PumpPricePerLiter");
@@ -260,7 +260,7 @@ public class GasStationMySqlConnection {
 		int numOfPumps = 0;
 		try{
 			Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery(String.format("SELECT * FROM pimps"));
+			ResultSet rs = statement.executeQuery(String.format("SELECT * FROM pumps"));
 			
 			while(rs.next()){			
 				numOfPumps++;
@@ -281,7 +281,7 @@ public class GasStationMySqlConnection {
 			Statement statement = connection.createStatement();
 			String query = String.format("SELECT * FROM gasstationhistorylog WHERE ActionTypeID = %s", actionType.ordinal());
 			if(actionType == ActionType.Fuel){
-				query +=	String.format(" AND ServiceEntityID = %d", actionType.ordinal(), serviceId);
+				query +=	String.format(" AND ServiceEntityID = %d", serviceId);
 			}
 			ResultSet rs = statement.executeQuery(query);
 			

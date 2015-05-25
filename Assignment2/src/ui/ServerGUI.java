@@ -1,5 +1,6 @@
 package ui;
 
+import bl.BlProxy;
 import bl.ServerController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -47,6 +48,8 @@ public class ServerGUI extends Application {
 	private TableView<CarStatusRecord> jtvCarsStatus;
 	private TableView<StatisticsRecord> jtvStatistics;
 	private ObservableList<StatisticsRecord> statisticsRecordsData;
+	
+	private ServerController serverController;
 
 	
 
@@ -55,6 +58,8 @@ public class ServerGUI extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
+		serverController = ServerController.getServerController();
+		
 		root = new StackPane();
 		jgpRoot = new GridPane();
 		setGridPaneSpacing(jgpRoot);
@@ -101,6 +106,11 @@ public class ServerGUI extends Application {
 		jcbServiceType = new ComboBox<String>();
 		jcbServiceType.getItems().addAll("Wash", "Fuel");
 		jcbPump = new ComboBox<String>();
+		
+		int pumpCount = serverController.getNumberOfPumps();
+		for(int i=1; i<=pumpCount; i++){
+			jcbPump.getItems().add(String.format("%d", i));
+		}
 		setListOfPumps(jcbPump);
 
 		
@@ -322,9 +332,9 @@ public class ServerGUI extends Application {
 	private void getStatistics() {
 		
 		String serviceType = jcbServiceType.getSelectionModel().getSelectedItem();
-		
-		//TODO: Fix Here - Get the value of the pump id from the combo box
-		ServerController.getServerController().getStatistics(serviceType, "1");
+		String pumpId = jcbPump.getSelectionModel().getSelectedItem();
+
+		statisticsRecordsData.addAll(serverController.getStatistics(serviceType, pumpId));
 	}
 
 	public static void main(String[] args) {

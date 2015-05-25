@@ -18,7 +18,10 @@ public class ServerController {
 	
 	private ServerController(){
 		blProxy = BlProxy.getBlProxy();
+		blProxy.runThread();
+		
 		dbConnection = GasStationMySqlConnection.getInstance();
+
 	}
 	
 	public static ServerController getServerController(){
@@ -41,6 +44,12 @@ public class ServerController {
 	}
 	
 	public void updateCarStatus(Car car, CarStatusType status){
+		
+	}
+	
+	public int getNumberOfPumps() {
+		
+		return dbConnection.getNumberOfPumps();
 		
 	}
 	
