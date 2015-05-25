@@ -2,6 +2,8 @@ package ui;
 
 import pl.CarStatusPacket.CarStatusType;
 import bl.BlProxy;
+import bl.Car;
+import bl.CarChangeState_Observer;
 import bl.ServerController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -29,10 +31,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class ServerGUI extends Application {
+public class ServerGUI extends Application implements CarChangeState_Observer{
 
-	private static ServerGUI theServerGUI;
-	private static Object theServerGUIMutex = new Object();
 	private StackPane root;
 	private GridPane jgpRoot, jgpAddCar, jgpAddFuel, jgpStationStatus,
 			jgpCarsStatus, jgpStatisticsHeader, jgpStatisticsTable,
@@ -58,20 +58,12 @@ public class ServerGUI extends Application {
 
 	private final static int TEXT_FIELD_MAX_WIDTH = 80;
 
-	public static ServerGUI getServerGUI(){
-		synchronized (theServerGUIMutex) {
-			if(theServerGUI == null){
-				theServerGUI = new ServerGUI();
-			}
-		}
-		return theServerGUI;
-		
-	}
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
 		serverController = ServerController.getServerController();
+		serverController.attachObserver(this);
 		
 		root = new StackPane();
 		jgpRoot = new GridPane();
@@ -310,34 +302,6 @@ public class ServerGUI extends Application {
 		
 	}
 
-
-
-	public void updateCarStatus(String theCarID, CarStatusType status) {
-		try{
-			switch (status){
-				case Entered:
-					CarStatusRecord carRecord = new  CarStatusRecord(theCarID, "", "", "");
-					carStatusData.add(carRecord);
-					break;
-				case AutoWashing:
-					carStatusData.add(new CarStatusRecord(theCarID, "", "V", ""));
-					break;
-				case Fueling:
-					carStatusData.add(new CarStatusRecord(theCarID, "V", "", ""));
-					break;
-				case Exited:
-					carStatusData.add(new CarStatusRecord(theCarID, "", "", "V"));
-					break;
-				default:
-					break;
-					
-			}
-		}catch (Exception e){
-			System.out.println(e);
-		}
-
-	}
-
 	private void setGridPaneSpacing(GridPane gp) {
 		gp.setPadding(new Insets(5));
 		gp.setHgap(10);
@@ -354,5 +318,25 @@ public class ServerGUI extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	@Override
+	public void updateCarState(Car car, CarStatusType state) {
+		switch (state){
+		case Entered:
+			carStatusData.add(new  CarStatusRecord(String.valueOf(car.getId()), "", "", ""));
+			break;
+		case AutoWashing:
+			carStatusData.add(new CarStatusRecord(String.valueOf(car.getId()), "", "V", ""));
+			break;
+		case Fueling:
+			carStatusData.add(new CarStatusRecord(String.valueOf(car.getId()), "V", "", ""));
+			break;
+		case Exited:
+			carStatusData.add(new CarStatusRecord(String.valueOf(car.getId()), "", "", "V"));
+			break;
+		default:
+			break;
+		}
 	}
 }

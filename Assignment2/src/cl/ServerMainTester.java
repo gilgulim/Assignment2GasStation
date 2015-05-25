@@ -20,8 +20,6 @@ public class ServerMainTester {
 		tcpServer.start();
 		
 		System.out.println("Server started...");
-		ServerGUI.getServerGUI();
-		ServerGUI.main(args);
 		try {
 			System.in.read();
 		} catch (IOException e) {

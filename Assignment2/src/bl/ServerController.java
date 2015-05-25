@@ -1,7 +1,9 @@
 package bl;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import cl.GasStationClient_Observer;
 import cl.TcpServer;
 import dal.GasStationHistoryRecord.ActionType;
 import dal.GasStationHistoryRecord;
@@ -14,6 +16,7 @@ public class ServerController {
 	private static ServerController theServerController;
 	private static Object theServerControllerMutex = new Object();
 	
+	private List<CarChangeState_Observer> carChangeStateObservers;
 	private BlProxy blProxy; 
 	private GasStationMySqlConnection dbConnection;
 	private TcpServer tcpServer;
@@ -26,7 +29,7 @@ public class ServerController {
 		
 		dbConnection = GasStationMySqlConnection.getInstance();
 		dbConnection.clearDatabase();
-		
+		carChangeStateObservers = new ArrayList<CarChangeState_Observer>();
 		blProxy = BlProxy.getBlProxy();
 		blProxy.runThread();
 		
@@ -41,7 +44,6 @@ public class ServerController {
 			}
 		}
 		return theServerController;
-		
 	}
 	
 	public void addCar(int carId, boolean requiredFuel, int fuelAmount, boolean requiredWash){
@@ -53,11 +55,9 @@ public class ServerController {
 		blProxy.addCar(car);
 	}
 	
-	public void updateCarStatus(int carId, CarStatusType status){
-		String theCarID = String.valueOf(carId);		
-		ServerGUI serverGUI = ServerGUI.getServerGUI();
-		serverGUI.updateCarStatus(theCarID, status);
-		}
+	public void updateCarStatus(Car car, CarStatusType status){
+		carStatusNotifyAll(car, status);
+	}
 	
 	public int getNumberOfPumps() {
 		
@@ -107,5 +107,16 @@ public class ServerController {
 		
 		return statisticsRecords;
 		
+	}
+	
+	private void carStatusNotifyAll(Car car, CarStatusType carStatus) {
+		
+		for(CarChangeState_Observer observer : carChangeStateObservers){
+			observer.updateCarState(car, carStatus);
+		}
+	}
+	
+	public void attachObserver(CarChangeState_Observer observer){
+		carChangeStateObservers.add(observer);
 	}
 }
