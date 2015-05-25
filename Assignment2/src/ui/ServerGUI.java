@@ -1,10 +1,7 @@
 package ui;
 
-<<<<<<< HEAD
 import pl.CarStatusPacket.CarStatusType;
-=======
 import bl.BlProxy;
->>>>>>> 23ea410eb4a649dfb887d6bb69b08f5a86829b9b
 import bl.ServerController;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -350,12 +347,6 @@ public class ServerGUI extends Application {
 	private void getStatistics() {
 		
 		String serviceType = jcbServiceType.getSelectionModel().getSelectedItem();
-       
-		//TODO:DELETE
-		statisticsRecordsData.add(new StatisticsRecord("26-5-15", "333", "Fuel", "3", "120"));
-
-		//TODO: Fix Here - Get the value of the pump id from the combo box
-		ServerController.getServerController().getStatistics(serviceType, "1");
 		String pumpId = jcbPump.getSelectionModel().getSelectedItem();
 
 		statisticsRecordsData.addAll(serverController.getStatistics(serviceType, pumpId));
