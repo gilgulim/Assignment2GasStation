@@ -18,8 +18,14 @@ public class ServerController {
 	
 	
 	private ServerController(){
-		blProxy = BlProxy.getBlProxy();
 		dbConnection = GasStationMySqlConnection.getInstance();
+		dbConnection.clearDatabase();
+		
+		blProxy = BlProxy.getBlProxy();
+		blProxy.runThread();
+		
+		
+
 	}
 	
 	public static ServerController getServerController(){
@@ -47,6 +53,12 @@ public class ServerController {
 		serverGUI.updateCarStatus(theCarID, status);
 		}
 	
+	public int getNumberOfPumps() {
+		
+		return dbConnection.getNumberOfPumps();
+		
+	}
+	
 	public ArrayList<StatisticsRecord> getStatistics(String actionType, String serviceId){
 		
 		ArrayList<StatisticsRecord> statisticsRecords = new ArrayList<StatisticsRecord>();
@@ -62,7 +74,6 @@ public class ServerController {
 			
 			int profit = 0;
 
-			
 			if(gsHistoryRecord.getActionType() == ActionType.Fuel){
 				
 				int litters =  dbConnection.getLittersByCarId(gsHistoryRecord.getCarId());
