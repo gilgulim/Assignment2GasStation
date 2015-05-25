@@ -2,6 +2,8 @@ package bl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import cl.GasStationClient_Observer;
 import cl.TcpServer;
@@ -16,6 +18,7 @@ public class ServerController {
 	private static ServerController theServerController;
 	private static Object theServerControllerMutex = new Object();
 	
+	private Lock changeUICarStatusLock;
 	private List<CarChangeState_Observer> carChangeStateObservers;
 	private BlProxy blProxy; 
 	private GasStationMySqlConnection dbConnection;
@@ -24,7 +27,8 @@ public class ServerController {
 	
 	private ServerController(){
 		
-		tcpServer = new TcpServer("10.0.0.5", 3456);
+		changeUICarStatusLock = new ReentrantLock();
+		tcpServer = new TcpServer("192.168.1.12", 3456);
 		tcpServer.start();
 		
 		dbConnection = GasStationMySqlConnection.getInstance();
@@ -55,8 +59,10 @@ public class ServerController {
 		blProxy.addCar(car);
 	}
 	
-	public void updateCarStatus(Car car, CarStatusType status){
+	public void updateCarStatus(Car car, CarStatusType status) {
+		changeUICarStatusLock.lock();
 		carStatusNotifyAll(car, status);
+		changeUICarStatusLock.unlock();
 	}
 	
 	public int getNumberOfPumps() {
