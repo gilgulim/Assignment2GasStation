@@ -39,28 +39,16 @@ public class ServerGUI extends Application {
 			jlbStatisticsService, jlbStatisticsPump;
 	private TextField jtfAddCarId, jtfAddCarFuelAmount, jtfAddFuelAmount;
 	private CheckBox jchWantsWash;
-<<<<<<< HEAD
 	private Button jbnAddCarAdd, jbnAddFuelAdd, jbnCloseStationStatus, jbnStatisticsRun;
-	private TableView<CarStatusRecord> jtvCarsStatus; 
-	private TableView jtvStatistics;
 	private TableColumn<CarStatusRecord, String> jtcCarsStatusCarId, jtcCarsStatusFuel, jtcCarsStatusWash, jtcCarsStatusLeft;
 	private ObservableList<CarStatusRecord> carStatusData;
 	private TableColumn<String, String> jtcStatisticDate, jtcStatisticCar, jtcStatisticAction, jtcStatisticServiceId, jtcStatisticProfit;
 	private ComboBox<String> jcbServiceType, jcbPump;
-=======
-	private Button jbnAddCarAdd, jbnAddFuelAdd, jbnCloseStationStatus,
-			jbnStatisticsRun;
 	private TableView<CarStatusRecord> jtvCarsStatus;
 	private TableView<StatisticsRecord> jtvStatistics;
 	private ObservableList<StatisticsRecord> statisticsRecordsData;
+
 	
-	TableColumn<CarStatusRecord, String> jtcCarsStatusCarId;
-	TableColumn<CarStatusRecord, String> jtcCarsStatusFuel;
-	TableColumn<CarStatusRecord, String> jtcCarsStatusWash;
-	TableColumn<CarStatusRecord, String> jtcCarsStatusLeft;
->>>>>>> 8be016d77c4f3e0a57e1034100923c568b274cd8
-	
-	private ComboBox<String> jcbServiceType, jcbPump;
 
 	private final static int TEXT_FIELD_MAX_WIDTH = 80;
 
@@ -172,15 +160,10 @@ public class ServerGUI extends Application {
 	private void initCarsStatus() {
 		jlbCarStatusTitle = new Label("Cars Statuses");
 		jlbCarStatusTitle.setUnderline(true);
-<<<<<<< HEAD
 		
 		jtvCarsStatus = new TableView<CarStatusRecord>();
 		
 		carStatusData = FXCollections.observableArrayList(new CarStatusRecord("1", "2", "3", "4"));
-		
-=======
-
->>>>>>> 8be016d77c4f3e0a57e1034100923c568b274cd8
 		jtcCarsStatusCarId = new TableColumn<CarStatusRecord, String>("Car");
 		jtcCarsStatusCarId.setCellValueFactory(new PropertyValueFactory<CarStatusRecord, String>(""));
 		
@@ -189,20 +172,20 @@ public class ServerGUI extends Application {
 		jtcCarsStatusWash = new TableColumn<CarStatusRecord, String>("Washing");
 		jtcCarsStatusWash.setCellValueFactory(new PropertyValueFactory<CarStatusRecord, String>(""));
 		jtcCarsStatusLeft = new TableColumn<CarStatusRecord, String>("Left");
-<<<<<<< HEAD
+
 		jtcCarsStatusLeft.setCellValueFactory(new PropertyValueFactory<CarStatusRecord, String>(""));
 		
 		
 		
 		jtvCarsStatus.getColumns().addAll(jtcCarsStatusCarId, jtcCarsStatusFuel, jtcCarsStatusWash, jtcCarsStatusLeft);
 		jtvCarsStatus.setItems(carStatusData);
-=======
+
 
 		jtvCarsStatus = new TableView<CarStatusRecord>();
 		jtvCarsStatus.getColumns().addAll(jtcCarsStatusCarId,
 				jtcCarsStatusFuel, jtcCarsStatusWash, jtcCarsStatusLeft);
 
->>>>>>> 8be016d77c4f3e0a57e1034100923c568b274cd8
+
 		jgpCarsStatus = new GridPane();
 		setGridPaneSpacing(jgpCarsStatus);
 
@@ -299,18 +282,15 @@ public class ServerGUI extends Application {
 			requiredFuel = Integer.parseInt(jtfAddCarFuelAmount.getText()) == 0 ? false
 					: true;
 			fuelAmount = Integer.parseInt(jtfAddCarFuelAmount.getText());
-<<<<<<< HEAD
 			
 			ServerController.getServerController().addCar(carId, requiredFuel, fuelAmount, requiredWash);
 			
 			//clear form
-=======
 			updateCarStatus();
 			// ServerController.getServerController().addCar(carId,
 			// requiredFuel, fuelAmount, requiredWash);
 
 			// clear form
->>>>>>> 8be016d77c4f3e0a57e1034100923c568b274cd8
 			jtfAddCarId.setText("");
 			jchWantsWash.setSelected(true);
 			jtfAddFuelAmount.setText("0");
@@ -318,19 +298,12 @@ public class ServerGUI extends Application {
 		} catch (Exception e) {
 			// TODO:invalid input;
 			System.out.println(e);
-<<<<<<< HEAD
 		}		
 		
 		updateCarStatus();
 	}
 
-	public void updateCarStatus(){
-		carStatusData.add(new CarStatusRecord("1", "2", "3", "4"));
-		
-=======
-		}
 
-	}
 
 	public void updateCarStatus() {
 		ObservableList<Object> data = FXCollections.observableArrayList();
@@ -338,7 +311,6 @@ public class ServerGUI extends Application {
 
 		data.add(tblRecord);
 		// jtvCarsStatus.setItems(data);
->>>>>>> 8be016d77c4f3e0a57e1034100923c568b274cd8
 	}
 
 	private void setGridPaneSpacing(GridPane gp) {
