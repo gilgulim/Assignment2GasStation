@@ -43,15 +43,9 @@ public class ServerController implements FillingMainFuelPool_Observer {
 		
 		blProxy = BlProxy.getBlProxy();
 		blProxy.runThread();
-		
-		
-		
-		
-
-	}
-	public void attachToFuelPool(){
 		blProxy.getMainFuelPool().attach(this);
 	}
+	
 	
 	public static ServerController getServerController(){
 		synchronized (theServerControllerMutex) {

@@ -47,13 +47,13 @@ public class InsideClean extends CleaningServiceBase {
 		
 		theLogger.log(Level.INFO, "In InsideClean::serveCar() - inside clean car " + theCar.getId(), this);
 		
-		int cleaningTime = (int)(Math.random() * 1000);
+		int cleaningTime = (int)(Math.random());
 		
 		theLogger.log(Level.INFO, "In InsideClean::serveCar() - car  " +  theCar.getId() + 
 					  " is being cleaned for " + cleaningTime + " ms", this);
 		
 		try {
-			Thread.sleep(cleaningTime);
+			Thread.sleep(cleaningTime * 1000);
 		}
 		catch (InterruptedException e) {
 			

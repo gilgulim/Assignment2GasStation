@@ -64,7 +64,7 @@ public class MainFuelPool {
 				theLogger.log(Level.INFO, "In MainFuelPool::fullGas() - pool is fueling for " + fuelingTime + " ms", this);
 				
 				try {
-					Thread.sleep(fuelingTime);
+					Thread.sleep(fuelingTime * 10);
 				}
 				catch (InterruptedException e) {
 					

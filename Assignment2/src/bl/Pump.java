@@ -125,7 +125,7 @@ public class Pump implements FillingMainFuelPool_Observer, Runnable {
 		// Fuel the car if can
 		
 		// Random fueling time factores by the number of liters needed
-		int fuelingTime = (int)(Math.random() * 10 * car.getNumOfLiters());
+		int fuelingTime = (int)(Math.random() * car.getNumOfLiters());
 		
 		theLogger.log(Level.INFO, "In Pump::serveCar() - car  " +  car.getId() + 
 					  " is fueling for " + fuelingTime + " ms", this);
@@ -134,7 +134,7 @@ public class Pump implements FillingMainFuelPool_Observer, Runnable {
 		try {
 			
 			mainFuelPool.getGas(car.getNumOfLiters());
-			Thread.sleep(fuelingTime);
+			Thread.sleep(fuelingTime * 10);
 			IncreaseNumOfCarsServed();
 			IncreaseNumOfLitersUsed(car.getNumOfLiters());
 			

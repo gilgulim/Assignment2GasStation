@@ -66,7 +66,6 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 		serverController = ServerController.getServerController();
 		serverController.attachCarStateChanedObserver(this);
 		serverController.attachMainFuelPoolObserver(this);
-		serverController.attachToFuelPool();
 		
 		root = new StackPane();
 		jgpRoot = new GridPane();
@@ -249,7 +248,7 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 				
 			}
 		});
-
+		
 		jgpAddFuel = new GridPane();
 		setGridPaneSpacing(jgpAddFuel);
 
@@ -350,12 +349,13 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 	}
 	
 	private void addFuelToMainRepository() {
-		
-		//TODO: Validate that the text in the text box is an integer
-		if(!serverController.addFuelToMainRepository(Integer.parseInt(jtfAddFuelAmount.getText()))){
 
-			//TODO:Throw an error that fueling failed.
-		}
+		try{
+			serverController.addFuelToMainRepository(Integer.parseInt(jtfAddFuelAmount.getText()));
+
+		}catch (Exception e){
+			
+		}	
 	}
 
 	public static void main(String[] args) {
@@ -384,14 +384,15 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 
 	@Override
 	public void updateMainPumpStartedFueling() {
-		
-		//TODO: Print a status label about fueling process that is taking place.
+		System.out.println("start fueling");
 		jlbAddFuelBusy.setVisible(true);
 		jbnAddFuelAdd.setDisable(true);
+
 	}
 
 	@Override
 	public void updateMainPumpFinishedFueling() {
+		System.out.println("done fueling");
 		jlbAddFuelBusy.setVisible(false);
 		jbnAddFuelAdd.setDisable(false);
 	}
