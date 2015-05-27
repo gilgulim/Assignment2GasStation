@@ -41,7 +41,7 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 	private Label jlbAddCarTitle, jlbAddCarID, jlbAddCarWantsWash,
 			jlbAddCarFuelAmount, jlbAddFuelTitle, jlbAddFuelAmount,
 			jlbCloseStationTitle, jlbCarStatusTitle, jlbStatisticsTitle,
-			jlbStatisticsService, jlbStatisticsPump;
+			jlbStatisticsService, jlbStatisticsPump, jlbAddFuelBusy;
 	private TextField jtfAddCarId, jtfAddCarFuelAmount, jtfAddFuelAmount;
 	private CheckBox jchWantsWash;
 	private Button jbnAddCarAdd, jbnAddFuelAdd, jbnCloseStationStatus, jbnStatisticsRun;
@@ -66,6 +66,7 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 		serverController = ServerController.getServerController();
 		serverController.attachCarStateChanedObserver(this);
 		serverController.attachMainFuelPoolObserver(this);
+		serverController.attachToFuelPool();
 		
 		root = new StackPane();
 		jgpRoot = new GridPane();
@@ -114,6 +115,18 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 		jcbServiceType.getItems().addAll("Wash", "Fuel");
 		jcbPump = new ComboBox<String>();
 		
+		jcbServiceType.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				if (jcbServiceType.getValue() == "Wash"){
+					jcbPump.setDisable(true);
+				}else{
+					jcbPump.setDisable(false);
+				}
+				
+			}
+		});;
 		int pumpCount = serverController.getNumberOfPumps();
 		for(int i=1; i<=pumpCount; i++){
 			jcbPump.getItems().add(String.format("%d", i));
@@ -221,7 +234,9 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 		jlbAddFuelAmount = new Label("Fuel Amount");
 		jlbAddFuelTitle = new Label("Add Fuel to Main Pool");
 		jlbAddFuelTitle.setUnderline(true);
-
+		jlbAddFuelBusy = new Label("Gas station is now fueling...");
+		jlbAddFuelBusy.setVisible(false);
+		
 		jtfAddFuelAmount = new TextField("0");
 		jtfAddFuelAmount.setMaxWidth(TEXT_FIELD_MAX_WIDTH);
 
@@ -242,6 +257,7 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 		jgpAddFuel.add(jlbAddFuelAmount, 0, 1);
 		jgpAddFuel.add(jtfAddFuelAmount, 1, 1);
 		jgpAddFuel.add(jbnAddFuelAdd, 0, 2);
+		jgpAddFuel.add(jlbAddFuelBusy, 1, 2);
 	}
 
 	private void initAddCarSection() {
@@ -319,11 +335,18 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 	}
 
 	private void getStatistics() {
-		
+		try{
 		String serviceType = jcbServiceType.getSelectionModel().getSelectedItem();
 		String pumpId = jcbPump.getSelectionModel().getSelectedItem();
-
+		
+		//clear table for new data
+		statisticsRecordsData.clear();
+		
+		//add new data to the table
 		statisticsRecordsData.addAll(serverController.getStatistics(serviceType, pumpId));
+		}catch (Exception e){
+			
+		}
 	}
 	
 	private void addFuelToMainRepository() {
@@ -363,12 +386,13 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 	public void updateMainPumpStartedFueling() {
 		
 		//TODO: Print a status label about fueling process that is taking place.
+		jlbAddFuelBusy.setVisible(true);
 		jbnAddFuelAdd.setDisable(true);
 	}
 
 	@Override
 	public void updateMainPumpFinishedFueling() {
-		
+		jlbAddFuelBusy.setVisible(false);
 		jbnAddFuelAdd.setDisable(false);
 	}
 }

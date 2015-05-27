@@ -16,14 +16,13 @@ public class ServerMainTester {
 		
 		Thread blThread = BlProxy.getBlProxy().runThread();
 		
-		TcpServer tcpServer = new TcpServer("10.0.0.5", 3456);
+		TcpServer tcpServer = new TcpServer("192.168.43.59", 3456);
 		tcpServer.start();
 		
 		System.out.println("Server started...");
 		try {
 			System.in.read();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

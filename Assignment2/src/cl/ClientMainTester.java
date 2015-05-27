@@ -29,7 +29,6 @@ public class ClientMainTester {
 		try {
 			System.in.read();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

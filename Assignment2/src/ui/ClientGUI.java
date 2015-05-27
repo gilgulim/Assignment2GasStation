@@ -224,7 +224,6 @@ public class ClientGUI extends JFrame implements GasStationClient_Observer{
 				jrbServerOff.setSelected(false);
 			}
 		}catch(Exception e){
-			//TODO: invalid input;
 			System.out.println(e);
 		}
 		

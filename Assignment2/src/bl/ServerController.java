@@ -30,8 +30,10 @@ public class ServerController implements FillingMainFuelPool_Observer {
 	private ServerController(){
 		
 		changeUICarStatusLock = new ReentrantLock();
-		tcpServer = new TcpServer("192.168.1.12", 3456);
+		tcpServer = new TcpServer("192.168.43.59", 3456);
 		tcpServer.start();
+		
+		System.out.println("Server started...");
 		
 		dbConnection = GasStationMySqlConnection.getInstance();
 		dbConnection.clearDatabase();
@@ -40,13 +42,15 @@ public class ServerController implements FillingMainFuelPool_Observer {
 		carChangeStateObservers = new ArrayList<CarChangeState_Observer>();
 		
 		blProxy = BlProxy.getBlProxy();
-		blProxy.getMainFuelPool().attach(this);
 		blProxy.runThread();
 		
 		
 		
 		
 
+	}
+	public void attachToFuelPool(){
+		blProxy.getMainFuelPool().attach(this);
 	}
 	
 	public static ServerController getServerController(){
