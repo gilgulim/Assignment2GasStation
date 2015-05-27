@@ -221,7 +221,14 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 		jlbCloseStationTitle.setUnderline(true);
 
 		jbnCloseStationStatus = new Button("Close");
-
+		jbnCloseStationStatus.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent arg0) {
+				closeGasStation();
+			}
+		});
+		
 		jgpStationStatus = new GridPane();
 		setGridPaneSpacing(jgpStationStatus);
 
@@ -244,8 +251,7 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 			
 			@Override
 			public void handle(ActionEvent arg0) {
-				addFuelToMainRepository();
-				
+				addFuelToMainRepository();	
 			}
 		});
 		
@@ -382,6 +388,11 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 		}
 	}
 
+	private void closeGasStation() {
+		serverController.closeGasStation();
+		jbnCloseStationStatus.setDisable(true);
+	}
+	
 	@Override
 	public void updateMainPumpStartedFueling() {
 		System.out.println("start fueling");

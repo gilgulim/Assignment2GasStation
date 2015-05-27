@@ -30,7 +30,7 @@ public class ServerController implements FillingMainFuelPool_Observer {
 	private ServerController(){
 		
 		changeUICarStatusLock = new ReentrantLock();
-		tcpServer = new TcpServer("192.168.43.59", 3456);
+		tcpServer = new TcpServer("172.20.22.164", 3456);
 		tcpServer.start();
 		
 		System.out.println("Server started...");
@@ -119,6 +119,10 @@ public class ServerController implements FillingMainFuelPool_Observer {
 		
 		return statisticsRecords;
 		
+	}
+	
+	public void closeGasStation(){
+		blProxy.closeGasStation();
 	}
 	
 	public boolean addFuelToMainRepository(int amount){
