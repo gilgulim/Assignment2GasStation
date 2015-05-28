@@ -357,7 +357,17 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 	private void addFuelToMainRepository() {
 
 		try{
-			serverController.addFuelToMainRepository(Integer.parseInt(jtfAddFuelAmount.getText()));
+			
+			Thread fuelMainFuelPool = new Thread(new Runnable() {
+				
+				@Override
+				public void run() {
+					serverController.addFuelToMainRepository(Integer.parseInt(jtfAddFuelAmount.getText()));
+					
+				}
+			});
+			
+			fuelMainFuelPool.start();
 
 		}catch (Exception e){
 			
