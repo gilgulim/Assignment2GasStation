@@ -30,7 +30,7 @@ public class ServerController implements FillingMainFuelPool_Observer {
 	private ServerController(){
 		
 		changeUICarStatusLock = new ReentrantLock();
-		tcpServer = new TcpServer("172.20.22.164", 3456);
+		tcpServer = new TcpServer(3456);
 		tcpServer.start();
 		
 		System.out.println("Server started...");
