@@ -1,6 +1,7 @@
 package cl;
 
 import java.io.IOException;
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -16,6 +17,21 @@ public class TcpServer implements Runnable {
 	private boolean isRunning;
 	
 	private ArrayList<ClientEntity> clientsList;
+	
+	public TcpServer(int portNumber){
+		this.portNumber = portNumber;
+		try {
+			//Get the local ip address of this computer
+			this.ipAddress = Inet4Address.getLocalHost().getHostAddress();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		
+		this.isRunning = false;
+		serverThread = new Thread(this);
+		
+		clientsList = new ArrayList<ClientEntity>();
+	}
 	
 	public TcpServer(String ipAddress, int portNumber) {
 		this.portNumber = portNumber;
