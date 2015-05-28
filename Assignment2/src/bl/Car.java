@@ -42,6 +42,10 @@ public class Car {
 	private int pumpNum;
 	
 	private int washTeamID;
+
+	private Boolean isWashing;
+	
+	private Boolean isFueling;
 	
 	public int getWashTeamID() {
 		return washTeamID;
@@ -63,9 +67,12 @@ public class Car {
 		initLog();
 		theLogger.log(Level.INFO, "In Car::Car()",this);
 		theLogger.log(Level.INFO, "In Car::Car() - created Car id = " + id,this);
+		isFueling = false;
+		isWashing = false;
 	}
 	
 	public Car(int id, boolean wantFuel, int numOfLiters, boolean wantCleaning){
+		this();
 		this.id = id;
 		this.numOfLiters = numOfLiters;
 		this.wantFuel = wantFuel;
@@ -73,28 +80,20 @@ public class Car {
 		this.finishCleaning = false;
 		this.finishFuel = false;
 		
-		initLog();
-		theLogger.log(Level.INFO, "In Car::Car()",this);
-		theLogger.log(Level.INFO, "In Car::Car() - created Car id = " + id,this);
 	}
 	
 	public Car(int id,Boolean wantCleaning) {
+		this();
 		this.id = id;
 		this.wantCleaning = wantCleaning;
 		this.wantFuel = false;
 		this.finishCleaning = false;
 		this.finishFuel = false;
-		
-		initLog();
-		theLogger.log(Level.INFO, "In Car::Car()",this);
-		theLogger.log(Level.INFO, "In Car::Car() - created Car id = " + id,this);
 	}
 	
-	public void setPumpNum(int pumpNum) {
-		this.pumpNum = pumpNum;
-	}
-
 	public Car(int id,int numOfLiters,int pumpNum) {
+		this();
+		
 		this.id = id;
 		this.numOfLiters = numOfLiters;
 		this.pumpNum = pumpNum;
@@ -103,12 +102,11 @@ public class Car {
 		this.finishCleaning = false;
 		this.finishFuel = false;
 		
-		initLog();
-		theLogger.log(Level.INFO, "In Car::Car()",this);
-		theLogger.log(Level.INFO, "In Car::Car() - created Car id = " + id,this);
 	}
 	
 	public Car(int id,int numOfLiters,int pumpNum,Boolean wantCleaning) {
+		this();
+		
 		this.id = id;
 		this.numOfLiters = numOfLiters;
 		this.pumpNum = pumpNum;
@@ -116,16 +114,16 @@ public class Car {
 		this.wantFuel = true;
 		this.finishCleaning = false;
 		this.finishFuel = false;
-		
-		initLog();
-		theLogger.log(Level.INFO, "In Car::Car()",this);
-		theLogger.log(Level.INFO, "In Car::Car() - created Car id = " + id,this);
 	}
-	
+
 	private void initLog() {
-	
+		
 		theLogger = GasStationUtility.getCarLog(this, id);
 		
+	}
+	
+	public void setPumpNum(int pumpNum) {
+		this.pumpNum = pumpNum;
 	}
 	
 	public void finishCleaning() {
@@ -134,6 +132,7 @@ public class Car {
 		theLogger.log(Level.INFO, "In Car::finishCleaning() - Car id = " + id,this);
 		
 		finishCleaning = true;
+		isWashing = false;
 	}
 	
 	public void finishFuel() {
@@ -142,6 +141,7 @@ public class Car {
 		theLogger.log(Level.INFO, "In Car::finishFuel() - Car id = " + id,this);
 		
 		finishFuel = true;
+		isFueling = false;
 	}
 	
 	public boolean isFueled() {
@@ -170,6 +170,22 @@ public class Car {
 	
 	public int getId() {
 		return id;
+	}
+	
+	public Boolean getIsWashing() {
+		return isWashing;
+	}
+
+	public void setIsWashing(Boolean isWashing) {
+		this.isWashing = isWashing;
+	}
+
+	public Boolean getIsFueling() {
+		return isFueling;
+	}
+
+	public void setIsFueling(Boolean isFueling) {
+		this.isFueling = isFueling;
 	}
 	
 	public void setClientEntity(ClientEntity clientEntity) {

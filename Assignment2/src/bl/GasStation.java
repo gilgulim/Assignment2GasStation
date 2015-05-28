@@ -274,8 +274,11 @@ public class GasStation implements Runnable{
 				}else if (theCar.wantsFuel() == true && theCar.wantsCleaning() == true) {
 					if (handledCars.contains(theCar)) {
 						
-						
-						if (theCar.isFueled() == true) {
+						//If the car has already been fueled and is not currently in washing then add it the washing 
+						if ((theCar.isFueled() == true) && (!theCar.getIsFueling()) && (!theCar.getIsWashing()) ) {
+							
+							theCar.setIsWashing(true);
+							
 							// Remove from the handled list and send to cleaning
 							handledCars.remove(theCar);
 							theLogger.log(Level.INFO, "In GasStation()::run() - car " + theCar.getId() + " was removed from handling queue", this);		
@@ -287,9 +290,19 @@ public class GasStation implements Runnable{
 							catch (InterruptedException e) {
 								e.printStackTrace();
 							}
+							
+						}else{
+							try {
+								cars.put(theCar);
+							} 
+							catch (InterruptedException e) {
+								e.printStackTrace();
+							}
 						}
 					}
-					else { //car not fueled
+					else if(!theCar.getIsFueling() && !theCar.isFueled()) { //car not fueled
+						
+						theCar.setIsFueling(true);
 						
 						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to fueling", this);
 						theLogger.log(Level.INFO, "In GasStation()::run() - car " + theCar.getId() + " was added to handling queue", this);
@@ -306,6 +319,13 @@ public class GasStation implements Runnable{
 						catch( InterruptedException e) {
 							
 						}
+					}else{
+						try {
+							cars.put(theCar);
+						}
+						catch( InterruptedException e) {
+							
+						}
 					}
 				}
 				else if(theCar.wantsFuel() == true && theCar.wantsCleaning() == false) {
@@ -314,7 +334,11 @@ public class GasStation implements Runnable{
 						cars.poll();
 						theCar.sendCarStatus(CarStatusType.Exited);
 						
-					}else{
+					}else if(!theCar.getIsFueling()){
+						
+						//Evyatar: Added the current state of the car to fueling
+						theCar.setIsFueling(true);
+						
 						// Fuel the car
 						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to fueling", this);
 						pumps.get(theCar.getPumpNum()-1).refuel(theCar);
@@ -322,6 +346,13 @@ public class GasStation implements Runnable{
 						try {
 							cars.put(theCar);
 						} catch (InterruptedException e) {
+						}
+					}else{
+						try {
+							cars.put(theCar);
+						}
+						catch( InterruptedException e) {
+							
 						}
 					}
 				}

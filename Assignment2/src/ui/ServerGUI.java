@@ -54,7 +54,6 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 	private TableView<CarStatusRecord> jtvCarsStatus;
 	private TableView<StatisticsRecord> jtvStatistics;
 	
-	
 	private ServerController serverController;
 
 	private final static int TEXT_FIELD_MAX_WIDTH = 80;
@@ -126,6 +125,7 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 				
 			}
 		});;
+		
 		int pumpCount = serverController.getNumberOfPumps();
 		for(int i=1; i<=pumpCount; i++){
 			jcbPump.getItems().add(String.format("%d", i));

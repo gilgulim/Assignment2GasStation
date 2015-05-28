@@ -63,10 +63,10 @@ public class InsideClean extends CleaningServiceBase {
 		
 		setBusy(false);
 		
-		this.doneListener.insideCleanIsDone(theCar);
-		
 		//update car status
 		theCar.sendCarStatus(CarStatusType.AutoWashing);
+		
+		this.doneListener.insideCleanIsDone(theCar);
 		
 	}
 
