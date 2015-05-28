@@ -14,7 +14,7 @@ import pl.CarStatusPacket.CarStatusType;
 import ui.ServerGUI;
 import ui.StatisticsRecord;
 
-public class ServerController implements FillingMainFuelPool_Observer {
+public class ServerController implements FillingMainFuelPool_Observer, MinTarget_Observer {
 	private static ServerController theServerController;
 	private static Object theServerControllerMutex = new Object();
 	
@@ -25,6 +25,7 @@ public class ServerController implements FillingMainFuelPool_Observer {
 	private TcpServer tcpServer;
 	
 	private ArrayList<FillingMainFuelPool_Observer> mainFuelPoolStatusObservers;
+	private ArrayList<MinTarget_Observer> mainFuelPoolMinimumStatusObservers;
 	
 	
 	private ServerController(){
@@ -40,10 +41,12 @@ public class ServerController implements FillingMainFuelPool_Observer {
 		
 		mainFuelPoolStatusObservers = new ArrayList<FillingMainFuelPool_Observer>();
 		carChangeStateObservers = new ArrayList<CarChangeState_Observer>();
+		mainFuelPoolMinimumStatusObservers = new ArrayList<MinTarget_Observer>();
 		
 		blProxy = BlProxy.getBlProxy();
 		blProxy.runThread();
-		blProxy.getMainFuelPool().attach(this);
+		blProxy.getMainFuelPool().attachFillingMainFuelPool(this);
+		blProxy.getMainFuelPool().attachMinimumTargetAlert(this);
 	}
 	
 	
@@ -149,6 +152,10 @@ public class ServerController implements FillingMainFuelPool_Observer {
 	public void attachMainFuelPoolObserver(FillingMainFuelPool_Observer observer){
 		mainFuelPoolStatusObservers.add(observer);
 	}
+	
+	public void attachmainFuelPoolMinimumObserver(MinTarget_Observer observer){
+		mainFuelPoolMinimumStatusObservers.add(observer);
+	}
 
 	@Override
 	public void updateMainPumpStartedFueling() {
@@ -163,6 +170,14 @@ public class ServerController implements FillingMainFuelPool_Observer {
 
 		for(FillingMainFuelPool_Observer observer : mainFuelPoolStatusObservers){
 			observer.updateMainPumpFinishedFueling();
+		}
+	}
+
+
+	@Override
+	public void mainFuelPoolReachedMinimum() {
+		for(MinTarget_Observer observer : mainFuelPoolMinimumStatusObservers){
+			observer.mainFuelPoolReachedMinimum();
 		}
 	}
 }

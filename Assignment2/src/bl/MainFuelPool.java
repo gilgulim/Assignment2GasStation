@@ -120,12 +120,12 @@ public class MainFuelPool {
 		}
 	}
 	
-	public void attach(FillingMainFuelPool_Observer observer){
+	public void attachFillingMainFuelPool(FillingMainFuelPool_Observer observer){
 		  theLogger.log(Level.INFO, "In MainFuelPool::attach() - attched new fueling observer", this);
 	      fillingFuelObservers.add(observer);		
 	}
 	
-	public void attach(MinTarget_Observer observer){
+	public void attachMinimumTargetAlert(MinTarget_Observer observer){
 	      minTargetObservers.add(observer);		
 	}
 	
@@ -147,7 +147,7 @@ public class MainFuelPool {
 	
 	private void notifyAllMinTargetObservers(){
 	    for (MinTarget_Observer observer : minTargetObservers) {
-	         observer.update();
+	         observer.mainFuelPoolReachedMinimum();
 	    }
 	} 	
 }

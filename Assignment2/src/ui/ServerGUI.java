@@ -5,8 +5,10 @@ import bl.BlProxy;
 import bl.Car;
 import bl.CarChangeState_Observer;
 import bl.FillingMainFuelPool_Observer;
+import bl.MinTarget_Observer;
 import bl.ServerController;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,7 +34,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class ServerGUI extends Application implements CarChangeState_Observer, FillingMainFuelPool_Observer{
+public class ServerGUI extends Application implements CarChangeState_Observer, FillingMainFuelPool_Observer, MinTarget_Observer{
 
 	private StackPane root;
 	private GridPane jgpRoot, jgpAddCar, jgpAddFuel, jgpStationStatus,
@@ -240,7 +242,7 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 		jlbAddFuelAmount = new Label("Fuel Amount");
 		jlbAddFuelTitle = new Label("Add Fuel to Main Pool");
 		jlbAddFuelTitle.setUnderline(true);
-		jlbAddFuelBusy = new Label("Gas station is now fueling...");
+		jlbAddFuelBusy = new Label("");
 		jlbAddFuelBusy.setVisible(false);
 		
 		jtfAddFuelAmount = new TextField("0");
@@ -356,6 +358,7 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 	
 	private void addFuelToMainRepository() {
 
+		jlbAddCarFuelAmount.setText("Gas station is now fueling...");
 		try{
 			
 			Thread fuelMainFuelPool = new Thread(new Runnable() {
@@ -405,7 +408,17 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 	
 	@Override
 	public void updateMainPumpStartedFueling() {
-		System.out.println("start fueling");
+			
+		Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+            	
+            	jlbAddFuelBusy.setVisible(true);
+        		jlbAddFuelBusy.setText("Please wait while fuelling...");      
+            	
+            }
+          });  
+		
 		jlbAddFuelBusy.setVisible(true);
 		jbnAddFuelAdd.setDisable(true);
 
@@ -413,8 +426,25 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 
 	@Override
 	public void updateMainPumpFinishedFueling() {
-		System.out.println("done fueling");
+		
 		jlbAddFuelBusy.setVisible(false);
 		jbnAddFuelAdd.setDisable(false);
+	}
+
+	@Override
+	public void mainFuelPoolReachedMinimum() {
+		
+		
+		Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+            	
+            	jlbAddFuelBusy.setVisible(true);
+        		jlbAddFuelBusy.setText("Warnning low fuel in fuel pool.");      
+            	
+            }
+          });  
+		
+		
 	}
 }

@@ -85,7 +85,7 @@ public class GasStation implements Runnable{
 		Pump pump = new Pump(fuelPool,pricePerLiter);
 
 		//Attach the pump to the fuel pool observer
-		fuelPool.attach(pump);
+		fuelPool.attachFillingMainFuelPool(pump);
 		
 		//Add the pump to the pumps list
 		pumps.add(pump);

@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-public class ConsoleUI extends MinTarget_Observer implements Runnable {
+public class ConsoleUI implements Runnable, MinTarget_Observer {
 	private BlProxy bl;
 	private boolean exitMenu;
 	private boolean minTargetMessage;
@@ -22,8 +22,8 @@ public class ConsoleUI extends MinTarget_Observer implements Runnable {
 	public ConsoleUI() {
 		bl = BlProxy.getBlProxy();
 		
-		this.subject = bl.getMainFuelPool();
-		this.subject.attach(this);
+		
+		bl.getMainFuelPool().attachMinimumTargetAlert(this);
 		minTargetMessage = false;
 		
 		
@@ -152,7 +152,7 @@ public class ConsoleUI extends MinTarget_Observer implements Runnable {
 	}
 
 	@Override
-	public void update() {
+	public void mainFuelPoolReachedMinimum() {
 		
 		if(!minTargetMessage) {
 			System.out.println("Gas is under 20% need to order fuel");
