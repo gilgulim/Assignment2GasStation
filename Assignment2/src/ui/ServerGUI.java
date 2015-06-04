@@ -74,7 +74,7 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 		initComponents();
 
 		root.getChildren().add(jgpRoot);
-		primaryStage.setScene(new Scene(root, 900, 800));
+		primaryStage.setScene(new Scene(root, 800, 600));
 		primaryStage.setTitle("Gas Station Management System");
 		primaryStage.show();
 

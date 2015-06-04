@@ -18,63 +18,60 @@ import dal.GasStationHistoryRecord.ServiceEntityType;
 import dal.GasStationMySqlConnection;
 
 public class GasStation implements Runnable{
-	GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
+	
+	private final int WATING_QUEUE_LEN = 500;
+	private final int WATING_QUEUE_TIMEOUT = 500; 
+	
 	private int id;
 	private MainFuelPool fuelPool;
-	private List<Pump> pumps = new ArrayList<Pump>();
 	
-	private CleaningService cleanService;
 	private Thread cleanServiceThread;
+	private CleaningService cleanService;
 	
-	// Pump thread pool;
-	private ArrayList<Thread> threadsPumps = null;
-	
-	private boolean fClosed = true;
-	
-	private Logger theLogger;
+	private List<Pump> pumps;
+	private ArrayList<Thread> threadsPumps;
 	
 	private BlockingQueue<Car> cars;
-	private final int WATING_QUEUE_LEN = 500;
-	private final int WATING_QUEUE_TIMEOUT = 500; //ms
-	
 	private ArrayList<Car> handledCars;
+	
+	private boolean fClosed;
+	private Logger theLogger;
 
 	
 	public GasStation(){
-		this(0);
-	}
-	
-	public GasStation(int id) {
 		
-		this.id = id;
+		id = 0;
 		fClosed = false;
+		threadsPumps = null;
+		pumps = new ArrayList<Pump>();
+		cars = new ArrayBlockingQueue<Car>(WATING_QUEUE_LEN);
+		handledCars = new ArrayList<Car>();
 		
 		// Get the system log object
 		theLogger = GasStationUtility.getSystemLog(this);
 		
-		cars = new ArrayBlockingQueue<Car>(WATING_QUEUE_LEN);
-		
-		handledCars = new ArrayList<Car>();
-		
 		theLogger.log(Level.INFO, "GasStation init", this);
 		theLogger.log(Level.INFO, "In GasStation()::GasStation()", this);
-
 		
+	}
+	
+	public GasStation(int id) {
+		this();
+		this.id = id;
 	}
 
 	public void setCleaningService(int numOfTeams, int price, int secondsPerAutoClean) {
-		
-		theLogger.log(Level.INFO, "In GasStation()::setCleaningService()", this);
 		cleanService = new CleaningService(numOfTeams, price, secondsPerAutoClean);
-		
 	}
 	
-	
+	public CleaningService getCleaningServices(){
+		return cleanService;
+	}
 	
 	public void setFuelPool(int maxCapacity,int currentCapacity) {
 		fuelPool = new MainFuelPool(maxCapacity, currentCapacity);
 	}
-	
+
 	public MainFuelPool getFuelPool() {
 		return fuelPool;
 	}
@@ -117,10 +114,6 @@ public class GasStation implements Runnable{
 		return pumps.size();
 	}
 	
-	public CleaningService getCleaningServices(){
-		return cleanService;
-	}
-	
 	public void addCar(Car car) {
 		
 		theLogger.log(Level.INFO, "GasStation::addCar()", this);
@@ -158,7 +151,6 @@ public class GasStation implements Runnable{
 		
 	}
 	
-	/* Add Fuel to main pool */
 	public void addFuelToMainPool(int numOfLiters) {
 		theLogger.log(Level.INFO, "In GasStation()::addFuelToMainPool()", this);
 		
@@ -175,9 +167,6 @@ public class GasStation implements Runnable{
 		fClosed = true;
 	}
 	
-	/*
-	 * Activate the pumps threads
-	 */
 	private void activatePumps() {
 		
 		theLogger.log(Level.INFO, "In GasStation()::activatePumps()", this);
@@ -189,7 +178,6 @@ public class GasStation implements Runnable{
 		// Create a thread for each pump
 		for (int i = 0; i < pumps.size(); i++) {
 			
-			theLogger.log(Level.INFO, "In GasStation()::activatePumps() - creating thread for pump: " + pumps.get(i).getId(), this);
 			Thread t = new Thread(pumps.get(i));
 			threadsPumps.add(t);
 			t.start();
@@ -223,17 +211,12 @@ public class GasStation implements Runnable{
 	private void activateCleaningService() {
 		theLogger.log(Level.INFO, "In GasStation()::activateCleaningService()", this);
 		cleanServiceThread = new Thread(cleanService);
-		
 		cleanServiceThread.start();
 	}
 	
 	private void deactivateCleaningService() {
-		theLogger.log(Level.INFO, "In GasStation()::deactivateCleaningService()", this);
-		
-		// send close command to the cleaning service
+		theLogger.log(Level.INFO, "In GasStation()::deactivateCleaningService()", this);		
 		cleanService.closeCleaningService();
-		
-		// Wait for the cleaning service thread to finish
 		try {
 			cleanServiceThread.join();
 		}
@@ -257,7 +240,7 @@ public class GasStation implements Runnable{
 		
 			Car theCar = null;
 			
-			// Get the new car
+			// Poll one car from the queue
 			try {
 				theCar = cars.poll(WATING_QUEUE_TIMEOUT, TimeUnit.MILLISECONDS);
 			}
@@ -266,122 +249,108 @@ public class GasStation implements Runnable{
 			}
 			
 			if (theCar != null) {	
-				//Gil: check if car finished all services
-				if ((theCar.isCleaned() == true && theCar.isFueled() == true) ){
-					cars.poll();
+
+				//If the car finished both of the services
+				if ((theCar.isCleaned() && theCar.isFueled()) ){
+					
 					theCar.sendCarStatus(CarStatusType.Exited);
 					
-				}else if (theCar.wantsFuel() == true && theCar.wantsCleaning() == true) {
+				}else if (theCar.wantsFuel() && theCar.wantsCleaning()) { //The car requires both of the services
 					if (handledCars.contains(theCar)) {
 						
-						//If the car has already been fueled and is not currently in washing then add it the washing 
-						if ((theCar.isFueled() == true) && (!theCar.getIsFueling()) && (!theCar.getIsWashing()) ) {
+						//If the car has already been fueled, it is not currently fueling and is not currently in washing then add it the cleaning service 
+						if ((theCar.isFueled()) && (!theCar.getIsFueling()) && (!theCar.getIsWashing()) ) {
 							
 							theCar.setIsWashing(true);
 							
 							// Remove from the handled list and send to cleaning
 							handledCars.remove(theCar);
+							
 							theLogger.log(Level.INFO, "In GasStation()::run() - car " + theCar.getId() + " was removed from handling queue", this);		
 							theLogger.log(Level.INFO, "In GasStation()::run() - sending car " + theCar.getId() + " to cleaning", this);
+							
 							cleanService.cleaning(theCar);
-							try {
-								cars.put(theCar);
-							} 
-							catch (InterruptedException e) {
-								e.printStackTrace();
-							}
+							
+							putCarIntoQueue(theCar);
 							
 						}else{
-							try {
-								cars.put(theCar);
-							} 
-							catch (InterruptedException e) {
-								e.printStackTrace();
-							}
+							
+							putCarIntoQueue(theCar);
 						}
 					}
-					else if(!theCar.getIsFueling() && !theCar.isFueled()) { //car not fueled
+					else if(!theCar.getIsFueling() && !theCar.isFueled()) { //The car is not fueled and not currently fueling
 						
 						theCar.setIsFueling(true);
 						
 						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to fueling", this);
 						theLogger.log(Level.INFO, "In GasStation()::run() - car " + theCar.getId() + " was added to handling queue", this);
+						
 						// Add the car to the handled cars list
 						handledCars.add(theCar);
 						
-						// send it to fueling 
+						// Send it to fueling 
 						pumps.get(theCar.getPumpNum()-1).refuel(theCar);
 											
 						// Place it back on the queue for later being cleaned
-						try {
-							cars.put(theCar);
-						}
-						catch( InterruptedException e) {
-							
-						}
+						putCarIntoQueue(theCar);
+						
 					}else{
-						try {
-							cars.put(theCar);
-						}
-						catch( InterruptedException e) {
-							
-						}
+						putCarIntoQueue(theCar);
 					}
 				}
-				else if(theCar.wantsFuel() == true && theCar.wantsCleaning() == false) {
-					//Gil: check if car finished all services
+				//The car wants fuel & doesn't wants cleaning
+				else if(theCar.wantsFuel() && !theCar.wantsCleaning()) {
+					
 					if (theCar.isFueled()){
-						cars.poll();
+						 
 						theCar.sendCarStatus(CarStatusType.Exited);
 						
 					}else if(!theCar.getIsFueling()){
 						
-						//Evyatar: Added the current state of the car to fueling
 						theCar.setIsFueling(true);
 						
 						// Fuel the car
 						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to fueling", this);
 						pumps.get(theCar.getPumpNum()-1).refuel(theCar);
 						
-						try {
-							cars.put(theCar);
-						} catch (InterruptedException e) {
-						}
+						//Returning the car back to the cars queue
+						putCarIntoQueue(theCar);
+						
 					}else{
-						try {
-							cars.put(theCar);
-						}
-						catch( InterruptedException e) {
-							
-						}
+						putCarIntoQueue(theCar);
 					}
 				}
 				else if (theCar.wantsCleaning()){
-					//Gil: check if car finished all services
+
 					if (theCar.isCleaned()){
-						cars.poll();
+						
 						theCar.sendCarStatus(CarStatusType.Exited);
+						
 					}else{
+						
 						// The car wants only cleaning					  
 						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to cleaning", this);
 						cleanService.cleaning(theCar);
-						try {
-							cars.put(theCar);
-						} catch (InterruptedException e) {}
+						
+						putCarIntoQueue(theCar);
 					}
 				}
 				else{
-					cars.poll();
 					theCar.sendCarStatus(CarStatusType.Exited);
 				}
 			}
 		}
-		
-		
+
 		deactivatePumps();
 		deactivateCleaningService();
 		
 		theLogger.log(Level.INFO, "In GasStation()::run() -  Thread is closing", this);
+	}
+	
+	private void putCarIntoQueue(Car car){
+		try {
+			cars.put(car);
+		} catch (InterruptedException e) {}
 	}
 	
 	// Get current statistics
