@@ -6,16 +6,9 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 
-import dal.GasStationMySqlConnection;
-import bl.BlProxy;
-import bl.Car;
-import bl.ClientController;
 import pl.AddCarPacket;
 import pl.BasePacket;
 import pl.BasePacket.PacketsOpcodes;
-import pl.CarStatusPacket;
-import pl.CarStatusPacket.CarStatusType;
-
 
 public class ClientEntity implements Runnable{
 
@@ -128,7 +121,6 @@ public class ClientEntity implements Runnable{
 	
 	
 	public void packetHandler(PacketsOpcodes opcode, byte[] msgData){
-		BlProxy blProxy = BlProxy.getBlProxy();
 		
 		  switch(opcode){
 		  	case AddCarOpcode:

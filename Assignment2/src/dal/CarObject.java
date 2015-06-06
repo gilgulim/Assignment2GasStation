@@ -19,6 +19,16 @@ public class CarObject {
 	@Expose
 	protected int pumpNum;
 	
+	public CarObject(){
+		
+	}
+	
+	public CarObject(int id, Boolean wantCleaning, Boolean wantFuel, int numOfLitters){
+		this.id = id;
+		this.wantCleaning = wantCleaning;
+		this.wantFuel = wantFuel;
+		this.numOfLiters = numOfLitters;
+	}
 	
 	public Boolean getFinishCleaning() {
 		return finishCleaning;

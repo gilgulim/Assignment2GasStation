@@ -6,6 +6,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
 
 import gasstation.GasStationUtility;
 
@@ -180,6 +182,9 @@ public class ClientGUI extends JFrame implements GasStationRemoteClient_Observer
 		layout.putConstraint(SpringLayout.NORTH, jrbCarleft, 30, SpringLayout.NORTH, jrbCarFuel);
 		layout.putConstraint(SpringLayout.WEST, jrbCarleft, 270, SpringLayout.WEST, jplMain);
 		
+		try {
+			jtfServerIp.setText(Inet4Address.getLocalHost().getHostAddress());
+		} catch (UnknownHostException e1) {}
 		
 		this.add(jplMain);
 		this.setSize(500, 300);

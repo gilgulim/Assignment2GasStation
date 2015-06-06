@@ -39,6 +39,7 @@ public class ServerController implements
 		
 		changeUICarStatusLock = new ReentrantLock();
 		tcpServer = new TcpServer(3456);
+		tcpServer.setPacketHandler(this);
 		tcpServer.start();
 		
 		System.out.println("Server started...");
