@@ -19,14 +19,14 @@ import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
 import pl.CarStatusPacket.CarStatusType;
-import cl.GasStationClient_Observer;
+import cl.GasStationTcpClient_Observer;
 import bl.BlProxy;
 import bl.Car;
 import bl.CarChangeState_Observer;
 import bl.ClientController;
 import bl.FillingMainFuelPool_Observer;
 
-public class ClientGUI extends JFrame implements GasStationClient_Observer{
+public class ClientGUI extends JFrame implements GasStationTcpClient_Observer{
 	
 	private JPanel jplMain;
 	private JLabel jlbCarId, jlbReqWash, jlbReqFuel, jlbServerIp, jlbServerPort, jlbServerStatus;

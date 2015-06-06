@@ -18,28 +18,14 @@ import cl.ClientEntity;
 
 import com.google.gson.annotations.*;
 
+import dal.CarObject;
 import dal.GasStationHistoryRecord;
 import dal.GasStationHistoryRecord.ActionType;
 import dal.GasStationHistoryRecord.ServiceEntityType;
 import dal.GasStationMySqlConnection;
 
 
-public class Car {
-	
-	@Expose
-	private int id;
-	@Expose
-	private Boolean finishCleaning;
-	@Expose
-	private Boolean finishFuel;
-	@Expose
-	private Boolean wantCleaning;
-	@Expose
-	private Boolean wantFuel;
-	@Expose
-	private int numOfLiters;
-	@Expose
-	private int pumpNum;
+public class Car extends CarObject {
 	
 	private int washTeamID;
 
@@ -69,6 +55,16 @@ public class Car {
 		theLogger.log(Level.INFO, "In Car::Car() - created Car id = " + id,this);
 		isFueling = false;
 		isWashing = false;
+		finishCleaning = false;
+		finishFuel = false;
+	}
+	
+	public Car(CarObject carObject){
+		this(	carObject.getId(),
+				carObject.getWantFuel(), 
+				carObject.getNumOfLiters(), 
+				carObject.getWantCleaning());
+		
 	}
 	
 	public Car(int id, boolean wantFuel, int numOfLiters, boolean wantCleaning){
@@ -76,10 +72,7 @@ public class Car {
 		this.id = id;
 		this.numOfLiters = numOfLiters;
 		this.wantFuel = wantFuel;
-		this.wantCleaning = wantCleaning;
-		this.finishCleaning = false;
-		this.finishFuel = false;
-		
+		this.wantCleaning = wantCleaning;	
 	}
 	
 	public Car(int id,Boolean wantCleaning) {
@@ -87,8 +80,6 @@ public class Car {
 		this.id = id;
 		this.wantCleaning = wantCleaning;
 		this.wantFuel = false;
-		this.finishCleaning = false;
-		this.finishFuel = false;
 	}
 	
 	public Car(int id,int numOfLiters,int pumpNum) {
@@ -98,10 +89,7 @@ public class Car {
 		this.numOfLiters = numOfLiters;
 		this.pumpNum = pumpNum;
 		this.wantFuel = true;
-		this.wantCleaning = false;
-		this.finishCleaning = false;
-		this.finishFuel = false;
-		
+		this.wantCleaning = false;		
 	}
 	
 	public Car(int id,int numOfLiters,int pumpNum,Boolean wantCleaning) {
@@ -112,8 +100,6 @@ public class Car {
 		this.pumpNum = pumpNum;
 		this.wantCleaning = wantCleaning;
 		this.wantFuel = true;
-		this.finishCleaning = false;
-		this.finishFuel = false;
 	}
 
 	private void initLog() {
@@ -150,26 +136,6 @@ public class Car {
 	
 	public boolean isCleaned() {
 		return finishCleaning;
-	}
-	
-	public int getNumOfLiters() {
-		return numOfLiters;
-	}
-	
-	public boolean wantsFuel() {
-		return wantFuel;
-	}
-	
-	public boolean wantsCleaning() {
-		return wantCleaning;
-	}
-	
-	public int getPumpNum() {
-		return pumpNum;
-	}
-	
-	public int getId() {
-		return id;
 	}
 	
 	public Boolean getIsWashing() {
@@ -250,14 +216,6 @@ public class Car {
 		return false;
 	}
 	
-	public boolean sendRandomActionToRemoteClient(){
-		WashActionPacket washActionPacket = new WashActionPacket(getDriverRandomActionName());
-		if(clientEntity!= null){
-			return clientEntity.sendData(washActionPacket.serialize());
-		}
-		return false;
-	}
-	
 	@DriverActionAnnotation
 	public String readAction(){
 		return "Read Action";
@@ -273,7 +231,15 @@ public class Car {
 		return "TalkAction";
 	}
 	
-	public String getDriverRandomActionName(){
+	private boolean sendRandomActionToRemoteClient(){
+		WashActionPacket washActionPacket = new WashActionPacket(getDriverRandomActionName());
+		if(clientEntity!= null){
+			return clientEntity.sendData(washActionPacket.serialize());
+		}
+		return false;
+	}
+	
+	private String getDriverRandomActionName(){
 		
 		List<Method> methods = getMethodsAnnotatedWith(Car.class, DriverActionAnnotation.class);
 		Random r = new Random();

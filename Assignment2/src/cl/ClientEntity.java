@@ -128,7 +128,7 @@ public class ClientEntity implements Runnable{
 		  	case AddCarOpcode:
 		  		//Deserializing the received add car packet
 		  		AddCarPacket addCarPacket = (AddCarPacket) BasePacket.deserialize(msgData, AddCarPacket.class);
-		  		Car receivedCar = addCarPacket.getCar();
+		  		Car receivedCar = new Car(addCarPacket.getCar());
 		  		
 		  		//Setting a random pump number to the car
 		  		int pumpNum = (int)(Math.random()*blProxy.getNumOfPumps())+1;

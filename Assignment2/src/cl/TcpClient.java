@@ -17,7 +17,7 @@ public class TcpClient extends  ClientEntity{
 	
 	private String remoteIp;
 	private int remotePort;
-	private List<GasStationClient_Observer> gasStationClientObservers;
+	private List<GasStationTcpClient_Observer> gasStationClientObservers;
 	
 	public TcpClient(String ipAddress, int portNumber){
 		super();
@@ -26,7 +26,7 @@ public class TcpClient extends  ClientEntity{
 		remoteIp = ipAddress;
 		remotePort = portNumber;
 		
-		gasStationClientObservers = new ArrayList<GasStationClient_Observer>();
+		gasStationClientObservers = new ArrayList<GasStationTcpClient_Observer>();
 	}
 	
 	public boolean connect() {
@@ -52,7 +52,7 @@ public class TcpClient extends  ClientEntity{
 		
 	}
 	
-	public void attachObserver(GasStationClient_Observer observer){
+	public void attachObserver(GasStationTcpClient_Observer observer){
 		gasStationClientObservers.add(observer);
 	}
 	
@@ -76,14 +76,14 @@ public class TcpClient extends  ClientEntity{
 	
 	private void carStatusNotifyAll(CarStatusType carStatus) {
 		
-		for(GasStationClient_Observer observer : gasStationClientObservers){
+		for(GasStationTcpClient_Observer observer : gasStationClientObservers){
 			observer.ReceivedCarStatusHandler(carStatus);
 		}
 	}
 	
 	private void carWashActionNotifyAll(String washAction) {
 		
-		for(GasStationClient_Observer observer : gasStationClientObservers){
+		for(GasStationTcpClient_Observer observer : gasStationClientObservers){
 			observer.ReceivedCarWashAction(washAction);
 		}
 	}

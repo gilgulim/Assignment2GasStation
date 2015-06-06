@@ -5,16 +5,16 @@ import java.util.List;
 
 import pl.AddCarPacket;
 import pl.CarStatusPacket.CarStatusType;
-import cl.GasStationClient_Observer;
+import cl.GasStationTcpClient_Observer;
 import cl.TcpClient;
 
-public class ClientController implements  GasStationClient_Observer{
+public class ClientController implements  GasStationTcpClient_Observer{
 	private TcpClient tcpClient;
 	private boolean status = false;
-	private List<GasStationClient_Observer> gasStationClientObservers;
+	private List<GasStationTcpClient_Observer> gasStationClientObservers;
 
 	public ClientController(String serverIp, int port){
-		gasStationClientObservers = new ArrayList<GasStationClient_Observer>();
+		gasStationClientObservers = new ArrayList<GasStationTcpClient_Observer>();
 		
 		tcpClient = new TcpClient(serverIp, port);
 		tcpClient.attachObserver(this);
@@ -33,7 +33,7 @@ public class ClientController implements  GasStationClient_Observer{
 		return status;
 	}
 	
-	public void attachObserver(GasStationClient_Observer observer){
+	public void attachObserver(GasStationTcpClient_Observer observer){
 		gasStationClientObservers.add(observer);
 	}
 
@@ -49,14 +49,14 @@ public class ClientController implements  GasStationClient_Observer{
 	
 	private void carStatusNotifyAll(CarStatusType carStatus) {
 		
-		for(GasStationClient_Observer observer : gasStationClientObservers){
+		for(GasStationTcpClient_Observer observer : gasStationClientObservers){
 			observer.ReceivedCarStatusHandler(carStatus);
 		}
 	}
 	
 	private void carWashActionNotifyAll(String washAction) {
 		
-		for(GasStationClient_Observer observer : gasStationClientObservers){
+		for(GasStationTcpClient_Observer observer : gasStationClientObservers){
 			observer.ReceivedCarWashAction(washAction);
 		}
 	}

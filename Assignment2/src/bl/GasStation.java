@@ -124,9 +124,9 @@ public class GasStation implements Runnable{
 		//update car status
 		car.sendCarStatus(CarStatusType.Entered);
 		
-		theLogger.log(Level.INFO, "Car id :" + car.getId() + " Want Cleaning :" + car.wantsCleaning(), this);
+		theLogger.log(Level.INFO, "Car id :" + car.getId() + " Want Cleaning :" + car.getWantCleaning(), this);
 	
-		if(car.wantsFuel()) {
+		if(car.getWantFuel()) {
 			theLogger.log(Level.INFO, "Num of Liters :" + car.getNumOfLiters() + " Pump :" + car.getPumpNum(), this);
 		}
 	}
@@ -138,9 +138,9 @@ public class GasStation implements Runnable{
 		cars.add(car);
 		
 		
-		theLogger.log(Level.INFO, "Car id :" + car.getId() + " Want Cleaning :" + car.wantsCleaning(), this);
+		theLogger.log(Level.INFO, "Car id :" + car.getId() + " Want Cleaning :" + car.getWantCleaning(), this);
 	
-		if(car.wantsFuel()) {
+		if(car.getWantFuel()) {
 			theLogger.log(Level.INFO, "Num of Liters :" + car.getNumOfLiters() + " Pump :" + car.getPumpNum(), this);
 		}
 	}
@@ -255,7 +255,7 @@ public class GasStation implements Runnable{
 					
 					theCar.sendCarStatus(CarStatusType.Exited);
 					
-				}else if (theCar.wantsFuel() && theCar.wantsCleaning()) { //The car requires both of the services
+				}else if (theCar.getWantFuel() && theCar.getWantCleaning()) { //The car requires both of the services
 					if (handledCars.contains(theCar)) {
 						
 						//If the car has already been fueled, it is not currently fueling and is not currently in washing then add it the cleaning service 
@@ -299,7 +299,7 @@ public class GasStation implements Runnable{
 					}
 				}
 				//The car wants fuel & doesn't wants cleaning
-				else if(theCar.wantsFuel() && !theCar.wantsCleaning()) {
+				else if(theCar.getWantFuel() && !theCar.getWantCleaning()) {
 					
 					if (theCar.isFueled()){
 						 
@@ -320,7 +320,7 @@ public class GasStation implements Runnable{
 						putCarIntoQueue(theCar);
 					}
 				}
-				else if (theCar.wantsCleaning()){
+				else if (theCar.getWantCleaning()){
 
 					if (theCar.isCleaned()){
 						

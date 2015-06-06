@@ -131,10 +131,10 @@ public class GasStationMySqlConnection {
 			String insertQuery;
 			Statement statement = connection.createStatement();
 			
-			if(car.wantsFuel()){
-         		insertQuery = String.format("INSERT INTO `cars` (CarID, IsCarReqFuel, IsCarReqWash, CarFuelQuantity, CarPumpID) VALUES (%s, %s, %s, %s, %s)", car.getId(), car.wantsFuel(), car.wantsCleaning(), car.getNumOfLiters(), car.getPumpNum());
+			if(car.getWantFuel()){
+         		insertQuery = String.format("INSERT INTO `cars` (CarID, IsCarReqFuel, IsCarReqWash, CarFuelQuantity, CarPumpID) VALUES (%s, %s, %s, %s, %s)", car.getId(), car.getWantFuel(), car.getWantCleaning(), car.getNumOfLiters(), car.getPumpNum());
          	}else{
-         		insertQuery = String.format("INSERT INTO `cars` (CarID, IsCarReqFuel, IsCarReqWash) VALUES (%s, %s, %s)", car.getId(), car.wantsFuel(), car.wantsCleaning());
+         		insertQuery = String.format("INSERT INTO `cars` (CarID, IsCarReqFuel, IsCarReqWash) VALUES (%s, %s, %s)", car.getId(), car.getWantFuel(), car.getWantCleaning());
          	}
          	statement.executeUpdate(insertQuery);
 			

@@ -4,21 +4,22 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 
+import dal.CarObject;
 import bl.Car;
 
 public class AddCarPacket extends BasePacket {
 	
 	@Expose
-	private Car car;
+	private CarObject car;
 	
-	public AddCarPacket(Car car){
+	public AddCarPacket(CarObject car){
 		super();
 		
 		this.opcode = PacketsOpcodes.AddCarOpcode;
 		this.car = car;
 	}
 	
-	public Car getCar(){
+	public CarObject getCar(){
 		return car;
 	}
 	

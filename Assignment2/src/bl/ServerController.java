@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import cl.GasStationClient_Observer;
+import cl.GasStationTcpClient_Observer;
 import cl.TcpServer;
 import dal.GasStationHistoryRecord.ActionType;
 import dal.GasStationHistoryRecord;
