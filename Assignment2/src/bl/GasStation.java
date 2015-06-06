@@ -326,12 +326,16 @@ public class GasStation implements Runnable{
 						
 						theCar.sendCarStatus(CarStatusType.Exited);
 						
-					}else{
+					}else if(!theCar.getIsWashing()){
+						
+						theCar.setIsWashing(true);
 						
 						// The car wants only cleaning					  
 						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to cleaning", this);
 						cleanService.cleaning(theCar);
 						
+						putCarIntoQueue(theCar);
+					}else{
 						putCarIntoQueue(theCar);
 					}
 				}
