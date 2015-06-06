@@ -16,6 +16,8 @@ public class TcpServer implements Runnable {
 	private Thread serverThread;
 	private boolean isRunning;
 	
+	private IPacketHandler packetHandler;
+	
 	private ArrayList<ClientEntity> clientsList;
 	
 	public TcpServer(int portNumber){
@@ -43,6 +45,10 @@ public class TcpServer implements Runnable {
 		clientsList = new ArrayList<ClientEntity>();
 	}
 
+	public void setPacketHandler(IPacketHandler packetHandler){
+		this.packetHandler = packetHandler;
+	}
+	
 	public void start() {
 		if(!isRunning){
 			serverThread.start();
@@ -79,6 +85,8 @@ public class TcpServer implements Runnable {
 			if(socket!=null){
 			
 				ClientEntity clientEntity = new ClientEntity(socket);
+				clientEntity.setPacketHandler(packetHandler);
+				
 				clientsList.add(clientEntity);
 				System.out.println("Client connected: " + socket.getRemoteSocketAddress().toString());
 			}

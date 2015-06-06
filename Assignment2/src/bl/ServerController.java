@@ -5,16 +5,23 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-import cl.GasStationTcpClient_Observer;
+import cl.ClientEntity;
+import cl.IPacketHandler;
 import cl.TcpServer;
+import dal.CarObject;
 import dal.GasStationHistoryRecord.ActionType;
 import dal.GasStationHistoryRecord;
 import dal.GasStationMySqlConnection;
+import pl.BasePacket.PacketsOpcodes;
 import pl.CarStatusPacket.CarStatusType;
 import ui.ServerGUI;
 import ui.StatisticsRecord;
 
-public class ServerController implements FillingMainFuelPool_Observer, MinTarget_Observer {
+public class ServerController implements 
+							FillingMainFuelPool_Observer, 
+							MinTarget_Observer,
+							IPacketHandler{
+	
 	private static ServerController theServerController;
 	private static Object theServerControllerMutex = new Object();
 	
@@ -179,5 +186,35 @@ public class ServerController implements FillingMainFuelPool_Observer, MinTarget
 		for(MinTarget_Observer observer : mainFuelPoolMinimumStatusObservers){
 			observer.mainFuelPoolReachedMinimum();
 		}
+	}
+
+
+	@Override
+	public void HandlePacket(ClientEntity sender, PacketsOpcodes opcode, Object data) {
+		
+		switch(opcode){
+			case AddCarOpcode:
+				
+				CarObject carObject = (CarObject)data;
+				Car receivedCar = new Car(carObject);
+		  		
+		  		//Setting a random pump number to the car
+		  		int pumpNum = (int)(Math.random()*blProxy.getNumOfPumps())+1;
+		  		receivedCar.setPumpNum(pumpNum);
+		  		
+		  		//Setting the client entity to the car object
+		  		receivedCar.setClientEntity(sender);
+	
+		  		//Add car to DB (moved it to BLProxy)
+		  		//GasStationMySqlConnection.getInstance().insertCar(receivedCar);
+		  		
+		  		//Adding car to the business cars queue
+	         	blProxy.addCar(receivedCar);
+				
+			break;
+		default:
+			break;
+		}
+		
 	}
 }

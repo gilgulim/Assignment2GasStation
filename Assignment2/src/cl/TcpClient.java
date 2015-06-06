@@ -17,7 +17,6 @@ public class TcpClient extends  ClientEntity{
 	
 	private String remoteIp;
 	private int remotePort;
-	private List<GasStationTcpClient_Observer> gasStationClientObservers;
 	
 	public TcpClient(String ipAddress, int portNumber){
 		super();
@@ -25,8 +24,6 @@ public class TcpClient extends  ClientEntity{
 		socket = null;
 		remoteIp = ipAddress;
 		remotePort = portNumber;
-		
-		gasStationClientObservers = new ArrayList<GasStationTcpClient_Observer>();
 	}
 	
 	public boolean connect() {
@@ -52,9 +49,6 @@ public class TcpClient extends  ClientEntity{
 		
 	}
 	
-	public void attachObserver(GasStationTcpClient_Observer observer){
-		gasStationClientObservers.add(observer);
-	}
 	
 	@Override
 	public void packetHandler(PacketsOpcodes opcode, byte[] msgData){
@@ -62,30 +56,21 @@ public class TcpClient extends  ClientEntity{
 		switch(opcode){
 		case CarStatusOpcode:
 			CarStatusPacket carStatusPacket = (CarStatusPacket)BasePacket.deserialize(msgData, CarStatusPacket.class);
-			carStatusNotifyAll(carStatusPacket.getCarStatus());
+			if(packetHandler != null){
+				packetHandler.HandlePacket(this, opcode, carStatusPacket.getCarStatus());
+			}
 			break;
 		case WashActionOpcode:
 			WashActionPacket washActionPacket = (WashActionPacket)BasePacket.deserialize(msgData, WashActionPacket.class);
-			carWashActionNotifyAll(washActionPacket.getWashAction());
+			
+			if(packetHandler != null){
+				packetHandler.HandlePacket(this, opcode, washActionPacket.getWashAction());
+			}
 			break;
 		default:
 			break;
 		}
 	
-	}
-	
-	private void carStatusNotifyAll(CarStatusType carStatus) {
-		
-		for(GasStationTcpClient_Observer observer : gasStationClientObservers){
-			observer.ReceivedCarStatusHandler(carStatus);
-		}
-	}
-	
-	private void carWashActionNotifyAll(String washAction) {
-		
-		for(GasStationTcpClient_Observer observer : gasStationClientObservers){
-			observer.ReceivedCarWashAction(washAction);
-		}
 	}
 	
 	

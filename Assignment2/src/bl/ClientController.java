@@ -4,20 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pl.AddCarPacket;
+import pl.BasePacket.PacketsOpcodes;
 import pl.CarStatusPacket.CarStatusType;
-import cl.GasStationTcpClient_Observer;
+import cl.ClientEntity;
+import cl.IPacketHandler;
 import cl.TcpClient;
 
-public class ClientController implements  GasStationTcpClient_Observer{
+public class ClientController implements IPacketHandler{
 	private TcpClient tcpClient;
 	private boolean status = false;
-	private List<GasStationTcpClient_Observer> gasStationClientObservers;
+	private List<GasStationRemoteClient_Observer> gasStationClientObservers;
 
 	public ClientController(String serverIp, int port){
-		gasStationClientObservers = new ArrayList<GasStationTcpClient_Observer>();
+		gasStationClientObservers = new ArrayList<GasStationRemoteClient_Observer>();
 		
 		tcpClient = new TcpClient(serverIp, port);
-		tcpClient.attachObserver(this);
+		tcpClient.setPacketHandler(this);
 		status = tcpClient.connect();
 		
 	}
@@ -33,31 +35,39 @@ public class ClientController implements  GasStationTcpClient_Observer{
 		return status;
 	}
 	
-	public void attachObserver(GasStationTcpClient_Observer observer){
+	public void attachObserver(GasStationRemoteClient_Observer observer){
 		gasStationClientObservers.add(observer);
-	}
-
-	@Override
-	public void ReceivedCarStatusHandler(CarStatusType carStatus) {
-		carStatusNotifyAll(carStatus);
-	}
-
-	@Override
-	public void ReceivedCarWashAction(String methodName) {
-		carWashActionNotifyAll(methodName);
 	}
 	
 	private void carStatusNotifyAll(CarStatusType carStatus) {
 		
-		for(GasStationTcpClient_Observer observer : gasStationClientObservers){
+		for(GasStationRemoteClient_Observer observer : gasStationClientObservers){
 			observer.ReceivedCarStatusHandler(carStatus);
 		}
 	}
 	
 	private void carWashActionNotifyAll(String washAction) {
 		
-		for(GasStationTcpClient_Observer observer : gasStationClientObservers){
+		for(GasStationRemoteClient_Observer observer : gasStationClientObservers){
 			observer.ReceivedCarWashAction(washAction);
+		}
+	}
+
+	@Override
+	public void HandlePacket(ClientEntity sender, PacketsOpcodes opcode, Object data) {
+		
+		switch(opcode){
+			case CarStatusOpcode:
+				CarStatusType carStatusType = (CarStatusType)data;
+				carStatusNotifyAll(carStatusType);
+				break;
+			case WashActionOpcode:
+				String washAction = (String)data;
+				carWashActionNotifyAll(washAction);
+				break;
+			default:
+				break;
+			
 		}
 	}
 }

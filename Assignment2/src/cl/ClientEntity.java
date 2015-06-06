@@ -27,6 +27,8 @@ public class ClientEntity implements Runnable{
 	protected Thread receiveThread;
 	protected boolean isActive;
 	
+	protected IPacketHandler packetHandler; 
+	
 	public ClientEntity() {
 		
 		isActive = true;
@@ -40,6 +42,10 @@ public class ClientEntity implements Runnable{
 		inputStream = new DataInputStream(socket.getInputStream());
 		outputStream = new DataOutputStream(socket.getOutputStream());
 		receiveThread.start();
+	}
+	
+	public void setPacketHandler(IPacketHandler packetHandler){
+		this.packetHandler = packetHandler;
 	}
 	
 	public boolean close(){
@@ -126,23 +132,14 @@ public class ClientEntity implements Runnable{
 		
 		  switch(opcode){
 		  	case AddCarOpcode:
+		  		
 		  		//Deserializing the received add car packet
 		  		AddCarPacket addCarPacket = (AddCarPacket) BasePacket.deserialize(msgData, AddCarPacket.class);
-		  		Car receivedCar = new Car(addCarPacket.getCar());
+		  		if(packetHandler!=null){
+		  			packetHandler.HandlePacket(this, opcode, addCarPacket.getCar());
+		  		}
 		  		
-		  		//Setting a random pump number to the car
-		  		int pumpNum = (int)(Math.random()*blProxy.getNumOfPumps())+1;
-		  		receivedCar.setPumpNum(pumpNum);
-		  		
-		  		//Setting the client entity to the car object
-		  		receivedCar.setClientEntity(this);
-	
-		  		//Add car to DB (moved it to BLProxy)
-		  		//GasStationMySqlConnection.getInstance().insertCar(receivedCar);
-		  		
-		  		//Adding car to the business cars queue
-	         	blProxy.addCar(receivedCar);
-	         	 break;
+	         	break;
 	
 		  	default:
 				break;
