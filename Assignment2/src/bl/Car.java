@@ -51,8 +51,8 @@ public class Car extends CarObject {
 	
 	public Car(){
 		initLog();
-		theLogger.log(Level.INFO, "In Car::Car()",this);
-		theLogger.log(Level.INFO, "In Car::Car() - created Car id = " + id,this);
+		theLogger.log(Level.INFO, "In Car::Car()2",this);
+		//theLogger.log(Level.INFO, "In Car::Car() - created Car id = " + id,this);
 		isFueling = false;
 		isWashing = false;
 		finishCleaning = false;
