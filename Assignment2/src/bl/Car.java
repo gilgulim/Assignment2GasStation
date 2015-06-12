@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import pl.CarStatusPacket;
 import pl.WashActionPacket;
@@ -47,12 +45,7 @@ public class Car extends CarObject {
 		return clientEntity;
 	}
 
-	private Logger theLogger;
-	
 	public Car(){
-		initLog();
-		theLogger.log(Level.INFO, "In Car::Car()2",this);
-		//theLogger.log(Level.INFO, "In Car::Car() - created Car id = " + id,this);
 		isFueling = false;
 		isWashing = false;
 		finishCleaning = false;
@@ -101,31 +94,17 @@ public class Car extends CarObject {
 		this.wantCleaning = wantCleaning;
 		this.wantFuel = true;
 	}
-
-	private void initLog() {
-		
-		theLogger = GasStationUtility.getCarLog(this, id);
-		
-	}
 	
 	public void setPumpNum(int pumpNum) {
 		this.pumpNum = pumpNum;
 	}
 	
 	public void finishCleaning() {
-		
-		theLogger.log(Level.INFO, "In Car::finishCleaning()",this);
-		theLogger.log(Level.INFO, "In Car::finishCleaning() - Car id = " + id,this);
-		
 		finishCleaning = true;
 		isWashing = false;
 	}
 	
 	public void finishFuel() {
-		
-		theLogger.log(Level.INFO, "In Car::finishFuel()",this);
-		theLogger.log(Level.INFO, "In Car::finishFuel() - Car id = " + id,this);
-		
 		finishFuel = true;
 		isFueling = false;
 	}
@@ -269,5 +248,4 @@ public class Car extends CarObject {
 	    }
 	    return methods;
 	}
-	
 }
