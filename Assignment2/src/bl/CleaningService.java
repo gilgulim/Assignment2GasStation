@@ -8,8 +8,6 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import dal.GasStationHistoryRecord;
 import dal.GasStationHistoryRecord.ServiceEntityType;
@@ -37,7 +35,6 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 	private Queue<Car> insideCleaningWaitingQueue;
 	private Object insideCleaningWaitingQueueMutex;
 	
-	private Logger theLogger;
 	private boolean fClosed;
 	
 	private Thread autoCleanThread;
@@ -59,55 +56,33 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 		
 		fClosed = false;
 		
-		// get the logger
-		theLogger = GasStationUtility.getCleaningServiceLog(this);
-		
-		theLogger.log(Level.INFO, "In CleaningService::CleaningService()", this);
-		theLogger.log(Level.INFO, "CleaningService init", this);
-		
 		createAutoCleaningTeam(secondsPerAutoClean);
 		createInsideCleaningTeams(numOfTeams);
 	}
 	
 	public void createAutoCleaningTeam(int secondsPerAutoClean) {
-		
-		theLogger.log(Level.INFO, "In CleaningService::createAutoCleaningTeam()", this);
 		autoClean = new AutoClean(secondsPerAutoClean);
 		
 	}
 	
 	public void createInsideCleaningTeams(int numOfTeams) {
-		
-		theLogger.log(Level.INFO, "In CleaningService::createAutoCleaningTeam()", this);
-		
 		numOfInsideTeams = numOfTeams;
 		for (int i = 0; i < numOfInsideTeams; i++) {
 			insideCleanArr.add(new InsideClean());
 		}
-		
-		theLogger.log(Level.INFO, "In CleaningService::createAutoCleaningTeam() - created " + numOfTeams
-					 + " inside cleaning teams", this);
 	}
 	
 	public void cleaning(Car car) {
 		// Send the car to the auto clean and then to the inside cleaning
-		theLogger.log(Level.INFO, "In CleaningService::cleaning()", this);
-		theLogger.log(Level.INFO, "In CleaningService::cleaning() - car " + car.getId() + " wants to enter", this);
-		
 		try {
 			cars.put(car);
 		}
 		catch (InterruptedException e) {
 			
 		}
-		
-		theLogger.log(Level.INFO, "In CleaningService::cleaning() - car " + car.getId() + " is in queue", this);
-		
 	}
 
 	public void closeCleaningService() {
-		
-		theLogger.log(Level.INFO, "In CleaningService::closeCleaningService()", this);
 		fClosed = true;
 	}
 	
@@ -123,11 +98,6 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 	 * start threads
 	 */
 	private void startServiceThreads() {
-		
-		theLogger.log(Level.INFO, "In CleaningService::startServiceThreads()", this);
-		
-		// Create the auto clean threads
-		theLogger.log(Level.INFO, "In CleaningService::startServiceThreads() - starting auto clean thread", this);
 		autoCleanThread = new Thread(autoClean);
 		autoCleanThread.start();
 		
@@ -135,21 +105,20 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 		insideCleanThreads = new ArrayList<Thread>();
 		
 		for (InsideClean i : insideCleanArr) {
-			theLogger.log(Level.INFO, "In CleaningService()::startServiceThreads() - creating thread for inside team: " + i.getId(), this);
-			Thread t = new Thread(i);
-			insideCleanThreads.add(t);
-			t.start();
-			theLogger.log(Level.INFO, "In CleaningService()::startServiceThreads() - created thread for inside team: " + i.getId(), this);
+			startServiceSingleThread(i);
 		}
+	}
+	
+	private void startServiceSingleThread(InsideClean insideClean){
+		Thread t = new Thread(insideClean);
+		insideCleanThreads.add(t);
+		t.start();
 	}
 	
 	/*
 	 * start threads
 	 */
 	private void stopServiceThreads() {
-		
-		theLogger.log(Level.INFO, "In CleaningService::stopServiceThreads()", this);
-		
 		// Send the close command to the auto cleaning team
 		autoClean.closeService();
 		
@@ -175,8 +144,6 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 		catch(InterruptedException e) {
 			
 		}
-		
-		theLogger.log(Level.INFO, "In CleaningService::stopServiceThreads() - service threads finished", this);
 	}
 	
 	// Get the next car
@@ -193,36 +160,33 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 		}
 		
 		if (nextCar != null)
-			theLogger.log(Level.INFO, "In CleaningService::getNextCar() - car " + nextCar.getId() + " is ready to be served", this);
-		
+			loggerNextCarExist(nextCar);
 		return nextCar;
 	}
 	
-	private void serveAutoClean(Car nextCar) {
-		
+	private void loggerNextCarExist(Car car){	
+	}
 	
-		if (autoClean.isBusy() == false) {
-			// Send the car to auto clean
-			theLogger.log(Level.INFO, "In CleaningService::run() - sending car " + nextCar.getId()
-					 + " to auto cleaning", this);
-			autoClean.cleaning(nextCar,this);
+	private void serveAutoClean(Car nextCar) {
+		serveAutoCleanWithStatus(nextCar, autoClean.isBusy());	
+	}
+	
+	private void serveAutoCleanWithStatus(Car car, boolean status){
+		if (!status){
+			autoClean.cleaning(car,this);
+		}else{
+			autoCleaningWaitingQueue.add(car);
 		}
-		else {
-			theLogger.log(Level.INFO, "In CleaningService::run() - sending car " + nextCar.getId()
-					 + " to auto cleaning queue", this);
-			autoCleaningWaitingQueue.add(nextCar);
-		}
-		
 	}
 	
 	// Get the first team ready for job
-	private InsideClean getFirstReadyInsideTeam() {
+	private InsideClean getFirstReadyInsideTeam(int size) {
 		
 		InsideClean first = null;
 		
-		for (InsideClean i : insideCleanArr) {
-			if (i.isBusy() == false) {
-				first = i;
+		for (int i = 0 ; i < size ; i++){
+			if (insideCleanArr.get(i).isBusy() == false) {
+				first = insideCleanArr.get(i);
 			}
 		}
 		
@@ -239,26 +203,14 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 		synchronized (insideCleaningWaitingQueueMutex) {
 			
 			while (insideCleaningWaitingQueue.size() > 0 && fTeamsFull == false) {
-				
-				theLogger.log(Level.INFO, "In CleaningService::serveInsideClean() - there are " + 
-						insideCleaningWaitingQueue.size() + " cars wating for inside cleaning", this);
-				
-				InsideClean team = getFirstReadyInsideTeam();
-				
+				InsideClean team = getFirstReadyInsideTeam(insideCleaningWaitingQueue.size());
 				if (team != null) {
-					
 					Car car = insideCleaningWaitingQueue.poll();
-					
-					theLogger.log(Level.INFO, "In CleaningService::serveInsideClean() - sending car " + 
-								  car.getId() + " to team " + team.getId(), this);
-					
-					team.cleaning(car, this);
-					
-					
+					sendCarToTeam(car,team);
 				}
 				else {
 					fTeamsFull = true;
-					theLogger.log(Level.INFO, "In CleaningService::serveInsideClean() - all inside cleaning teams are busy", this);
+					loggerTeamsAreBusy();
 				}
 				
 			}
@@ -266,40 +218,36 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 		}
 	}
 	
+	
+	private void loggerTeamsAreBusy() {
+	}
+
+	private void sendCarToTeam(Car car, InsideClean team) {
+		team.cleaning(car, this);
+	}
+
 	@Override
 	public void autoCleanIsDone(Car car) {
-		
 		// Handle the auto clean is done event by adding antoher to the auto clean service
-		theLogger.log(Level.INFO, "In CleaningService::autoCleanIsDone()", this);
-		theLogger.log(Level.INFO, "In CleaningService::autoCleanIsDone() - car " + car.getId() + 
-					  " finished the auto clean", this);
-
-		//Send the car to inside cleaning
+		// Send the car to inside cleaning
 		insideCleaningWaitingQueue.add(car);
-		
-		theLogger.log(Level.INFO, "In CleaningService::run() - car " + car.getId()
-				 + " is added to inside cleaning queue", this);
 		
 		// Get the next car if exists
 		Car next = autoCleaningWaitingQueue.poll();
 		
 		if (next != null) {
-			
-			theLogger.log(Level.INFO, "In CleaningService::run() - sending car " + next.getId()
-					+ " to auto cleaning", this);
-			
-			autoClean.cleaning(next, this);
+			assignCarToAutoClean(next);
 		}
 	}
 	
+	private void assignCarToAutoClean(Car car) {
+		autoClean.cleaning(car, this);	
+	}
+
 	@Override
 	public void insideCleanIsDone(Car car) {
 
 		// Handle the inside clean is done event by marking the car cleaning as finished
-		theLogger.log(Level.INFO, "In CleaningService::insideCleanIsDone()", this);
-		theLogger.log(Level.INFO, "In CleaningService::insideCleanIsDone() - car " + car.getId() + 
-					  " finished the inside clean", this);
-		
 		synchronized (numOfCarsServedMutex) {
 			numOfCarsServed++;
 		}
@@ -314,10 +262,6 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 	// Cleaning service thread entry point
 	@Override
 	public void run() {
-		
-		theLogger.log(Level.INFO, "In CleaningService::run()", this);
-		theLogger.log(Level.INFO, "In CleaningService::run() - started running as a seperate thread", this);
-		
 		// Start service threads
 		startServiceThreads();
 		
@@ -337,8 +281,6 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 		
 		// Stop service threads
 		stopServiceThreads();
-		
-		theLogger.log(Level.INFO, "In CleaningService::run() - Cleaning service is now closed", this);
 	}
 	
 	// Current number of cars served
