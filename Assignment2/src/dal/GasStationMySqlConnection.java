@@ -2,18 +2,14 @@ package dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import dal.GasStationHistoryRecord.ActionType;
 import dal.GasStationHistoryRecord.ServiceEntityType;
-import bl.Car;
 import bl.GasStation;
 import bl.Pump;
 
@@ -124,7 +120,7 @@ public class GasStationMySqlConnection {
 		return true;
 	}
 	
-	public boolean insertCar(Car car){
+	public boolean insertCar(CarObject car){
 
 		try{
 			
@@ -136,6 +132,7 @@ public class GasStationMySqlConnection {
          	}else{
          		insertQuery = String.format("INSERT INTO `cars` (CarID, IsCarReqFuel, IsCarReqWash) VALUES (%s, %s, %s)", car.getId(), car.getWantFuel(), car.getWantCleaning());
          	}
+			
          	statement.executeUpdate(insertQuery);
 			
 		}catch(Exception ex){
@@ -181,9 +178,9 @@ public class GasStationMySqlConnection {
 			
 			//Insert All Cars
 			
-			Iterator<Car> carIt = gasStation.getCarsIterator();
+			Iterator<CarObject> carIt = gasStation.getCarsIterator();
 			while(carIt.hasNext()) {
-		         Car car = carIt.next();
+		         CarObject car = carIt.next();
 		         
 		         insertCar(car);
 		         insertCarHistoryLog(car);
@@ -196,7 +193,7 @@ public class GasStationMySqlConnection {
 		return true;
 	}
 	
-	private void insertCarHistoryLog(Car car) {
+	private void insertCarHistoryLog(CarObject car) {
 		insertGasStationHistoryRecord(new GasStationHistoryRecord(car.getId(),ActionType.Enter,null,null));
 	}
 

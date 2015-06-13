@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import pl.CarStatusPacket.CarStatusType;
+import dal.CarObject;
 import dal.GasStationHistoryRecord;
 import dal.GasStationHistoryRecord.ActionType;
 import dal.GasStationHistoryRecord.ServiceEntityType;
@@ -31,7 +32,7 @@ public class GasStation implements Runnable{
 	private List<Pump> pumps;
 	private ArrayList<Thread> threadsPumps;
 	
-	private BlockingQueue<Car> cars;
+	private BlockingQueue<CarObject> cars;
 	private ArrayList<Car> handledCars;
 	
 	private boolean fClosed;
@@ -44,7 +45,7 @@ public class GasStation implements Runnable{
 		fClosed = false;
 		threadsPumps = null;
 		pumps = new ArrayList<Pump>();
-		cars = new ArrayBlockingQueue<Car>(WATING_QUEUE_LEN);
+		cars = new ArrayBlockingQueue<CarObject>(WATING_QUEUE_LEN);
 		handledCars = new ArrayList<Car>();
 		
 		// Get the system log object
@@ -106,7 +107,7 @@ public class GasStation implements Runnable{
 		return null;
 	}
 	
-	public Iterator<Car> getCarsIterator(){
+	public Iterator<CarObject> getCarsIterator(){
 		return cars.iterator();
 	}
 	
@@ -242,7 +243,7 @@ public class GasStation implements Runnable{
 			
 			// Poll one car from the queue
 			try {
-				theCar = cars.poll(WATING_QUEUE_TIMEOUT, TimeUnit.MILLISECONDS);
+				theCar = (Car)cars.poll(WATING_QUEUE_TIMEOUT, TimeUnit.MILLISECONDS);
 			}
 			catch(InterruptedException e) {
 				
