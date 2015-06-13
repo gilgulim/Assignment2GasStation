@@ -29,6 +29,8 @@ public class GasStation implements Runnable{
 	private CleaningService cleanService;
 	
 	private List<Pump> pumps;
+
+
 	private ArrayList<Thread> threadsPumps;
 	
 	private BlockingQueue<Car> cars;
@@ -46,12 +48,6 @@ public class GasStation implements Runnable{
 		pumps = new ArrayList<Pump>();
 		cars = new ArrayBlockingQueue<Car>(WATING_QUEUE_LEN);
 		handledCars = new ArrayList<Car>();
-		
-		// Get the system log object
-		theLogger = GasStationUtility.getSystemLog(this);
-		
-		theLogger.log(Level.INFO, "GasStation init", this);
-		theLogger.log(Level.INFO, "In GasStation()::GasStation()", this);
 		
 	}
 	
@@ -116,33 +112,16 @@ public class GasStation implements Runnable{
 	
 	public void addCar(Car car) {
 		
-		theLogger.log(Level.INFO, "GasStation::addCar()", this);
-		
 		// Add the car to the list
 		cars.add(car);
 		
 		//update car status
 		car.sendCarStatus(CarStatusType.Entered);
-		
-		theLogger.log(Level.INFO, "Car id :" + car.getId() + " Want Cleaning :" + car.getWantCleaning(), this);
-	
-		if(car.getWantFuel()) {
-			theLogger.log(Level.INFO, "Num of Liters :" + car.getNumOfLiters() + " Pump :" + car.getPumpNum(), this);
-		}
 	}
 	
 	public void addInitCar(Car car) {
-		theLogger.log(Level.INFO, "GasStation::addCar()", this);
-		
 		// Add the car to the list
 		cars.add(car);
-		
-		
-		theLogger.log(Level.INFO, "Car id :" + car.getId() + " Want Cleaning :" + car.getWantCleaning(), this);
-	
-		if(car.getWantFuel()) {
-			theLogger.log(Level.INFO, "Num of Liters :" + car.getNumOfLiters() + " Pump :" + car.getPumpNum(), this);
-		}
 	}
 	
 	public int getCarsListSize() {
@@ -152,14 +131,10 @@ public class GasStation implements Runnable{
 	}
 	
 	public void addFuelToMainPool(int numOfLiters) {
-		theLogger.log(Level.INFO, "In GasStation()::addFuelToMainPool()", this);
-		
 		try {
 			fuelPool.fullGas(numOfLiters);
 		}
 		catch(FuelPoolException e) {
-			theLogger.log(Level.INFO, "In GasStation()::addFuelToMainPool() - got fuel exception: ", this);
-			theLogger.log(Level.INFO, e.getMessage(), this);
 		}
 	}
 	
@@ -168,30 +143,22 @@ public class GasStation implements Runnable{
 	}
 	
 	private void activatePumps() {
-		
-		theLogger.log(Level.INFO, "In GasStation()::activatePumps()", this);
-		theLogger.log(Level.INFO, "In GasStation()::activatePumps() - creating thread pool for " + pumps.size() + " pumps", this);
-		
-		
 		threadsPumps = new ArrayList<Thread>(pumps.size());
 		
 		// Create a thread for each pump
 		for (int i = 0; i < pumps.size(); i++) {
-			
-			Thread t = new Thread(pumps.get(i));
-			threadsPumps.add(t);
-			t.start();
-			theLogger.log(Level.INFO, "In GasStation()::activatePumps() - created thread for pump: " + pumps.get(i).getId(), this);
+			createThreadForPump(i);
 		}
 		
 	}
 	
+	private void createThreadForPump(int i) {
+		Thread t = new Thread(pumps.get(i));
+		threadsPumps.add(t);
+		t.start();
+	}
+
 	private void deactivatePumps() {
-		
-		theLogger.log(Level.INFO, "In GasStation()::deactivatePumps()", this);
-		
-		// send close command to each pump
-		theLogger.log(Level.INFO, "In GasStation()::deactivatePumps() - sending close command to the pumps", this);
 		for (Pump p : pumps) {
 			p.closePump();
 		}
@@ -209,13 +176,11 @@ public class GasStation implements Runnable{
 	}
 	
 	private void activateCleaningService() {
-		theLogger.log(Level.INFO, "In GasStation()::activateCleaningService()", this);
 		cleanServiceThread = new Thread(cleanService);
 		cleanServiceThread.start();
 	}
 	
 	private void deactivateCleaningService() {
-		theLogger.log(Level.INFO, "In GasStation()::deactivateCleaningService()", this);		
 		cleanService.closeCleaningService();
 		try {
 			cleanServiceThread.join();
@@ -227,11 +192,6 @@ public class GasStation implements Runnable{
 	
 	@Override
 	public void run() {
-	
-		// Run the logic on the different cars
-		theLogger.log(Level.INFO, "In GasStation()::run()", this);
-		theLogger.log(Level.INFO, "In GasStation()::run() -  Started running as a separate thread", this);
-		
 		// Activate the pumps and the cleaning service
 		activatePumps();
 		activateCleaningService();
@@ -260,31 +220,23 @@ public class GasStation implements Runnable{
 						
 						//If the car has already been fueled, it is not currently fueling and is not currently in washing then add it the cleaning service 
 						if ((theCar.isFueled()) && (!theCar.getIsFueling()) && (!theCar.getIsWashing()) ) {
-							
+							loggerHandleCarIsFueledNotFuelingNotWashing(theCar);
 							theCar.setIsWashing(true);
 							
 							// Remove from the handled list and send to cleaning
 							handledCars.remove(theCar);
-							
-							theLogger.log(Level.INFO, "In GasStation()::run() - car " + theCar.getId() + " was removed from handling queue", this);		
-							theLogger.log(Level.INFO, "In GasStation()::run() - sending car " + theCar.getId() + " to cleaning", this);
-							
 							cleanService.cleaning(theCar);
 							
 							putCarIntoQueue(theCar);
-							
 						}else{
 							
 							putCarIntoQueue(theCar);
 						}
 					}
 					else if(!theCar.getIsFueling() && !theCar.isFueled()) { //The car is not fueled and not currently fueling
-						
+						loggerHandleCarNotFuelingNotFueled(theCar);
 						theCar.setIsFueling(true);
-						
-						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to fueling", this);
-						theLogger.log(Level.INFO, "In GasStation()::run() - car " + theCar.getId() + " was added to handling queue", this);
-						
+
 						// Add the car to the handled cars list
 						handledCars.add(theCar);
 						
@@ -310,7 +262,7 @@ public class GasStation implements Runnable{
 						theCar.setIsFueling(true);
 						
 						// Fuel the car
-						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to fueling", this);
+						loggerHandleCarWantFuelNotCleanNotFueling(theCar);
 						pumps.get(theCar.getPumpNum()-1).refuel(theCar);
 						
 						//Returning the car back to the cars queue
@@ -330,8 +282,8 @@ public class GasStation implements Runnable{
 						
 						theCar.setIsWashing(true);
 						
-						// The car wants only cleaning					  
-						theLogger.log(Level.INFO, "In GasStation()::run() - sendind car " + theCar.getId() + " to cleaning", this);
+						// The car wants only cleaning	
+						loggerHandleCarOnlyClean(theCar);
 						cleanService.cleaning(theCar);
 						
 						putCarIntoQueue(theCar);
@@ -347,10 +299,20 @@ public class GasStation implements Runnable{
 
 		deactivatePumps();
 		deactivateCleaningService();
-		
-		theLogger.log(Level.INFO, "In GasStation()::run() -  Thread is closing", this);
 	}
 	
+	private void loggerHandleCarOnlyClean(Car theCar) {
+	}
+
+	private void loggerHandleCarWantFuelNotCleanNotFueling(Car theCar) {
+	}
+
+	private void loggerHandleCarNotFuelingNotFueled(Car theCar) {
+	}
+
+	private void loggerHandleCarIsFueledNotFuelingNotWashing(Car theCar) {
+	}
+
 	private void putCarIntoQueue(Car car){
 		try {
 			cars.put(car);
@@ -381,4 +343,7 @@ public class GasStation implements Runnable{
 		return stats;
 	}
 
+	public List<Pump> getPumps() {
+		return pumps;
+	}
 }
