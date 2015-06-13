@@ -38,14 +38,14 @@ public aspect BlProxyLogger {
 		logger.log(Level.INFO, "In BLProxy:: Running the BL as a seperate thread", theBlProxy);
 	}
 	
-	pointcut addFuelToMainPool() : execution (public void addFuelToMainPool(..));
+	pointcut addFuelToMainPool() : execution (public void bl.BlProxy.addFuelToMainPool(..));
 
 	after() : addFuelToMainPool(){
 		logger.log(Level.INFO, "In BLProxy()::addFuelToMainPool()", theBlProxy);
 		logger.log(Level.INFO, "In BLProxy():: Got fuel addition request", theBlProxy);
 	}
 	
-	pointcut getNumOfPumps() : execution (public int getNumOfPumps());
+	pointcut getNumOfPumps() : execution (public int bl.BlProxy.getNumOfPumps());
 
 	after() : getNumOfPumps(){
 		logger.log(Level.INFO, "In BLProxy()::getNumOfPumps()", theBlProxy);
@@ -53,7 +53,7 @@ public aspect BlProxyLogger {
 				theBlProxy);
 	}
 	
-	pointcut getMainFuelPool() : execution (public MainFuelPool getMainFuelPool());
+	pointcut getMainFuelPool() : execution (public MainFuelPool bl.BlProxy.getMainFuelPool());
 
 	after() : getMainFuelPool(){
 		logger.log(Level.INFO, "In BLProxy()::getMainFuelPool()", theBlProxy);
@@ -61,7 +61,7 @@ public aspect BlProxyLogger {
 				theBlProxy);
 	}
 	
-	pointcut getGasStationStatistics() : execution (public GasStationStatistics getGasStationStatistics());
+	pointcut getGasStationStatistics() : execution (public GasStationStatistics bl.BlProxy.getGasStationStatistics());
 
 	after() : getGasStationStatistics(){
 		logger.log(Level.INFO, "In BLProxy()::getGasStationStatistics()",
@@ -70,7 +70,7 @@ public aspect BlProxyLogger {
 				.log(Level.INFO, "In BLProxy():: Got statistics request", theBlProxy);
 	}
 
-	pointcut closeGasStation() : execution (public void closeGasStation());
+	pointcut closeGasStation() : execution (public void bl.BlProxy.closeGasStation());
 
 	after() : closeGasStation(){
 		logger.log(Level.INFO, "In BLProxy()::closeGasStation()", theBlProxy);
