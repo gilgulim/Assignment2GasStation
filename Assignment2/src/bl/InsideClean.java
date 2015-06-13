@@ -33,6 +33,11 @@ public class InsideClean extends CleaningServiceBase {
 	 * Serve the inside clean
 	 */
 	protected void serveCar(Car theCar) {
+		serveCarInsideClean(theCar);
+
+	}
+
+	private void serveCarInsideClean(Car theCar) {
 		double cleaningTime = Math.random();
 
 		countCleaningTime(theCar, cleaningTime);

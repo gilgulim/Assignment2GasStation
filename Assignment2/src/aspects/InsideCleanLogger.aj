@@ -21,14 +21,14 @@ public aspect InsideCleanLogger {
 		logger.log(Level.INFO, "InsideCleaningTeam init ( id = " + theInsideClean.getId() + " )", theInsideClean);
 	}
 
-	pointcut serveCar(Car car) : (execution (protected void serveCar(Car)) && args(car));
+	pointcut serveCarInsideClean(Car car) : (execution (private void serveCarInsideClean(Car)) && args(car));
 
-	before(Car car) : serveCar(car){
+	before(Car car) : serveCarInsideClean(car){
 		logger.log(Level.INFO, "AutoCleaningTeam - car " + car.getId() + " Arrived", theInsideClean);
 		logger.log(Level.INFO, "In InsideClean::serveCar() - inside clean car " + car.getId(), theInsideClean);
 	}
 	
-	after(Car car) : serveCar(car){
+	after(Car car) : serveCarInsideClean(car){
 		logger.log(Level.INFO, "In InsideClean::serveCar() - inside clean car " + car.getId() + " finished", theInsideClean);
 	}
 	
