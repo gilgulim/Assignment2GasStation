@@ -26,15 +26,7 @@ public class GasStationServlet extends HttpServlet {
      */
     public GasStationServlet() {
         super();
-        
-        String localIpAddress = "";
-        
-        try {
-        	localIpAddress = Inet4Address.getLocalHost().getHostAddress();
-		} catch (UnknownHostException e) {}
-        
-        tcpClient = new TcpClient(localIpAddress, 3456);
-        tcpClient.connect();
+
     }
 
 	/**
@@ -43,15 +35,55 @@ public class GasStationServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, 
             HttpServletResponse response) 
         throws ServletException, IOException {
+    	 
+    	PrintWriter out = response.getWriter();
     	
-        PrintWriter out = response.getWriter();
-        out.println("Sending car's data to server...");
+        //Connect to main  gas station server
+        String localIpAddress = "";
         
-        CarObject carObject = new CarObject(111, true, true, 20);
+        try {
+        	localIpAddress = Inet4Address.getLocalHost().getHostAddress();
+		} catch (UnknownHostException e) {}
         
-        AddCarPacket addCarPacket = new AddCarPacket(carObject);
-        
-        tcpClient.sendData(addCarPacket.serialize());
+        tcpClient = new TcpClient(localIpAddress, 3456);
+        if(tcpClient.connect()){
+        	 
+         	String carId = request.getParameter("carId").trim();
+         	String gasAmount = request.getParameter("gasAmount").trim();
+         	String actionType = request.getParameter("actionType").trim();
+         	
+         	CarObject carObject=null;
+         	actionType = actionType.toLowerCase();
+         	
+         	try{
+	         	if(actionType.contains("fuel")&& actionType.contains("wash")){
+	         		
+	         		carObject = new CarObject(Integer.parseInt(carId), true, true, Integer.parseInt(gasAmount));
+	         		
+	         	}else if(actionType.contains("wash")){
+	         		carObject = new CarObject(Integer.parseInt(carId), true, false, 0);
+	         		
+	         	}else if(actionType.contains("fuel")){
+	         		carObject = new CarObject(Integer.parseInt(carId), false, true, Integer.parseInt(gasAmount));
+	         	}
+         	}catch(Exception ex){
+         		
+         	}
+         	
+         	if(carObject!=null){
+         		AddCarPacket addCarPacket = new AddCarPacket(carObject);
+                tcpClient.sendData(addCarPacket.serialize());
+                out.println("Sending car's data to server...");
+         	}else{
+         		out.println("An error accured while parsing cars data");
+         	}
+         	
+         	tcpClient.close();
+             
+        }else{
+            out.println("An error accured while connecting to the GasStation tcp server.");
+        }
+       
     }
 
 	/**
