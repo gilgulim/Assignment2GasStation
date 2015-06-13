@@ -1,4 +1,4 @@
-package dal;
+package dal.dataObjects;
 
 public class GasStationHistoryRecord {
 	

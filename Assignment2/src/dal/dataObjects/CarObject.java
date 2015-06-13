@@ -1,4 +1,4 @@
-package dal;
+package dal.dataObjects;
 
 import com.google.gson.annotations.Expose;
 

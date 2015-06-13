@@ -8,8 +8,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import dal.GasStationHistoryRecord.ActionType;
-import dal.GasStationHistoryRecord.ServiceEntityType;
+import dal.dataObjects.CarObject;
+import dal.dataObjects.GasStationHistoryRecord;
+import dal.dataObjects.GasStationHistoryRecord.ActionType;
+import dal.dataObjects.GasStationHistoryRecord.ServiceEntityType;
 import bl.GasStation;
 import bl.Pump;
 

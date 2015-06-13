@@ -12,10 +12,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import pl.CarStatusPacket.CarStatusType;
-import dal.CarObject;
-import dal.GasStationHistoryRecord;
-import dal.GasStationHistoryRecord.ActionType;
-import dal.GasStationHistoryRecord.ServiceEntityType;
+import dal.dataObjects.CarObject;
+import dal.dataObjects.GasStationHistoryRecord;
+import dal.dataObjects.GasStationHistoryRecord.ActionType;
+import dal.dataObjects.GasStationHistoryRecord.ServiceEntityType;
 import dal.GasStationMySqlConnection;
 
 public class GasStation implements Runnable{

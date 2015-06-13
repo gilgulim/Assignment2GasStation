@@ -7,10 +7,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import pl.CarStatusPacket.CarStatusType;
-import dal.GasStationHistoryRecord;
 import dal.GasStationMySqlConnection;
-import dal.GasStationHistoryRecord.ActionType;
-import dal.GasStationHistoryRecord.ServiceEntityType;
+import dal.dataObjects.GasStationHistoryRecord;
+import dal.dataObjects.GasStationHistoryRecord.ActionType;
+import dal.dataObjects.GasStationHistoryRecord.ServiceEntityType;
 
 
 public class InsideClean extends CleaningServiceBase {

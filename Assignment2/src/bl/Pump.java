@@ -10,9 +10,9 @@ import java.util.logging.Logger;
 
 import pl.CarStatusPacket;
 import pl.CarStatusPacket.CarStatusType;
-import dal.GasStationHistoryRecord;
-import dal.GasStationHistoryRecord.ActionType;
-import dal.GasStationHistoryRecord.ServiceEntityType;
+import dal.dataObjects.GasStationHistoryRecord;
+import dal.dataObjects.GasStationHistoryRecord.ActionType;
+import dal.dataObjects.GasStationHistoryRecord.ServiceEntityType;
 import dal.GasStationMySqlConnection;
 
 

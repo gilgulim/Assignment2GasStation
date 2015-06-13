@@ -9,10 +9,10 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-import dal.GasStationHistoryRecord;
-import dal.GasStationHistoryRecord.ServiceEntityType;
 import dal.GasStationMySqlConnection;
-import dal.GasStationHistoryRecord.ActionType;
+import dal.dataObjects.GasStationHistoryRecord;
+import dal.dataObjects.GasStationHistoryRecord.ActionType;
+import dal.dataObjects.GasStationHistoryRecord.ServiceEntityType;
 
 public class CleaningService implements Runnable, CleaningDoneIF {
 	
