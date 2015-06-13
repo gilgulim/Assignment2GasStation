@@ -358,7 +358,6 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
 	
 	private void addFuelToMainRepository() {
 
-		jlbAddCarFuelAmount.setText("Gas station is now fueling...");
 		try{
 			
 			Thread fuelMainFuelPool = new Thread(new Runnable() {
@@ -414,21 +413,27 @@ public class ServerGUI extends Application implements CarChangeState_Observer, F
             public void run() {
             	
             	jlbAddFuelBusy.setVisible(true);
+        		jbnAddFuelAdd.setDisable(true);
         		jlbAddFuelBusy.setText("Please wait while fuelling...");      
             	
             }
           });  
-		
-		jlbAddFuelBusy.setVisible(true);
-		jbnAddFuelAdd.setDisable(true);
 
 	}
 
 	@Override
 	public void updateMainPumpFinishedFueling() {
 		
-		jlbAddFuelBusy.setVisible(false);
-		jbnAddFuelAdd.setDisable(false);
+		Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+            	
+        		jlbAddFuelBusy.setVisible(false);
+        		jbnAddFuelAdd.setDisable(false);
+            	
+            }
+          }); 
+
 	}
 
 	@Override

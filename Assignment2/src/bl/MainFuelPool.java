@@ -17,20 +17,11 @@ public class MainFuelPool {
 	private int currentCapacity;
 	private static Object theCapacityMutex = new Object();
 	
-	private Logger theLogger;
-	
 	public MainFuelPool(int maxCapacity,int currentCapacity) {
 		
 		this.maxCapacity = maxCapacity;
 		this.currentCapacity = currentCapacity;
 		
-		// Get the system log object
-		theLogger = GasStationUtility.getSystemLog(this);
-				
-		theLogger.log(Level.INFO, "MainFuelPool init", this);
-		theLogger.log(Level.INFO, "In MainFuelPool()::MainFuelPool()", this);
-		theLogger.log(Level.INFO, "In MainFuelPool()::MainFuelPool() - current capacity: " + getCurrentCapacity(), this);
-		theLogger.log(Level.INFO, "In MainFuelPool()::MainFuelPool() - max capacity: " + getMaxCapacity(), this);
 	}
 	
 	public synchronized int getCurrentCapacity() {
@@ -45,8 +36,6 @@ public class MainFuelPool {
 		
 		Boolean fMaxCapacity = false;
 		
-		theLogger.log(Level.INFO, "In MainFuelPool()::fullGas() - Liters: " + quantity, this);
-		
 		synchronized (theCapacityMutex) {
 			
 			if(currentCapacity + quantity > maxCapacity) {
@@ -54,27 +43,21 @@ public class MainFuelPool {
 			}
 			else {
 		
-				theLogger.log(Level.INFO, "In MainFuelPool()::fullGas() - Notifying observers that the pool is being fueled", this);
 				notifyAllObserversFuelingStarted();
 				
 				// Sleep for some time
 				// Random fueling time factores by the number of liters needed
-				int fuelingTime = (int)(Math.random() * quantity);
-				
-				theLogger.log(Level.INFO, "In MainFuelPool::fullGas() - pool is fueling for " + fuelingTime + " ms", this);
-				
+				double fuelingTime = (Math.random() * quantity);
+				loggerSetMainFuelPoolFuelingTime(fuelingTime);
 				try {
-					Thread.sleep(fuelingTime * 10);
+					Thread.sleep((long)fuelingTime * 10);
 				}
 				catch (InterruptedException e) {
 					
 				}
 				
-				theLogger.log(Level.INFO, "In MainFuelPool::fullGas() - pool is fueled", this);
-				
 				currentCapacity += quantity;
 				
-				theLogger.log(Level.INFO, "In MainFuelPool()::fullGas() - Notifying observers that the pool is fueled", this);
 				notifyAllObserversFuelingFinished();
 			}
 		
@@ -86,6 +69,9 @@ public class MainFuelPool {
 		
 	}
 	
+	private void loggerSetMainFuelPoolFuelingTime(double fuelingTime) {
+	}
+
 	public void getGas(int quantity) throws FuelPoolException {
 		
 		boolean fThrowException = false;
@@ -107,8 +93,6 @@ public class MainFuelPool {
 				currentCapacity -= quantity;
 				if(((float)currentCapacity / maxCapacity) < MIN_TARGET)
 				{
-					theLogger.log(Level.INFO, "In MainFuelPool::getGas() - send exception", this);
-					theLogger.log(Level.INFO, "In MainFuelPool::getGas() - current: " + currentCapacity + " max: " + maxCapacity, this);
 					notifyAllMinTargetObservers();
 				}
 			}
@@ -121,7 +105,6 @@ public class MainFuelPool {
 	}
 	
 	public void attachFillingMainFuelPool(FillingMainFuelPool_Observer observer){
-		  theLogger.log(Level.INFO, "In MainFuelPool::attach() - attched new fueling observer", this);
 	      fillingFuelObservers.add(observer);		
 	}
 	
@@ -131,7 +114,6 @@ public class MainFuelPool {
 	
 	// Notify all observers that main pool fueling started
 	private void notifyAllObserversFuelingStarted(){
-		theLogger.log(Level.INFO, "In MainFuelPool::notifyAllObserversFuelingStarted()", this);
 	    for (FillingMainFuelPool_Observer observer : fillingFuelObservers) {
 	         observer.updateMainPumpStartedFueling();
 	    }
@@ -139,7 +121,6 @@ public class MainFuelPool {
 	
 	// Notify all observers that main pool fueling started
 	private void notifyAllObserversFuelingFinished(){
-		theLogger.log(Level.INFO, "In MainFuelPool::notifyAllObserversFuelingFinished()", this);
 	    for (FillingMainFuelPool_Observer observer : fillingFuelObservers) {
 	         observer.updateMainPumpFinishedFueling();
 	    }
