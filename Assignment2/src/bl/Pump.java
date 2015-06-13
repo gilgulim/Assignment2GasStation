@@ -21,21 +21,14 @@ public class Pump implements FillingMainFuelPool_Observer, Runnable {
 	private static int counter = 0;
 	private int id;
 	private double pricePerLiter;
-	
-	private Logger theLogger;
-	
 	private BlockingQueue<Car>cars;
 	private static final int WATING_QUEUE_LEN = 10;
 	private static final int WATING_QUEUE_TIMEOUT = 50; //ms
-	
 	private Boolean fClosed;
-	
 	private int numOfCarServed;
 	private Object numOfCarServedMutex;
-	
 	private int numOfLitersUsed;
 	private Object numOfLitersUsedMutex;
-	
 	private boolean fWaitForMainPump;
 	private Object fWaitForMainPumpMutex;
 	private MainFuelPool mainFuelPool;
@@ -59,30 +52,16 @@ public class Pump implements FillingMainFuelPool_Observer, Runnable {
 		
 		fWaitForMainPump = false;
 		fWaitForMainPumpMutex = new Object();
-		
-		// Get the logger object
-		theLogger = GasStationUtility.getPumpLog(this,id);
-		
-		theLogger.log(Level.INFO, "In Pump::Pump()", this);
-		theLogger.log(Level.INFO, "Pump init (id=" + id + ")", this);
-		
-		
 	}
 	
 	public void refuel(Car car)
 	{
-		theLogger.log(Level.INFO, "In Pump::refuel()", this);
-		theLogger.log(Level.INFO, "In Pump::refuel - car " + car.getId() + " wants to enter", this);
-		
 		try {
 			cars.put(car);
 		}
 		catch (InterruptedException e) {
 			
 		}
-		
-		theLogger.log(Level.INFO, "In Pump::refuel - car " + car.getId() + " is in queue", this);
-		
 	}
 
 	private Car getNextCar() {
@@ -101,13 +80,16 @@ public class Pump implements FillingMainFuelPool_Observer, Runnable {
 			}
 			
 			if (nextCar != null)
-				theLogger.log(Level.INFO, "In Pump::getNextCar() - car " + nextCar.getId() + " is ready to be served", this);
+				loggerGetNextCar(nextCar);
 		}
 		
 		
 		return nextCar;
 	}
 	
+	private void loggerGetNextCar(Car nextCar) {
+	}
+
 	// Cars queue check
 	private boolean carsWaiting() {
 		
@@ -117,29 +99,20 @@ public class Pump implements FillingMainFuelPool_Observer, Runnable {
 	
 	// Car serving
 	private void serveCar(Car car) {
-		
-		theLogger.log(Level.INFO, "In Pump::serveCar()", this);
-		theLogger.log(Level.INFO, "In Pump::serveCar() - car " + car.getId() + " is being served", this);
-		theLogger.log(Level.INFO, "In Pump::serveCar() - car needs " +  car.getNumOfLiters() + " litres", this);
-		
 		// Fuel the car if can
 		
-		// Random fueling time factores by the number of liters needed
-		int fuelingTime = (int)(Math.random() * car.getNumOfLiters());
+		// Random fueling time factors by the number of liters needed
+		double fuelingTime = (Math.random() * car.getNumOfLiters());
 		
-		theLogger.log(Level.INFO, "In Pump::serveCar() - car  " +  car.getId() + 
-					  " is fueling for " + fuelingTime + " ms", this);
-		
-		
+		loggerSetFuelingTime(car, fuelingTime);
 		try {
 			
 			mainFuelPool.getGas(car.getNumOfLiters());
-			Thread.sleep(fuelingTime * 10);
+			Thread.sleep((long)fuelingTime * 10);
 			IncreaseNumOfCarsServed();
 			IncreaseNumOfLitersUsed(car.getNumOfLiters());
+			loggerCarIsFueled(car);
 			
-			theLogger.log(Level.INFO, "In Pump::serveCar() - car  " +  car.getId() + 
-					  " is fueled", this);
 			
 			car.finishFuel();
 			
@@ -151,7 +124,6 @@ public class Pump implements FillingMainFuelPool_Observer, Runnable {
 			
 		}
 		catch (FuelPoolException e) {
-			theLogger.log(Level.INFO,e.getMessage(),this);
 			refuel(car);
 		}
 		catch(InterruptedException e) {
@@ -159,11 +131,17 @@ public class Pump implements FillingMainFuelPool_Observer, Runnable {
 		}
 	}
 	
+	private void loggerSetFuelingTime(Car car, double fuelingTime) {
+		
+	}
+
+	private void loggerCarIsFueled(Car car) {
+	}
+
 	@Override
 	public void updateMainPumpStartedFueling() {
 		// Mark the waiting flag as true
 		synchronized (fWaitForMainPumpMutex) {
-			theLogger.log(Level.INFO, "In Pump::updateMainPumpStartedFueling() - main pump fueling",this);
 			fWaitForMainPump = true;
 		}
 	}
@@ -172,7 +150,6 @@ public class Pump implements FillingMainFuelPool_Observer, Runnable {
 	public void updateMainPumpFinishedFueling() {
 		// Mark the waiting flag as false
 		synchronized (fWaitForMainPumpMutex) {
-			theLogger.log(Level.INFO, "In Pump::updateMainPumpFinishedFueling() - main pump finished fueling",this);
 			fWaitForMainPump = false;
 		}
 		
@@ -230,19 +207,12 @@ public class Pump implements FillingMainFuelPool_Observer, Runnable {
 	}
 	
 	public void closePump() {
-		
-		theLogger.log(Level.INFO, "In Pump::closePump()", this);
 		fClosed = true;
 	}
 	
 	// Thread entry point
 	@Override
 	public void run() {
-		
-		theLogger.log(Level.INFO, "In Pump::run()", this);
-		theLogger.log(Level.INFO, "In Pump::run() - pump number: " + this.getId() + 
-					  " started running as a seperate thread", this);
-		
 		// Main loop
 		while (fClosed == false || carsWaiting()) {
 			
@@ -250,13 +220,8 @@ public class Pump implements FillingMainFuelPool_Observer, Runnable {
 			
 			// Serve the next car if exits
 			if (nextCar != null) {
-				theLogger.log(Level.INFO, "In Pump::run() - serving car " + nextCar.getId(), this);
 				serveCar(nextCar);
 			}
 		}
-		
-		theLogger.log(Level.INFO, "In Pump::run() - pump number: " + this.getId() + 
-				  " is now closed", this);
-		
 	}
 }
