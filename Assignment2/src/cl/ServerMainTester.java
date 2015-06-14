@@ -19,7 +19,9 @@ public class ServerMainTester {
 		TcpServer tcpServer = new TcpServer("192.168.43.59", 3456);
 		tcpServer.start();
 		
-		System.out.println("Server started...");
+		
+		System.out.println("Server started1...");
+		
 		try {
 			System.in.read();
 		} catch (IOException e) {

@@ -2,12 +2,14 @@ package bl;
 
 import dal.GasStationMySqlConnection;
 import dal.ReadXmlFile;
+import dal.ReadXmlFileNative;
+import dal.dataObjects.CarObject;
+import dal.dataObjects.GasStationObject;
+import dal.dataObjects.PumpObject;
 
 public class BlProxy implements Runnable {
 	private static BlProxy theBlProxy = null;
 	private static Object theBlProxyMutex = new Object();
-
-	//private GasStationsBL theBL;
 	
 	private Thread theBlThread;
 	private GasStation gasStation;
@@ -37,24 +39,30 @@ public class BlProxy implements Runnable {
 		return theBlThread;
 
 	}
-/*
-	private Thread runBlThread() {
-		// Create the BL actual object and run it as a seperate thread
-		theBL = new GasStationsBL();
-		theBL.init();
-
-		theBlThread = new Thread(theBL);
-		theBlThread.start();
-
-		return theBlThread;
-
-	}*/
 	
 	private void init() {
 
 		// Get the GasStation from configuration
-		ReadXmlFile readXmlFile = new ReadXmlFile("GasStationsConfig.xml");
-		gasStation = readXmlFile.getGasStation();
+		//ReadXmlFile readXmlFile = new ReadXmlFile("GasStationsConfig.xml");
+		//gasStation = readXmlFile.getGasStation();
+		
+		ReadXmlFileNative readXmlFile = new ReadXmlFileNative("GasStationsConfig.xml");
+		GasStationObject gsDal = readXmlFile.getGasStation();
+		
+		gasStation = new GasStation(gsDal.getId());
+		
+		gasStation.setFuelPool(gsDal.getFuelPoolObject().getMaxCapacity(), gsDal.getFuelPoolObject().getCurrentCapacity());
+		gasStation.setCleaningService(gsDal.getCleaningServiceObject().getNumOfInsideTeams(), gsDal.getCleaningServiceObject().getPrice(), gsDal.getCleaningServiceObject().getSecondsPerAutoClean());
+		
+		System.out.println("Cleaning Services: " + gsDal.getCleaningServiceObject().getNumOfInsideTeams() + " " + gsDal.getCleaningServiceObject().getPrice());
+		
+		for(CarObject car : gsDal.getCarsList()){
+			addCar(car.getId(), car.getWantFuel(), car.getPumpNum(), car.getNumOfLiters(), car.getWantCleaning());
+		}
+		
+		for(PumpObject pump : gsDal.getPumpsList()){
+			gasStation.addPump(pump.getPricePerLiter());
+		}
 		
 		GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
 		connection.insertGasStation(gasStation);

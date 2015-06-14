@@ -42,7 +42,7 @@ public class ServerController implements
 		tcpServer.setPacketHandler(this);
 		tcpServer.start();
 		
-		System.out.println("Server started...");
+		System.out.println("Server started1...");
 		
 		dbConnection = GasStationMySqlConnection.getInstance();
 		dbConnection.clearDatabase();

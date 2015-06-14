@@ -9,7 +9,7 @@ public class GasStationObject {
 	
 	private CleaningServiceObject cleaningServiceObject;
 	private FuelPoolObject fuelPoolObject;
-	
+
 	private ArrayList<CarObject> carsList;
 	private ArrayList<PumpObject> pumpsList;
 	
@@ -20,6 +20,10 @@ public class GasStationObject {
 		this.pumpsList = new ArrayList<PumpObject>();
 	}
 	
+	public int getId() {
+		return id;
+	}
+
 	public void addCar(CarObject carObject){
 		carsList.add(carObject);
 	}
@@ -42,6 +46,14 @@ public class GasStationObject {
 
 	public void setFuelPoolObject(FuelPoolObject fuelPoolObject) {
 		this.fuelPoolObject = fuelPoolObject;
+	}
+	
+	public ArrayList<CarObject> getCarsList() {
+		return carsList;
+	}
+
+	public ArrayList<PumpObject> getPumpsList() {
+		return pumpsList;
 	}
 	
 }
