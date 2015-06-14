@@ -16,6 +16,7 @@ public class BlProxy implements Runnable {
 	
 	protected BlProxy() {
 		theBlThread = null;
+		init();
 	}
 
 	public static BlProxy getBlProxy() {
@@ -70,7 +71,6 @@ public class BlProxy implements Runnable {
 	
 	@Override
 	public void run() {
-		init();
 		
 		Thread stationThread = new Thread(gasStation);
 		stationThread.start();

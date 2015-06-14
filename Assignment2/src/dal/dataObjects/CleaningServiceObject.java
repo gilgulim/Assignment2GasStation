@@ -10,7 +10,7 @@ public class CleaningServiceObject {
 	public CleaningServiceObject(int id, int numOfInsideTeams, int price, int secondsPerAutoClean){
 		this.id = id;
 		this.numOfInsideTeams = numOfInsideTeams;
-		this.price = id; 
+		this.price = price; 
 		this.secondsPerAutoClean = secondsPerAutoClean;
 	}
 	

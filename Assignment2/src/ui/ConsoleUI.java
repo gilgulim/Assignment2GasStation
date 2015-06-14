@@ -2,7 +2,7 @@ package ui;
 
 import bl.BlProxy;
 import bl.GasStationStatistics;
-import bl.MinTarget_Observer;
+import bl.observers.MinTarget_Observer;
 import gasstation.GasStationUtility;
 
 import java.util.Scanner;

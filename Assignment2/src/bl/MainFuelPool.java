@@ -5,6 +5,8 @@ import gasstation.GasStationUtility;
 import java.util.List;
 import java.util.ArrayList;
 
+import bl.observers.FillingMainFuelPool_Observer;
+import bl.observers.MinTarget_Observer;
 import dal.dataObjects.FuelPoolObject;
 
 public class MainFuelPool extends FuelPoolObject{

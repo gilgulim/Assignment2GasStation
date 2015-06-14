@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+import bl.observers.CarChangeState_Observer;
+import bl.observers.FillingMainFuelPool_Observer;
+import bl.observers.MinTarget_Observer;
 import cl.ClientEntity;
 import cl.IPacketHandler;
 import cl.TcpServer;

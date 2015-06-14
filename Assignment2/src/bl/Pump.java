@@ -3,6 +3,8 @@ package bl;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
+
+import bl.observers.FillingMainFuelPool_Observer;
 import pl.CarStatusPacket.CarStatusType;
 import dal.dataObjects.PumpObject;
 import dal.GasStationMySqlConnection;
@@ -112,10 +114,6 @@ public class Pump extends PumpObject implements FillingMainFuelPool_Observer, Ru
 			
 			//update car status
 			car.sendCarStatus(CarStatusType.Fueling);	
-			
-			
-			
-			
 		}
 		catch (FuelPoolException e) {
 			refuel(car);

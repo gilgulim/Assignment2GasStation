@@ -1,4 +1,4 @@
-package bl;
+package bl.observers;
 
 public interface FillingMainFuelPool_Observer {
 	

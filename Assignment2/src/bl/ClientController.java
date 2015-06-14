@@ -3,6 +3,7 @@ package bl;
 import java.util.ArrayList;
 import java.util.List;
 
+import bl.observers.GasStationRemoteClient_Observer;
 import pl.AddCarPacket;
 import pl.BasePacket.PacketsOpcodes;
 import pl.CarStatusPacket.CarStatusType;

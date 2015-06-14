@@ -1,4 +1,4 @@
-package bl;
+package bl.observers;
 
 import pl.CarStatusPacket.CarStatusType;
 
