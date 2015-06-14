@@ -43,15 +43,16 @@ public class BlProxy implements Runnable {
 	
 	private void init() {
 
-		// Get the GasStation from configuration
-		//ReadXmlFile readXmlFile = new ReadXmlFile("GasStationsConfig.xml");
-		//gasStation = readXmlFile.getGasStation();
-		
+		//Reading the GasStation initial data from the XML.
 		ReadXmlFileNative readXmlFile = new ReadXmlFileNative("GasStationsConfig.xml");
 		GasStationObject gsDal = readXmlFile.getGasStation();
 		
-		gasStation = new GasStation(gsDal.getId());
+		//Loading the inserting the data to the DB
+		GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
+		connection.insertGasStation(gsDal);
 		
+		//Loading the GasStation data into the BL objects
+		gasStation = new GasStation(gsDal.getId());
 		gasStation.setFuelPool(gsDal.getFuelPoolObject().getMaxCapacity(), gsDal.getFuelPoolObject().getCurrentCapacity());
 		gasStation.setCleaningService(gsDal.getCleaningServiceObject().getNumOfInsideTeams(), gsDal.getCleaningServiceObject().getPrice(), gsDal.getCleaningServiceObject().getSecondsPerAutoClean());
 		
@@ -64,9 +65,6 @@ public class BlProxy implements Runnable {
 		for(PumpObject pump : gsDal.getPumpsList()){
 			gasStation.addPump(pump.getPricePerLiter());
 		}
-		
-		GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
-		connection.insertGasStation(gasStation);
 	}
 	
 	@Override

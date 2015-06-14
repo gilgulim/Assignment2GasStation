@@ -6,14 +6,11 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Iterator;
 
-import dal.dataObjects.CarObject;
-import dal.dataObjects.GasStationHistoryRecord;
-import dal.dataObjects.GasStationHistoryRecord.ActionType;
-import dal.dataObjects.GasStationHistoryRecord.ServiceEntityType;
-import bl.GasStation;
-import bl.Pump;
+import dal.dataObjects.*;
+import dal.dataObjects.GasStationHistoryRecord.*;
+
+
 
 public class GasStationMySqlConnection {
 	
@@ -144,7 +141,7 @@ public class GasStationMySqlConnection {
 		return true;
 	}
 	
-	public boolean insertGasStation(GasStation gasStation){
+	public boolean insertGasStation(GasStationObject gasStation){
 		
 		try{
 			
@@ -152,13 +149,13 @@ public class GasStationMySqlConnection {
 			Statement statement = connection.createStatement();
 			
 			//Insert Cleaning Service Info
-			int insideTeams = gasStation.getCleaningServices().getNumOfInsideTeams();
-			int price = gasStation.getCleaningServices().getPrice();
+			int insideTeams = gasStation.getCleaningServiceObject().getNumOfInsideTeams();
+			int price = gasStation.getCleaningServiceObject().getPrice();
 			insertQuery = String.format("INSERT INTO cleanservices (CleanServiceID ,NumOfInsideTeams, CleanServicePrice) VALUES (1, %s, %s)", insideTeams, price);
 			statement.executeUpdate(insertQuery);
 			
 			//Insert Main Fuel Pool Info
-			int maxCapacity = gasStation.getFuelPool().getMaxCapacity();
+			int maxCapacity = gasStation.getFuelPoolObject().getMaxCapacity();
 			insertQuery = String.format("INSERT INTO mainfuelpool (MainFuelPoolID, MaxCapacity) VALUES (1, %s)", maxCapacity);
 			statement.executeUpdate(insertQuery);
 			
@@ -167,26 +164,21 @@ public class GasStationMySqlConnection {
 			statement.executeUpdate(insertQuery);
 			
 			//Insert All Pumps
-			for(int i=1; i<=gasStation.getNumOfPumps(); i++){
-				Pump pump = gasStation.getPump(i);
-			
+			for(PumpObject pump : gasStation.getPumpsList()){
+				
 				insertQuery = String.format("INSERT INTO `pumps` (PumpID, PumpPricePerLiter) VALUES (%s, %s)", pump.getId(), pump.getPricePerLiter());
 				statement.executeUpdate(insertQuery);
 				
 				insertQuery = String.format("INSERT INTO `gasstationpumprelationship` (GasStationID, PumpID) VALUES (%s, %s)", 1, pump.getId());
 				statement.executeUpdate(insertQuery);
-				
 			}
 			
 			//Insert All Cars
 			
-			Iterator<CarObject> carIt = gasStation.getCarsIterator();
-			while(carIt.hasNext()) {
-		         CarObject car = carIt.next();
-		         
-		         insertCar(car);
-		         insertCarHistoryLog(car);
-		    }
+			for(CarObject car : gasStation.getCarsList()){
+				insertCar(car);
+		        insertCarHistoryLog(car);
+			}
 			
 		}catch(Exception ex) {
 			return false;
@@ -199,15 +191,17 @@ public class GasStationMySqlConnection {
 		insertGasStationHistoryRecord(new GasStationHistoryRecord(car.getId(),ActionType.Enter,null,null));
 	}
 
-	public GasStation getGasStationById(int gasStationId){
-		GasStation gasStation = null;
+	public GasStationObject getGasStationById(int gasStationId){
+		GasStationObject gasStation = null;
 		
 		try{
 			Statement statement = connection.createStatement();
 			ResultSet rs = statement.executeQuery(String.format("SELECT * FROM gasstation WHERE GasStationID = %s", gasStationId));
 			
 			while(rs.next()){			
-				gasStation = new GasStation(gasStationId);
+				gasStation = new GasStationObject(gasStationId);
+				
+				//TODO: Read all the other parts of the GasStation object from the DB
 			}
 
 		}catch(Exception ex){
