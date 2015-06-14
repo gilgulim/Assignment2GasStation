@@ -1,20 +1,12 @@
 package bl;
 
-import gasstation.GasStationUtility;
+
 
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import pl.CarStatusPacket.CarStatusType;
-import dal.GasStationMySqlConnection;
-import dal.dataObjects.GasStationHistoryRecord;
-import dal.dataObjects.GasStationHistoryRecord.ActionType;
-import dal.dataObjects.GasStationHistoryRecord.ServiceEntityType;
 
 
 public class InsideClean extends CleaningServiceBase {
-	private GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
 	private static int counter = 0;
 	private int id;
 	

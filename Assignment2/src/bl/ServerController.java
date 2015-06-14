@@ -14,10 +14,10 @@ import cl.TcpServer;
 import dal.dataObjects.CarObject;
 import dal.dataObjects.GasStationHistoryRecord;
 import dal.dataObjects.GasStationHistoryRecord.ActionType;
-import dal.GasStationMySqlConnection;
+import dal.GasStationDataBaseManager;
+import dal.IDataBaseConnection;
 import pl.BasePacket.PacketsOpcodes;
 import pl.CarStatusPacket.CarStatusType;
-import ui.ServerGUI;
 import ui.StatisticsRecord;
 
 public class ServerController implements 
@@ -31,7 +31,7 @@ public class ServerController implements
 	private Lock changeUICarStatusLock;
 	private List<CarChangeState_Observer> carChangeStateObservers;
 	private BlProxy blProxy; 
-	private GasStationMySqlConnection dbConnection;
+	private IDataBaseConnection dbConnection;
 	private TcpServer tcpServer;
 	
 	private ArrayList<FillingMainFuelPool_Observer> mainFuelPoolStatusObservers;
@@ -47,7 +47,7 @@ public class ServerController implements
 		
 		System.out.println("Server started1...");
 		
-		dbConnection = GasStationMySqlConnection.getInstance();
+		dbConnection = GasStationDataBaseManager.getInstance();
 		dbConnection.clearDatabase();
 		
 		mainFuelPoolStatusObservers = new ArrayList<FillingMainFuelPool_Observer>();

@@ -1,7 +1,7 @@
 package bl;
 
-import dal.GasStationMySqlConnection;
-import dal.ReadXmlFile;
+import dal.GasStationDataBaseManager;
+import dal.IDataBaseConnection;
 import dal.ReadXmlFileNative;
 import dal.dataObjects.CarObject;
 import dal.dataObjects.GasStationObject;
@@ -48,7 +48,7 @@ public class BlProxy implements Runnable {
 		GasStationObject gsDal = readXmlFile.getGasStation();
 		
 		//Loading the inserting the data to the DB
-		GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
+		IDataBaseConnection connection = GasStationDataBaseManager.getInstance();
 		connection.insertGasStation(gsDal);
 		
 		//Loading the GasStation data into the BL objects
@@ -102,7 +102,7 @@ public class BlProxy implements Runnable {
 	}
 
 	public void addCar(Car car) {
-		GasStationMySqlConnection.getInstance().insertCar(car);
+		GasStationDataBaseManager.getInstance().insertCar(car);
 		gasStation.addCar(car);
 	}
 

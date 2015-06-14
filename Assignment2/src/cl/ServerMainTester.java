@@ -1,16 +1,14 @@
 package cl;
 
 import java.io.IOException;
-
-import ui.ServerGUI;
 import bl.BlProxy;
-import dal.GasStationMySqlConnection;
+import dal.GasStationDataBaseManager;
+import dal.IDataBaseConnection;
 
 public class ServerMainTester {
 
 	public static void main(String[] args) {
-		GasStationMySqlConnection connection;
-		connection = GasStationMySqlConnection.getInstance();
+		IDataBaseConnection connection = GasStationDataBaseManager.getInstance();
 		//connection.clearDatabase();
 		
 		

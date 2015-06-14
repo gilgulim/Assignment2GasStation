@@ -7,11 +7,12 @@ import java.util.concurrent.TimeUnit;
 import bl.observers.FillingMainFuelPool_Observer;
 import pl.CarStatusPacket.CarStatusType;
 import dal.dataObjects.PumpObject;
-import dal.GasStationMySqlConnection;
+import dal.GasStationDataBaseManager;
+import dal.IDataBaseConnection;
 
 
 public class Pump extends PumpObject implements FillingMainFuelPool_Observer, Runnable {
-	GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
+	IDataBaseConnection connection = GasStationDataBaseManager.getInstance();
 	private static int counter = 0;
 	
 	private BlockingQueue<Car>cars;

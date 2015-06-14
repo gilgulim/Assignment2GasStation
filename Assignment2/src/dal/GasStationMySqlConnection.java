@@ -11,34 +11,18 @@ import dal.dataObjects.*;
 import dal.dataObjects.GasStationHistoryRecord.*;
 
 
-
-public class GasStationMySqlConnection {
+public class GasStationMySqlConnection implements IDataBaseConnection {
 	
 	private final String DB_URL = "jdbc:mysql://cloudscan.noip.me/gasstation";
-	
 	private Connection connection = null;
-	private static boolean isConnected = false;
-	private static GasStationMySqlConnection instance = null;
+	private boolean isConnected = false;
 	
-	public static GasStationMySqlConnection getInstance(){
-		
-		if(instance == null){
-			instance = new GasStationMySqlConnection();
-
-			if(!isConnected){
-				instance = null;
-			}
-
-		}
-		
-		return instance;
-	}
 	
-	private GasStationMySqlConnection(){
+	public GasStationMySqlConnection(){
 		connect();
 	}
 	
-	public void connect() {
+	private void connect() {
 		
 		if(!isConnected){
 			

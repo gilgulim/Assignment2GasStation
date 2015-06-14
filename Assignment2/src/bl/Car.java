@@ -14,21 +14,17 @@ import pl.WashActionPacket;
 import pl.CarStatusPacket.*;
 import cl.ClientEntity;
 
-import com.google.gson.annotations.*;
-
 import dal.dataObjects.CarObject;
 import dal.dataObjects.GasStationHistoryRecord;
 import dal.dataObjects.GasStationHistoryRecord.ActionType;
 import dal.dataObjects.GasStationHistoryRecord.ServiceEntityType;
-import dal.GasStationMySqlConnection;
+import dal.GasStationDataBaseManager;
 
 
 public class Car extends CarObject {
 	
 	private int washTeamID;
-
 	private Boolean isWashing;
-	
 	private Boolean isFueling;
 	
 	public int getWashTeamID() {
@@ -149,7 +145,7 @@ public class Car extends CarObject {
 						ActionType.Enter,
 						null,
 						null);
-				GasStationMySqlConnection.getInstance().insertGasStationHistoryRecord(historyRecord);
+				GasStationDataBaseManager.getInstance().insertGasStationHistoryRecord(historyRecord);
 				break;
 		
 			case Fueling : 
@@ -158,7 +154,7 @@ public class Car extends CarObject {
 						ActionType.Fuel,
 						ServiceEntityType.FuelPump,
 						this.getPumpNum());		
-				GasStationMySqlConnection.getInstance().insertGasStationHistoryRecord(historyRecord);
+				GasStationDataBaseManager.getInstance().insertGasStationHistoryRecord(historyRecord);
 				break;
 				
 			case AutoWashing :
@@ -167,7 +163,7 @@ public class Car extends CarObject {
 						ActionType.Wash,
 						ServiceEntityType.WashTeam,
 						this.getWashTeamID()+1);
-				 GasStationMySqlConnection.getInstance().insertGasStationHistoryRecord(historyRecord);
+				 GasStationDataBaseManager.getInstance().insertGasStationHistoryRecord(historyRecord);
 				 sendRandomActionToRemoteClient();
 				break;
 			
@@ -177,7 +173,7 @@ public class Car extends CarObject {
 						ActionType.Exit,
 						null,
 						null);
-				GasStationMySqlConnection.getInstance().insertGasStationHistoryRecord(historyRecord);
+				GasStationDataBaseManager.getInstance().insertGasStationHistoryRecord(historyRecord);
 				break;
 				
 			default :
