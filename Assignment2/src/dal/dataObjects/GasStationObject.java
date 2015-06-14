@@ -1,10 +1,47 @@
 package dal.dataObjects;
 
-import com.google.gson.annotations.Expose;
+import java.util.ArrayList;
+
 
 public class GasStationObject {
 	
-	int id;
-	int fuelPullId;
-	int cleaningServiceId;
+	private int id;
+	
+	private CleaningServiceObject cleaningServiceObject;
+	private FuelPoolObject fuelPoolObject;
+	
+	private ArrayList<CarObject> carsList;
+	private ArrayList<PumpObject> pumpsList;
+	
+	public GasStationObject(int id){
+		
+		this.id = id;
+		this.carsList = new ArrayList<CarObject>();
+		this.pumpsList = new ArrayList<PumpObject>();
+	}
+	
+	public void addCar(CarObject carObject){
+		carsList.add(carObject);
+	}
+	
+	public void addPump(PumpObject pumpObject){
+		pumpsList.add(pumpObject);
+	}
+	
+	public CleaningServiceObject getCleaningServiceObject() {
+		return cleaningServiceObject;
+	}
+
+	public void setCleaningServiceObject(CleaningServiceObject cleaningServiceObject) {
+		this.cleaningServiceObject = cleaningServiceObject;
+	}
+
+	public FuelPoolObject getFuelPoolObject() {
+		return fuelPoolObject;
+	}
+
+	public void setFuelPoolObject(FuelPoolObject fuelPoolObject) {
+		this.fuelPoolObject = fuelPoolObject;
+	}
+	
 }

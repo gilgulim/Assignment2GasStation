@@ -2,14 +2,16 @@ package dal.dataObjects;
 
 public class CleaningServiceObject {
 
-	private int id;
-	private int numOfInsideTeams;
-	private int price;
+	protected int id;
+	protected int numOfInsideTeams;
+	protected int price;
+	protected int secondsPerAutoClean;
 	
-	public CleaningServiceObject(int id, int numOfInsideTeams, int price){
+	public CleaningServiceObject(int id, int numOfInsideTeams, int price, int secondsPerAutoClean){
 		this.id = id;
 		this.numOfInsideTeams = numOfInsideTeams;
 		this.price = id; 
+		this.secondsPerAutoClean = secondsPerAutoClean;
 	}
 	
 	public int getId() {
@@ -23,4 +25,9 @@ public class CleaningServiceObject {
 	public int getPrice() {
 		return price;
 	}
+	
+	public int getSecondsPerAutoClean() {
+		return secondsPerAutoClean;
+	}
+
 }

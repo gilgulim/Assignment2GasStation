@@ -1,21 +1,19 @@
 package bl;
 
-import gasstation.GasStationUtility;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import dal.GasStationMySqlConnection;
+import dal.ReadXmlFile;
 
-public class BlProxy extends GasStationBlBase {
+public class BlProxy implements Runnable {
 	private static BlProxy theBlProxy = null;
 	private static Object theBlProxyMutex = new Object();
-	private static Logger theLogger;
 
-	private GasStationsBL theBL;
-	private Thread theBlThread = null;
-
+	//private GasStationsBL theBL;
+	
+	private Thread theBlThread;
+	private GasStation gasStation;
+	
 	protected BlProxy() {
+		theBlThread = null;
 	}
 
 	public static BlProxy getBlProxy() {
@@ -33,12 +31,13 @@ public class BlProxy extends GasStationBlBase {
 
 	public Thread runThread() {
 		if (theBlThread == null) {
-			return runBlThread();
+			theBlThread = new Thread(this);
+			theBlThread.start();
 		}
 		return theBlThread;
 
 	}
-
+/*
 	private Thread runBlThread() {
 		// Create the BL actual object and run it as a seperate thread
 		theBL = new GasStationsBL();
@@ -49,6 +48,31 @@ public class BlProxy extends GasStationBlBase {
 
 		return theBlThread;
 
+	}*/
+	
+	private void init() {
+
+		// Get the GasStation from configuration
+		ReadXmlFile readXmlFile = new ReadXmlFile("GasStationsConfig.xml");
+		gasStation = readXmlFile.getGasStation();
+		
+		GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
+		connection.insertGasStation(gasStation);
+	}
+	
+	@Override
+	public void run() {
+		init();
+		
+		Thread stationThread = new Thread(gasStation);
+		stationThread.start();
+		
+		try {
+			stationThread.join();
+		}
+		catch(InterruptedException e) {
+		}
+		
 	}
 
 	/* User actions from UI */
@@ -57,40 +81,51 @@ public class BlProxy extends GasStationBlBase {
 	// ****DEPRICATED***
 	public void addCar(int id, boolean fAddToPump, int pumpNum,
 			int numOfLiters, boolean addToCleaning) {
-		theBL.addCar(id, fAddToPump, pumpNum, numOfLiters, addToCleaning);
+		Car car = null;
+		
+		if (fAddToPump == true) {
+			// Fuel and maybe cleaning
+			car = new Car(id, numOfLiters, pumpNum, addToCleaning);
+		}
+		else {
+			// No fuel
+			car = new Car(id, addToCleaning);
+		}
+		
+		gasStation.addCar(car);
 	}
 
 	public void addCar(Car car) {
 		GasStationMySqlConnection.getInstance().insertCar(car);
-		theBL.addCar(car);
+		gasStation.addCar(car);
 	}
 
 	/* Add Fuel to main pool */
 	public void addFuelToMainPool(int numOfLiters) {
-		theBL.addFuelToMainPool(numOfLiters);
+		gasStation.addFuelToMainPool(numOfLiters);
 	}
 
 	/* Get the number of pumps */
 	public int getNumOfPumps() {
-		return theBL.getNumOfPumps();
+		return gasStation.getNumOfPumps();
 	}
 
 	public MainFuelPool getMainFuelPool() {
-		return theBL.getMainFuelPool();
+		return gasStation.getFuelPool();
 	}
 
 	/* Get gas station statistics */
 	public GasStationStatistics getGasStationStatistics() {
-		return theBL.getGasStationStatistics();
+		return gasStation.getStatistics();
 	}
 
 	public CleaningService GetCleaningServices() {
-		return theBL.GetCleaningServices();
+		return gasStation.getCleaningServices();
 	}
 
 	/* close the gas station */
 	public void closeGasStation() {
-		theBL.closeGasStation();
+		gasStation.closeGasStation();
 	}
 
 }

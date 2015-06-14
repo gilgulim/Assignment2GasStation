@@ -10,11 +10,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 import dal.GasStationMySqlConnection;
+import dal.dataObjects.CleaningServiceObject;
 import dal.dataObjects.GasStationHistoryRecord;
 import dal.dataObjects.GasStationHistoryRecord.ActionType;
 import dal.dataObjects.GasStationHistoryRecord.ServiceEntityType;
 
-public class CleaningService implements Runnable, CleaningDoneIF {
+public class CleaningService extends CleaningServiceObject implements Runnable, CleaningDoneIF {
 	
 	private AutoClean autoClean;
 	private ArrayList<InsideClean> insideCleanArr;
@@ -22,9 +23,6 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 	
 	private int numOfCarsServed;
 	private Object numOfCarsServedMutex;
-	
-	private int numOfInsideTeams;
-	private int price;
 	
 	private BlockingQueue<Car>cars;
 	private static final int WATING_QUEUE_LEN = 10;
@@ -41,9 +39,9 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 	
 	public CleaningService(int numOfTeams, int price, int secondsPerAutoClean) {
 		
+		super(0, numOfTeams, price, secondsPerAutoClean);
+		
 		insideCleanArr = new ArrayList<InsideClean>();
-		this.numOfInsideTeams = numOfTeams;
-		this.price = price;
 		
 		this.numOfCarsServed = 0;
 		numOfCarsServedMutex = new Object();
@@ -84,14 +82,6 @@ public class CleaningService implements Runnable, CleaningDoneIF {
 
 	public void closeCleaningService() {
 		fClosed = true;
-	}
-	
-	public int getNumOfInsideTeams() {
-		return numOfInsideTeams;
-	}
-	
-	public int getPrice() {
-		return price;
 	}
 	
 	/*

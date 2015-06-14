@@ -15,14 +15,11 @@ public class GasStationHistoryRecord {
 		FuelPump
 	}
 	
-	
 	private int carID;
 	private ActionType actionType;
 	private ServiceEntityType serviceEntityType;
 	private Integer serviceEntityId;
 	private String dateTime;
-	
-
 
 	public GasStationHistoryRecord(	int carId, 
 									ActionType actionType, 

@@ -1,26 +1,17 @@
 package bl;
 
-import gasstation.GasStationUtility;
-
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import pl.CarStatusPacket;
 import pl.CarStatusPacket.CarStatusType;
-import dal.dataObjects.GasStationHistoryRecord;
-import dal.dataObjects.GasStationHistoryRecord.ActionType;
-import dal.dataObjects.GasStationHistoryRecord.ServiceEntityType;
+import dal.dataObjects.PumpObject;
 import dal.GasStationMySqlConnection;
 
 
-public class Pump implements FillingMainFuelPool_Observer, Runnable {
+public class Pump extends PumpObject implements FillingMainFuelPool_Observer, Runnable {
 	GasStationMySqlConnection connection = GasStationMySqlConnection.getInstance();
 	private static int counter = 0;
-	private int id;
-	private double pricePerLiter;
+	
 	private BlockingQueue<Car>cars;
 	private static final int WATING_QUEUE_LEN = 10;
 	private static final int WATING_QUEUE_TIMEOUT = 50; //ms
@@ -33,12 +24,11 @@ public class Pump implements FillingMainFuelPool_Observer, Runnable {
 	private Object fWaitForMainPumpMutex;
 	private MainFuelPool mainFuelPool;
 	
-	
-	public Pump(MainFuelPool subject,double pricePerLiter){
+	public Pump(MainFuelPool subject, int id, double pricePerLiter){
+		super(id, pricePerLiter);
 		
 		this.mainFuelPool = subject;
-		this.pricePerLiter = pricePerLiter;
-		id = ++counter;
+		
 		
 		cars = new ArrayBlockingQueue<Car>(WATING_QUEUE_LEN);
 		
@@ -52,6 +42,10 @@ public class Pump implements FillingMainFuelPool_Observer, Runnable {
 		
 		fWaitForMainPump = false;
 		fWaitForMainPumpMutex = new Object();
+	}
+	
+	public Pump(MainFuelPool subject, double pricePerLiter){
+		this(subject, ++counter, pricePerLiter);
 	}
 	
 	public void refuel(Car car)

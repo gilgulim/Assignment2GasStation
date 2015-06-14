@@ -4,32 +4,24 @@ import gasstation.GasStationUtility;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-public class MainFuelPool {
+import dal.dataObjects.FuelPoolObject;
+
+public class MainFuelPool extends FuelPoolObject{
 	private static final int ZERO = 0;
 	private static final double MIN_TARGET = 0.2;
-	private List<FillingMainFuelPool_Observer> fillingFuelObservers = new ArrayList<FillingMainFuelPool_Observer>();
-	private List<MinTarget_Observer> minTargetObservers = new ArrayList<MinTarget_Observer>();
-	private int maxCapacity;
-	
-	private int currentCapacity;
 	private static Object theCapacityMutex = new Object();
 	
+	private List<FillingMainFuelPool_Observer> fillingFuelObservers = new ArrayList<FillingMainFuelPool_Observer>();
+	private List<MinTarget_Observer> minTargetObservers = new ArrayList<MinTarget_Observer>();
+	
+	
+	public MainFuelPool(int id, int maxCapacity,int currentCapacity) {
+		super(id, maxCapacity, currentCapacity);
+	}
+	
 	public MainFuelPool(int maxCapacity,int currentCapacity) {
-		
-		this.maxCapacity = maxCapacity;
-		this.currentCapacity = currentCapacity;
-		
-	}
-	
-	public synchronized int getCurrentCapacity() {
-		return currentCapacity;
-	}
-	
-	public synchronized int getMaxCapacity() {
-		return maxCapacity;
+		super(0, maxCapacity, currentCapacity);
 	}
 	
 	public void fullGas(int quantity) throws FuelPoolException {

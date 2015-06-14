@@ -30,6 +30,14 @@ public class CarObject {
 		this.numOfLiters = numOfLitters;
 	}
 	
+	public CarObject(int id, Boolean wantCleaning, Boolean wantFuel, int numOfLitters, int pumpNum){
+		this.id = id;
+		this.wantCleaning = wantCleaning;
+		this.wantFuel = wantFuel;
+		this.numOfLiters = numOfLitters;
+		this.pumpNum = pumpNum;
+	}
+	
 	public Boolean getFinishCleaning() {
 		return finishCleaning;
 	}
