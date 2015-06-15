@@ -4,9 +4,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import dal.GasStationManagerAbstract;
 import dataObjects.CarObject;
 
-public class GasStationJPAManager {
+public class GasStationJPAManager extends GasStationManagerAbstract {
 
 	public boolean insertCar(CarObject carObject){
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("GasStationJPADAL");
