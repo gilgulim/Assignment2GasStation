@@ -2,10 +2,10 @@ package dalODBC;
 
 import java.util.ArrayList;
 
-import dal.dataObjects.CarObject;
-import dal.dataObjects.GasStationHistoryRecord;
-import dal.dataObjects.GasStationObject;
-import dal.dataObjects.GasStationHistoryRecord.ActionType;
+import dataObjects.CarObject;
+import dataObjects.GasStationHistoryRecord;
+import dataObjects.GasStationObject;
+import dataObjects.GasStationHistoryRecord.ActionType;
 
 public interface IDataBaseConnection {
 		

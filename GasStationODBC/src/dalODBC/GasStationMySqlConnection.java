@@ -7,8 +7,8 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import dal.dataObjects.*;
-import dal.dataObjects.GasStationHistoryRecord.*;
+import dataObjects.*;
+import dataObjects.GasStationHistoryRecord.*;
 
 
 public class GasStationMySqlConnection implements IDataBaseConnection {
@@ -134,7 +134,7 @@ public class GasStationMySqlConnection implements IDataBaseConnection {
 			
 			//Insert Cleaning Service Info
 			int insideTeams = gasStation.getCleaningServiceObject().getNumOfInsideTeams();
-			int price = gasStation.getCleaningServiceObject().getPrice();
+			int price = (int) gasStation.getCleaningServiceObject().getPrice();
 			insertQuery = String.format("INSERT INTO cleanservices (CleanServiceID ,NumOfInsideTeams, CleanServicePrice) VALUES (1, %s, %s)", insideTeams, price);
 			statement.executeUpdate(insertQuery);
 			
