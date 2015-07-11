@@ -2,15 +2,14 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="C:/Tomcat6/apache-tomcat-6.0.44/lib/gson-2.3.1.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GasStationJPA"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/GasStationODBC"/>
-	<classpathentry kind="lib" path="C:/Users/gilp/Desktop/spring/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gilp/Desktop/spring/spring-aop-4.1.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gilp/Desktop/spring/spring-aspects-4.1.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gilp/Desktop/spring/spring-beans-4.1.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gilp/Desktop/spring/spring-context-4.1.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gilp/Desktop/spring/spring-core-4.1.0.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/gilp/Desktop/spring/spring-expression-4.1.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Tomcat6/spring-framework-4.1.6.RELEASE/libs/spring-aop-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Tomcat6/spring-framework-4.1.6.RELEASE/libs/spring-aspects-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Tomcat6/spring-framework-4.1.6.RELEASE/libs/spring-beans-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Tomcat6/spring-framework-4.1.6.RELEASE/libs/spring-context-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Tomcat6/spring-framework-4.1.6.RELEASE/libs/spring-core-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Tomcat6/spring-framework-4.1.6.RELEASE/libs/spring-expression-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Tomcat6/lib/gson-2.3.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
