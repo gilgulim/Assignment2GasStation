@@ -283,6 +283,29 @@ public class GasStationJPAManager implements IDataBaseConnection {
 		}
 	}
 
+	@Override
+	public int getCarPaymentByCarId(int carId) {
+		EntityManagerFactory emf = Persistence
+				.createEntityManagerFactory("GasStationJPADAL");
+		EntityManager em = emf.createEntityManager();
+
+		try {
+			String sql = String.format(
+					"SELECT "
+					+ "CarID,PumpPricePerLiter + CleanServicePrice as TotalPrice "
+					+ "JOIN cleanservices "
+					+ "WHERE CarID = %d", carId);
+			Query q = em.createQuery(sql);
+			return (int) q.getSingleResult();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		} finally {
+			em.close();
+		}
+	}
+
 
 
 }

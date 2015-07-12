@@ -16,6 +16,7 @@ public interface IDataBaseConnection {
 	boolean insertGasStation(GasStationObject gasStation);
 	GasStationObject getGasStationById(int gasStationId);
 	int getLittersByCarId(int carId);
+	int getCarPaymentByCarId(int carId);
 	int getPricePerLittersByPumpId(int pumpId);
 	int getNumberOfPumps();
 	ArrayList<GasStationHistoryRecord> getStatistics(ActionType actionType, int serviceId);
