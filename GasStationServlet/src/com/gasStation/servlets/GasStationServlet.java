@@ -17,6 +17,7 @@ import dal.CarObject;
 /**
  * Servlet implementation class GasStationServlet
  */
+//http://localhost:8080/GasStationServlet/AddCar.html
 public class GasStationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private TcpClient tcpClient;
@@ -26,7 +27,14 @@ public class GasStationServlet extends HttpServlet {
      */
     public GasStationServlet() {
         super();
-
+        //Connect to main  gas station server
+        String localIpAddress = "";
+        
+        try {
+        	localIpAddress = Inet4Address.getLocalHost().getHostAddress();
+		} catch (UnknownHostException e) {}
+        
+        tcpClient = new TcpClient(localIpAddress, 3456);
     }
 
 	/**
@@ -38,14 +46,6 @@ public class GasStationServlet extends HttpServlet {
     	 
     	PrintWriter out = response.getWriter();
     	
-        //Connect to main  gas station server
-        String localIpAddress = "";
-        
-        try {
-        	localIpAddress = Inet4Address.getLocalHost().getHostAddress();
-		} catch (UnknownHostException e) {}
-        
-        tcpClient = new TcpClient(localIpAddress, 3456);
         if(tcpClient.connect()){
         	 
          	String carId = request.getParameter("carId").trim();
@@ -78,7 +78,7 @@ public class GasStationServlet extends HttpServlet {
          		out.println("An error accured while parsing cars data");
          	}
          	
-         	tcpClient.close();
+         	//tcpClient.close();
              
         }else{
             out.println("An error accured while connecting to the GasStation tcp server.");

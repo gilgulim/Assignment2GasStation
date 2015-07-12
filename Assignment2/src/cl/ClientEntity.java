@@ -114,7 +114,7 @@ public class ClientEntity implements Runnable{
 	         }
 	         catch (Exception ex)
 	         {
-	             isActive = false;
+	        	 close();
 	         }
         }
 	} 
