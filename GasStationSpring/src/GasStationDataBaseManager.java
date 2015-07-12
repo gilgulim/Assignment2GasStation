@@ -1,6 +1,7 @@
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import dal.IDataBaseConnection;
 import dalJPA.GasStationJPAManager;
 import dalODBC.GasStationMySqlConnection;
 
@@ -15,11 +16,14 @@ public class GasStationDataBaseManager {
 	
 	public static IDataBaseConnection getInstance(){
 		if(instance == null){
-			ApplicationContext theContext = new ClassPathXmlApplicationContext("DBConnection.xml");
+			ApplicationContext theContext = new ClassPathXmlApplicationContext("Settings.xml");
 
 			//XXX : not woriking currently
-			//instance = (GasStationMySqlConnection)theContext.getBean("ODBC");
+			instance = (IDataBaseConnection)theContext.getBean("ODBC");
 			//instance = (GasStationJPAManager)theContext.getBean("JPA");
+			
+			instance.clearDatabase();
+			
 		}
 		return instance;
 	}

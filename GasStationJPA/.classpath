@@ -4,5 +4,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/EclipseLink 2.5.2"/>
 	<classpathentry kind="lib" path="C:/Tomcat6/lib/gson-2.3.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GenericDAL"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -7,8 +7,10 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
-import dataObjects.*;
-import dataObjects.GasStationHistoryRecord.*;
+import dal.dataObjects.*;
+import dal.dataObjects.GasStationHistoryRecord.ActionType;
+import dal.dataObjects.GasStationHistoryRecord.ServiceEntityType;
+import dal.*;
 
 
 public class GasStationMySqlConnection implements IDataBaseConnection {

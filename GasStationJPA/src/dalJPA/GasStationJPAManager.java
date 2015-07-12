@@ -11,12 +11,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import dataObjects.CarObject;
-import dataObjects.CleaningServiceObject;
-import dataObjects.FuelPoolObject;
-import dataObjects.GasStationHistoryRecord;
-import dataObjects.GasStationHistoryRecord.ActionType;
-import dataObjects.GasStationObject;
+import dal.dataObjects.*;
+import dal.dataObjects.GasStationHistoryRecord.ActionType;
+import dal.*;
 
 public class GasStationJPAManager implements IDataBaseConnection {
 
@@ -154,23 +151,24 @@ public class GasStationJPAManager implements IDataBaseConnection {
 
 		try {
 			Gasstation gasStation = em.find(Gasstation.class, gasStationId);
-			GasStationObject gasStationObject = new GasStationObject();
+			GasStationObject gasStationObject = new GasStationObject(gasStationId);
 
-			FuelPoolObject fuelPoolObject = new FuelPoolObject();
-			fuelPoolObject.setId(gasStation.getMainfuelpool()
-					.getMainFuelPoolID());
-			fuelPoolObject.setMaxCapacity(gasStation.getMainfuelpool()
-					.getMaxCapacity());
+			//TODO: Check why there is 0 in the current capacity 
+			FuelPoolObject fuelPoolObject = new FuelPoolObject(gasStation.getMainfuelpool().getMainFuelPoolID(),
+					gasStation.getMainfuelpool().getMaxCapacity(), 0);
+			
+			//fuelPoolObject.setId(gasStation.getMainfuelpool().getMainFuelPoolID());
+			//fuelPoolObject.setMaxCapacity(gasStation.getMainfuelpool().getMaxCapacity());
 
-			CleaningServiceObject cleaningServiceObject = new CleaningServiceObject();
-			cleaningServiceObject.setId(gasStation.getCleanservice()
-					.getCleanServiceID());
-			cleaningServiceObject.setNumOfInsideTeams(gasStation
-					.getCleanservice().getNumOfInsideTeams());
-			cleaningServiceObject.setPrice(Float.valueOf(gasStation
-					.getCleanservice().getCleanServicePrice().toString()));
+			CleaningServiceObject cleaningServiceObject = new CleaningServiceObject(
+												gasStation.getCleanservice().getCleanServiceID(),
+												gasStation.getCleanservice().getNumOfInsideTeams(),
+												Integer.valueOf(gasStation.getCleanservice().getCleanServicePrice().toString()),
+												200);
+			//cleaningServiceObject.setId(gasStation.getCleanservice().getCleanServiceID());
+			//cleaningServiceObject.setNumOfInsideTeams(gasStation.getCleanservice().getNumOfInsideTeams());
+			//cleaningServiceObject.setPrice(Float.valueOf(gasStation.getCleanservice().getCleanServicePrice().toString()));
 
-			gasStationObject.setId(gasStationId);
 			gasStationObject.setFuelPoolObject(fuelPoolObject);
 			gasStationObject.setCleaningServiceObject(cleaningServiceObject);
 
@@ -284,5 +282,7 @@ public class GasStationJPAManager implements IDataBaseConnection {
 			em.close();
 		}
 	}
+
+
 
 }
