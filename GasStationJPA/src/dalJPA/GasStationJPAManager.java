@@ -51,8 +51,7 @@ public class GasStationJPAManager implements IDataBaseConnection {
 		EntityManager em = emf.createEntityManager();
 
 		try {
-			em.createQuery("DELETE FROM gasstationpumprelationship")
-					.executeUpdate();
+			em.createQuery("DELETE FROM gasstationpumprelationship").executeUpdate();
 			em.createQuery("DELETE FROM gasstations").executeUpdate();
 			em.createQuery("DELETE FROM mainfuelpool").executeUpdate();
 			em.createQuery("DELETE FROM cleanservices").executeUpdate();

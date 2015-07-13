@@ -5,5 +5,7 @@
 	<classpathentry kind="lib" path="C:/Tomcat6/lib/gson-2.3.1.jar"/>
 	<classpathentry kind="lib" path="C:/Tomcat6/lib/mysql-connector-java-5.1.13-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.ajdt.core.ASPECTJRT_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GenericDAL"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GasStationSpring"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

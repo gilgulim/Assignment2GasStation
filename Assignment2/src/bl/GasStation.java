@@ -8,15 +8,10 @@ import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import pl.CarStatusPacket.CarStatusType;
 import dal.dataObjects.CarObject;
-import dal.dataObjects.GasStationHistoryRecord;
-import dal.dataObjects.GasStationHistoryRecord.ActionType;
-import dal.dataObjects.GasStationHistoryRecord.ServiceEntityType;
-import dal.GasStationMySqlConnection;
 
 public class GasStation implements Runnable{
 	

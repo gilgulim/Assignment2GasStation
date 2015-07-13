@@ -1,6 +1,5 @@
 package com.rest;
 
-import manager.*;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -32,11 +31,17 @@ public class CarStatistics {
 		+ "</H2>"
 		+ "</body>"
 		+ "</html>";
-		return htmlString; 
+		return htmlString;
+		
 	}
 
 	private int getCarData(int carId) {
-		return GasStationDataBaseManager.getInstance().getCarPaymentByCarId(carId);
-	}
+		GasStationMySqlConnection gasStationDB = new GasStationMySqlConnection();
+		int data = gasStationDB.getCarPaymentByCarId(carId);
+		gasStationDB.disconnect();
+		
+		return data;
+		
+ 	}
 	
 }

@@ -1,4 +1,4 @@
-package manager;
+package dal;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -19,10 +19,7 @@ public class GasStationDataBaseManager {
 		if(instance == null){
 			ApplicationContext theContext = new ClassPathXmlApplicationContext("Settings.xml");
 
-			//XXX : not woriking currently
-			instance = (IDataBaseConnection)theContext.getBean("ODBC");
-			//instance = (GasStationJPAManager)theContext.getBean("JPA");
-			
+			instance = (IDataBaseConnection)theContext.getBean("DBConnection");			
 			instance.clearDatabase();
 			
 		}
